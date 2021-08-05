@@ -1,0 +1,49 @@
+{% extends "bootstrap/base.html" %}
+
+{% block metas %}
+{{super()}}
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+/>
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<!--Font Awesome-->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+<!-- Latest compiled and minified CSS, Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!--Others-->
+<link
+  rel="shortcut icon"
+  href="{{ url_for('static',filename='img/favicon.ico') }}"
+  type="image/x-icon"
+/>
+<link rel="stylesheet" href="{{ url_for('static',filename='css/base.css') }}" />
+{% endblock %} 
+
+{% block title %} Kalend {% endblock %}
+
+{% block scripts %}
+{{super()}}
+<!--jQuery Google CDN-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{% endblock %}
+
+{% block navbar %}
+  <div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}      
+        {% for category, message in messages %}
+        <div class="alert alert-{{category}}" role="alert">
+          <p>{{ message }}</p>    
+        </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+{% endblock %}

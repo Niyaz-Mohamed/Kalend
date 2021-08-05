@@ -1,0 +1,22 @@
+{% extends "template.html" %}
+
+{% block metas %}
+{{ super() }}
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static',filename='css/index.css') }}" />
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <button type="Submit" value="Add a new Item" class="btn btn-primary" type='submit'>Submit</button>
+    <a class="btn btn-outline-dark" type="submit" value="Submit"></a>
+</div>
+{% endblock %}

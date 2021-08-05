@@ -1,0 +1,39 @@
+:root {
+    --rich-black: #0D1F2D;
+    --white: #f8f9fa;
+    --navy-gray: #3A4258;
+    --safety-orange: #FF6806;
+    --sunrise-orange: #FF9ADD;
+    --blue-jeans: #54AEFF;
+    --dodger-blue: #218BFF;
+    --space-blue: #1c2f67;
+    --deep-space-blue: #081026;
+    --box-shadow: 6px 6px 8px 0px rgba(127,127,127,0.84);
+}
+
+html {
+    letter-spacing: 0em;
+    line-height: 1.1;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+a:-webkit-any-link {
+    color: var(--white);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+*, *:after, *:before {
+    font-family:"SF Pro Display","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif !important;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+input:focus, textarea:focus, select:focus{
+    outline: none;
+}
