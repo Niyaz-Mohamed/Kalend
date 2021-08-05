@@ -12,10 +12,10 @@
 {% block styles %}
 {{super()}}
 <!--Font Awesome-->
-<link
+<!--<link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-/>
+/> !-->
 <!-- Latest compiled and minified CSS, Bootstrap -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <!--Others-->
@@ -42,12 +42,13 @@
 {% block navbar %}
   <div class="container">
     {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}      
+      {% if messages %}
+        <ul class=flashes>
         {% for category, message in messages %}
-        <div class="alert alert-{{category}}" role="alert">
-          <p>{{ message }}</p>    
-        </div>
+          <li class="{{ category }}">{{ message }}</li>
         {% endfor %}
+        </ul>
       {% endif %}
     {% endwith %}
+  </div>
 {% endblock %}

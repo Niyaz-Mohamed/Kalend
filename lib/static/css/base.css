@@ -1,5 +1,6 @@
 :root {
     --rich-black: #0D1F2D;
+    --pure-white: #ffffff;
     --white: #f8f9fa;
     --navy-gray: #3A4258;
     --safety-orange: #FF6806;
@@ -29,7 +30,7 @@ a:-webkit-any-link {
 }
 
 *, *:after, *:before {
-    font-family:"SF Pro Display","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif !important;
+    font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif !important;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
