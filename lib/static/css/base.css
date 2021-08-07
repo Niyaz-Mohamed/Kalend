@@ -10,6 +10,7 @@
     --space-blue: #1c2f67;
     --deep-space-blue: #081026;
     --box-shadow: 6px 6px 8px 0px rgba(127,127,127,0.84);
+    --base-transition: 0.2s all ease-in-out;
 }
 
 html {
@@ -30,7 +31,6 @@ a:-webkit-any-link {
 }
 
 *, *:after, *:before {
-    font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif !important;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -38,4 +38,23 @@ a:-webkit-any-link {
 
 input:focus, textarea:focus, select:focus{
     outline: none;
+}
+
+.container-fluid {
+    width: 100%;
+    padding: 0px;
+    overflow: auto;
+}
+
+.dark-bg-section {
+    width: 100%;
+    background-color: #0a0d53;
+    color: white;
+    height: auto;
+  }
+
+.light-bg-section {
+    width: 100%;
+    color: black;
+    height: auto;
 }

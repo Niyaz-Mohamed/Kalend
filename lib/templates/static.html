@@ -1,0 +1,63 @@
+{% extends "template.html" %} 
+
+{% block metas %} 
+{{ super() }} 
+{% endblock %} 
+
+{% block scripts %} 
+{{ super() }} 
+{% endblock %} 
+
+{% block styles %} 
+{{ super() }}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static',filename='css/static.css') }}"
+/>
+{% endblock %} 
+
+{% block content %}
+<!--Header-->
+<div class="container-fluid">
+  <div id="header" class="container-fluid dark-bg-section">
+    <!--Navbar-->
+    <nav class="container-fluid">
+      <ul>
+        <li><a class='dtl-btn' href="{{ url_for('login') }}">Log in</a></li>
+        <div class='spacer'></div>
+        <li><a class='dtl-btn' href='{{login}}'>Sign Up</a></li>
+      </ul>
+    </nav>
+    <!--Content-->
+    <div class="static-content">
+      <div class='d-flex flex-column align-content-center justify-content-center'>
+        <div>
+          <p class='text-center font-weight-bold' style='font-size:26px; text-align: justify;'>
+            <img class='text-logo' src="{{ url_for('static',filename='img/title-logo.png') }}">
+            Kalend;
+          </p>
+        </div>
+        <h1 class='title-text'>Your Schedule,<br>Simplified</h1>
+        <div id='title-svg'>
+          <img src="{{ url_for('static',filename='img/svg/title.svg') }}">
+        </div>
+      </div>
+      <img class='bottom-border' src="{{ url_for('static', filename='img/svg/wave-light.svg') }}">
+    </div>
+  </div>
+  <!--About-->
+  <div id='about' class='container-fluid light-bg-section'>
+    <div class='d-flex flex-column align-content-center justify-content-center'>
+      <div class='container'>
+        <h1 class='title-text'>Meet <span style='color:#6C63FF;'>Kalend</span></h1>
+      </div>
+    </div>
+  </div>
+  <div id='features'>
+
+  </div>
+  <div id='footer'>
+
+  </div>
+</div>
+{% endblock %}
