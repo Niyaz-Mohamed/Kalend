@@ -3,6 +3,56 @@ body {
   font-size: 1vw;
 }
 
+.dark-bg-section {
+  width: 100%;
+  background-color: #0a0d53;
+  color: white;
+  height: auto;
+  box-sizing: content-box;
+  min-height: 30vh;
+}
+
+.light-bg-section {
+  width: 100%;
+  color: black;
+  height: auto;
+  box-sizing: content-box;
+  min-height: 30vh;
+}
+
+@media only screen and (max-width: 768px) {
+  nav {
+    justify-content: center !important;
+    margin-bottom: 30px !important;
+  }
+
+  ul {
+    margin-right: 0px !important;
+  }
+
+  #about-content-col p {
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    padding: 0px 55px !important;
+  }
+
+  .title-text {
+    font-size: 55px !important;
+    padding-right: 30px !important;
+    padding-left: 30px !important;
+    line-height: 70px !important;
+  }
+
+  .subtitle {
+    font-size: 25px !important;
+    line-height: 35px !important;
+  }
+
+  .section-header {
+    margin-bottom: 25px !important;
+  }
+}
+
 #header {
   display: block;
 }
@@ -14,20 +64,6 @@ nav {
   width: 100%;
   margin-top: 50px;
   min-height: 15vh;
-}
-
-@media only screen and (max-width: 768px) {
-  nav {
-    justify-content: center;
-  }
-
-  #title-svg img{
-    display: hidden;
-  }
-
-  ul {
-    margin-right: 0px !important;
-  }
 }
 
 ul {
@@ -50,7 +86,7 @@ li {
 }
 
 .spacer {
-  margin: 0px 40px;
+  margin: 0px 25px;
 }
 
 .dtl-btn {
@@ -112,4 +148,25 @@ li {
   color: black;
   display: inline-block;
   bottom: 0;
+  padding-bottom: 50px;
+}
+
+.subtitle {
+  font-size: 28px;
+  line-height: 50px;
+}
+
+.section-header {
+  margin-bottom: 50px;
+}
+
+#about-svg {
+  width: 80%;
+  height: auto;
+  margin: 50px 50px;
+}
+
+#about-content-col p {
+  font-size: 16px;
+  font-weight: 700;
 }

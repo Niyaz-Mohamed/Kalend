@@ -45,18 +45,3 @@ input:focus, textarea:focus, select:focus{
     padding: 0px;
     overflow: auto;
 }
-
-.dark-bg-section {
-    width: 100%;
-    background-color: #0a0d53;
-    color: white;
-    height: auto;
-    box-sizing: content-box;
-  }
-
-.light-bg-section {
-    width: 100%;
-    color: black;
-    height: auto;
-    box-sizing: content-box;
-}

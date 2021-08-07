@@ -1,9 +1,5 @@
 {% extends "template.html" %} 
 
-{% block metas %} 
-{{ super() }} 
-{% endblock %} 
-
 {% block scripts %} 
 {{ super() }} 
 {% endblock %} 
@@ -48,15 +44,29 @@
   <!--About-->
   <div id='about' class='container-fluid light-bg-section'>
     <div class='d-flex flex-column align-content-center justify-content-center'>
-      <div class='container'>
+      <div class='container section-header'>
         <h1 class='title-text'>Meet <span style='color:#6C63FF;'>Kalend</span></h1>
+        <h2 class='title-text subtitle'>A cutting-edge event booking application</h2>
+      </div>
+      <div id='about-content' class='container'>
+        <div id='about-content-col' class='d-flex flex-column justify-content-center'>
+          <p id='about-text' class='text-center text-justify'>
+            Kalend is the all-in-one event booking website that makes event management as simple as ever. 
+            Combining accessibility with functionality, Kalend allows you to create and edit events, 
+            book a slot for events and invite specific people to your events in just one click. 
+            With Kalend, you never have to worry about missing another event! Kalend offers a calendar 
+            view that displays all your upcoming events in one go. So, what are you waiting for? Sign up 
+            now and never worry about planning an  event anymore!
+          </p>
+          <img id='about-svg' src="{{ url_for('static',filename='img/svg/about.svg') }}" class='col'>
+        </div>
       </div>
     </div>
   </div>
-  <div id='features'>
+  <div id='features' class='dark-bg-section'>
 
   </div>
-  <div id='footer'>
+  <div id='footer' class='light-bg-section'>
 
   </div>
 </div>
