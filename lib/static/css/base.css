@@ -51,10 +51,12 @@ input:focus, textarea:focus, select:focus{
     background-color: #0a0d53;
     color: white;
     height: auto;
+    box-sizing: content-box;
   }
 
 .light-bg-section {
     width: 100%;
     color: black;
     height: auto;
+    box-sizing: content-box;
 }
