@@ -144,6 +144,13 @@ li {
   bottom: 0;
 }
 
+.top-border {
+  width: 100%;
+  position: relative;
+  top: 0;
+  transform: rotate(180deg);
+}
+
 #about {
   color: black;
   display: inline-block;
@@ -169,4 +176,20 @@ li {
 #about-content-col p {
   font-size: 16px;
   font-weight: 700;
+}
+
+.feature-card {
+  margin: 100px 0px;
+}
+
+.feature-svg {
+  height: 400px;
+}
+
+.text-content-b-left {
+  border-left: 5px solid white 
+}
+
+.text-content-b-right {
+  border-right: 5px solid white 
 }

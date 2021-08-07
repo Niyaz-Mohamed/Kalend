@@ -44,10 +44,12 @@
   <!--About-->
   <div id='about' class='container-fluid light-bg-section'>
     <div class='d-flex flex-column align-content-center justify-content-center'>
+      <!--About Header-->
       <div class='container section-header'>
         <h1 class='title-text'>Meet <span style='color:#6C63FF;'>Kalend</span></h1>
         <h2 class='title-text subtitle'>A cutting-edge event booking application</h2>
       </div>
+      <!--About Main Content-->
       <div id='about-content' class='container'>
         <div id='about-content-col' class='d-flex flex-column justify-content-center'>
           <p id='about-text' class='text-center text-justify'>
@@ -63,11 +65,44 @@
       </div>
     </div>
   </div>
+  <!--Features-->
   <div id='features' class='dark-bg-section'>
+    <img class='top-border' src="{{ url_for('static', filename='img/svg/wave-light.svg') }}">
+    <div class='d-flex flex-column justify-content-center'>
+      <!--Feature Card-->
+      <div class='feature-card row'>
+        <div class='text-content-b-right col d-flex align-content-center justify-content-center'>
+          <div style="height: min-content;">
+            <h1 class='title-text'>Explore</h1>
+            <h2 class='title-text subtitle'>Discover events you may be interested in</h2>
+          </div>
+        </div>
+        <img class='col feature-svg' src="{{ url_for('static',filename='img/svg/search.svg') }}">
+      </div>
+      <!--Feature Card-->
+      <div class='feature-card row'>
+        <img class='col feature-svg' src="{{ url_for('static',filename='img/svg/dashboard.svg') }}">
+        <div class='text-content-b-left col d-flex align-content-center justify-content-center'>
+          <div style="height: min-content;">
+            <h1 class='title-text'>Dashboard</h1>
+            <h2 class='title-text subtitle'>Create or modify events</h2>
+          </div>
+        </div>
+      </div>
+      <!--Feature Card-->
+      <div class='feature-card row'>
+        <div class='text-content-b-right col d-flex align-content-center justify-content-center'>
+          <div style="height: min-content;">
+            <h1 class='title-text'>Schedule</h1>
+            <h2 class='title-text subtitle'>View all your events in a single place</h2>
+          </div>
+        </div>
+        <img class='col feature-svg' src="{{ url_for('static',filename='img/svg/schedule.svg') }}">
+      </div>
 
+    </div>
   </div>
   <div id='footer' class='light-bg-section'>
-
   </div>
 </div>
 {% endblock %}
