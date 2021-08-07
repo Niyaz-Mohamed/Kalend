@@ -1,3 +1,7 @@
+* {
+  overflow: visible;
+}
+
 body {
   font-family: "Montserrat", sans-serif !important;
   font-size: 1vw;
@@ -20,6 +24,7 @@ body {
   min-height: 30vh;
 }
 
+/* For phones, tablets */ 
 @media only screen and (max-width: 768px) {
   nav {
     justify-content: center !important;
@@ -46,10 +51,22 @@ body {
   .subtitle {
     font-size: 25px !important;
     line-height: 35px !important;
+    margin-bottom: 50px;
   }
 
   .section-header {
     margin-bottom: 25px !important;
+  }
+
+  .container {
+    overflow-x: hidden;
+  }
+}
+
+/* For larger tablets and smaller desktop screen */ 
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  nav {
+    margin-bottom: 30px !important;
   }
 }
 
@@ -179,7 +196,7 @@ li {
 }
 
 .feature-card {
-  margin: 100px 0px;
+  margin: 75px 0px;
 }
 
 .feature-svg {
@@ -192,4 +209,8 @@ li {
 
 .text-content-b-right {
   border-right: 5px solid white 
+}
+
+.text-content {
+  padding: 0px 70px;
 }

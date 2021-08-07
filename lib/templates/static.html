@@ -71,8 +71,8 @@
     <div class='d-flex flex-column justify-content-center'>
       <!--Feature Card-->
       <div class='feature-card row'>
-        <div class='text-content-b-right col d-flex align-content-center justify-content-center'>
-          <div style="height: min-content;">
+        <div class='col d-flex align-content-center justify-content-center'>
+          <div class='text-content' style="height: min-content;">
             <h1 class='title-text'>Explore</h1>
             <h2 class='title-text subtitle'>Discover events you may be interested in</h2>
           </div>
@@ -81,28 +81,28 @@
       </div>
       <!--Feature Card-->
       <div class='feature-card row'>
-        <img class='col feature-svg' src="{{ url_for('static',filename='img/svg/dashboard.svg') }}">
-        <div class='text-content-b-left col d-flex align-content-center justify-content-center'>
-          <div style="height: min-content;">
+        <div class='col text-content d-flex align-content-center justify-content-center'>
+          <div class='text-content' style="height: min-content;">
             <h1 class='title-text'>Dashboard</h1>
             <h2 class='title-text subtitle'>Create or modify events</h2>
           </div>
         </div>
+        <img class='col feature-svg' src="{{ url_for('static',filename='img/svg/dashboard.svg') }}">
       </div>
       <!--Feature Card-->
       <div class='feature-card row'>
-        <div class='text-content-b-right col d-flex align-content-center justify-content-center'>
-          <div style="height: min-content;">
+        <div class='col text-content d-flex align-content-center justify-content-center'>
+          <div class='text-content' style="height: min-content;">
             <h1 class='title-text'>Schedule</h1>
             <h2 class='title-text subtitle'>View all your events in a single place</h2>
           </div>
         </div>
         <img class='col feature-svg' src="{{ url_for('static',filename='img/svg/schedule.svg') }}">
       </div>
-
     </div>
   </div>
   <div id='footer' class='light-bg-section'>
+    <img class='top-border' src="{{ url_for('static', filename='img/svg/wave-dark.svg') }}">
   </div>
 </div>
 {% endblock %}
