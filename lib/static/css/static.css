@@ -7,6 +7,11 @@ body {
   font-size: 1vw;
 }
 
+.container, .container-fluid {
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+}
+
 .dark-bg-section {
   width: 100%;
   background-color: #0a0d53;
@@ -36,7 +41,7 @@ body {
   }
 
   #about-content-col p {
-    font-size: 12px !important;
+    font-size: 16px !important;
     font-weight: 600 !important;
     padding: 0px 55px !important;
   }
@@ -51,15 +56,19 @@ body {
   .subtitle {
     font-size: 25px !important;
     line-height: 35px !important;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
   }
 
   .section-header {
     margin-bottom: 25px !important;
   }
 
-  .container {
-    overflow-x: hidden !important;
+  .min-hide {
+    display: none !important;
+  }
+
+  .max-hide {
+    display: block !important;
   }
 }
 
@@ -68,7 +77,7 @@ body {
   nav {
     margin-bottom: 30px !important;
   }
-  
+
   .min-hide {
     display: none !important;
   }
@@ -128,6 +137,7 @@ li {
   font-size: 20px;
   font-style: normal;
   font-weight: bold;
+  width: fit-content;
 
   transition-duration: 0.3s;
 }
@@ -136,6 +146,24 @@ li {
   color: #0a0d53;
   background-color: white;
   border: 4px solid inherit;
+}
+
+.invert-btn-col {
+  background-color: white;
+  border: 4px solid #0a0d53;
+  color: #0a0d53 !important;
+}
+
+.invert-btn-col:hover {
+  color: white !important;
+  background-color: #0a0d53;
+  border: 4px solid inherit;
+}
+
+#about-start-btn {
+  margin: auto;
+  margin-top: 30px !important;
+  margin-bottom: 30px !important;
 }
 
 .title-text {
@@ -167,13 +195,14 @@ li {
   width: 100%;
   position: relative;
   bottom: 0;
+  transform: translateY(2px);
 }
 
 .top-border {
   width: 100%;
   position: relative;
   top: 0;
-  transform: rotate(180deg);
+  transform: rotate(180deg) translateY(2px);
 }
 
 #about {
@@ -190,6 +219,10 @@ li {
 
 .section-header {
   margin-bottom: 50px;
+}
+
+#about-content-col p {
+  font-weight: 600 !important;
 }
 
 #about-svg {

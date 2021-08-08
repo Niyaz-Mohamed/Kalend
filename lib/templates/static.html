@@ -53,13 +53,16 @@
       <div id='about-content' class='container'>
         <div id='about-content-col' class='d-flex flex-column justify-content-center'>
           <p id='about-text' class='text-center text-justify'>
-            Kalend is the all-in-one event booking website that makes event management as simple as ever. 
+            Kalend is the all-in-one event booking website that makes event management as simple as ever.<br><br>
+            
             Combining accessibility with functionality, Kalend allows you to create and edit events, 
             book a slot for events and invite specific people to your events in just one click. 
-            With Kalend, you never have to worry about missing another event! Kalend offers a calendar 
-            view that displays all your upcoming events in one go. So, what are you waiting for? Sign up 
-            now and never worry about planning an  event anymore!
+            With Kalend, you never have to worry about missing another event!<br><br>
+            
+            Kalend also offers a calendar that displays all your upcoming events in a single screen. So what are you waiting for? Sign up 
+            now and never worry about planning an event anymore!
           </p>
+          <a id='about-start-btn' href='#' class='dtl-btn invert-btn-col'>Start Now!</a>
           <img id='about-svg' src="{{ url_for('static',filename='img/svg/about.svg') }}" class='col'>
         </div>
       </div>
@@ -105,6 +108,13 @@
   <div id='footer' class='light-bg-section container-fluid align-content-center justify-content-center'>
     <img class='top-border' src="{{ url_for('static', filename='img/svg/wave-dark.svg') }}">
     <div class='d-flex flex-column' style="padding: 50px 0px;">
+      <!--Project Name-->
+      <div class='col justify-content-center' style="padding-bottom: 30px;">
+        <p class='text-center font-weight-bold' style='font-size:26px; text-align: justify;'>
+          Kalend
+        </p>
+      </div>
+      <!--Dev Info-->
       <div class='col justify-content-center' style="padding-bottom: 30px;">
         <h5 class='text-center'>
           <strong>Developed By:</strong><br>
@@ -113,6 +123,7 @@
         </h5>
       </div>
       <div style="margin: 0px 3%;"></div>
+      <!--Contact Info-->
       <div class='col justify-content-center' style="padding-bottom: 50px;">
         <h5 class='text-center'>
           <strong>Contact:</strong><br>
