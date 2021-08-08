@@ -1,0 +1,266 @@
+* {
+  overflow: visible;
+}
+
+body {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 1vw;
+}
+
+.container, .container-fluid {
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+}
+
+.dark-bg-section {
+  width: 100%;
+  background-color: #0a0d53;
+  color: white;
+  height: auto;
+  box-sizing: content-box;
+  min-height: 30vh;
+}
+
+.light-bg-section {
+  width: 100%;
+  color: black;
+  height: auto;
+  box-sizing: content-box;
+  min-height: 30vh;
+}
+
+/* For phones, tablets */ 
+@media only screen and (max-width: 768px) {
+  nav {
+    justify-content: center !important;
+    margin-bottom: 30px !important;
+  }
+
+  ul {
+    margin-right: 0px !important;
+  }
+
+  #about-content-col p {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    padding: 0px 55px !important;
+  }
+
+  .title-text {
+    font-size: 55px !important;
+    padding-right: 30px !important;
+    padding-left: 30px !important;
+    line-height: 70px !important;
+  }
+
+  .subtitle {
+    font-size: 25px !important;
+    line-height: 35px !important;
+    margin-bottom: 10px;
+  }
+
+  .section-header {
+    margin-bottom: 25px !important;
+  }
+
+  .min-hide {
+    display: none !important;
+  }
+
+  .max-hide {
+    display: block !important;
+  }
+}
+
+/* For Laptops */ 
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  nav {
+    margin-bottom: 30px !important;
+  }
+
+  .min-hide {
+    display: none !important;
+  }
+
+  .max-hide {
+    display: block !important;
+  }
+}
+
+#header {
+  display: block;
+}
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+  width: 100%;
+  margin-top: 50px;
+  min-height: 15vh;
+}
+
+ul {
+  position: relative;
+  list-style-type: none;
+  margin-right: 80px;
+  overflow: hidden;
+  background-color: inherit;
+  right: 0;
+  height: fit-content;
+
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
+
+li {
+  float: right;
+  text-align: center;
+}
+
+.spacer {
+  margin: 0px 25px;
+}
+
+.dtl-btn {
+  background-color: #0a0d53;
+  border: 4px solid white;
+  border-radius: 45px;
+  
+  color: white;
+  padding: 12px 36px;
+  text-align: center;
+  text-decoration: none;
+
+  display: inline-block;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: bold;
+  width: fit-content;
+
+  transition-duration: 0.3s;
+}
+
+.dtl-btn:hover {
+  color: #0a0d53;
+  background-color: white;
+  border: 4px solid inherit;
+}
+
+.invert-btn-col {
+  background-color: white;
+  border: 4px solid #0a0d53;
+  color: #0a0d53 !important;
+}
+
+.invert-btn-col:hover {
+  color: white !important;
+  background-color: #0a0d53;
+  border: 4px solid inherit;
+}
+
+#about-start-btn {
+  margin: auto;
+  margin-top: 30px !important;
+  margin-bottom: 30px !important;
+}
+
+.title-text {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 70px;
+  line-height: 98px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+#title-svg {
+  width: 100%;
+  margin: 85px 0px;
+  text-align: center;
+}
+
+#title-svg img {
+  width: 40%;
+  min-width: 400px;
+}
+
+.text-logo {
+  height: 42px;
+}
+
+.bottom-border {
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  transform: translateY(2px);
+}
+
+.top-border {
+  width: 100%;
+  position: relative;
+  top: 0;
+  transform: rotate(180deg) translateY(2px);
+}
+
+#about {
+  color: black;
+  display: inline-block;
+  bottom: 0;
+  padding-bottom: 50px;
+}
+
+.subtitle {
+  font-size: 28px;
+  line-height: 50px;
+}
+
+.section-header {
+  margin-bottom: 50px;
+}
+
+#about-content-col p {
+  font-weight: 600 !important;
+}
+
+#about-svg {
+  width: 80%;
+  height: auto;
+  margin: 50px 50px;
+}
+
+#about-content-col p {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.feature-card {
+  margin: 75px 0px;
+}
+
+.feature-svg {
+  padding: 30px 0px;
+  height: 350px;
+}
+
+.text-content-b-left {
+  border-left: 5px solid white 
+}
+
+.text-content-b-right {
+  border-right: 5px solid white 
+}
+
+.text-content {
+  padding: 0px 70px;
+}
+
+.max-hide {
+  display: none;
+}
+
+.min-hide {
+  display: block;
+}

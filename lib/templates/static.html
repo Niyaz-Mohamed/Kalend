@@ -1,0 +1,137 @@
+{% extends "template.html" %} 
+
+{% block scripts %} 
+{{ super() }} 
+{% endblock %} 
+
+{% block styles %} 
+{{ super() }}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static',filename='css/static.css') }}"
+/>
+{% endblock %} 
+
+{% block content %}
+<!--Header-->
+<div class="container-fluid">
+  <div id="header" class="container-fluid dark-bg-section">
+    <!--Navbar-->
+    <nav class="container-fluid">
+      <ul>
+        <li><a class='dtl-btn' href="{{ url_for('login') }}">Log in</a></li>
+        <div class='spacer'></div>
+        <li><a class='dtl-btn' href='{{login}}'>Sign Up</a></li>
+      </ul>
+    </nav>
+    <!--Content-->
+    <div class="static-content">
+      <div class='d-flex flex-column align-content-center justify-content-center'>
+        <div>
+          <p class='text-center font-weight-bold' style='font-size:26px; text-align: justify;'>
+            <img class='text-logo' src="{{ url_for('static',filename='img/title-logo.png') }}">
+            Kalend;
+          </p>
+        </div>
+        <h1 class='title-text'>Your Schedule,<br>Simplified</h1>
+        <div id='title-svg'>
+          <img src="{{ url_for('static',filename='img/svg/title.svg') }}">
+        </div>
+      </div>
+      <img class='bottom-border' src="{{ url_for('static', filename='img/svg/wave-light.svg') }}">
+    </div>
+  </div>
+  <!--About-->
+  <div id='about' class='container-fluid light-bg-section'>
+    <div class='d-flex flex-column align-content-center justify-content-center'>
+      <!--About Header-->
+      <div class='container section-header'>
+        <h1 class='title-text'>Meet <span style='color:#6C63FF;'>Kalend</span></h1>
+        <h2 class='title-text subtitle'>A cutting-edge event booking application</h2>
+      </div>
+      <!--About Main Content-->
+      <div id='about-content' class='container'>
+        <div id='about-content-col' class='d-flex flex-column justify-content-center'>
+          <p id='about-text' class='text-center text-justify'>
+            Kalend is the all-in-one event booking website that makes event management as simple as ever.<br><br>
+            
+            Combining accessibility with functionality, Kalend allows you to create and edit events, 
+            book a slot for events and invite specific people to your events in just one click. 
+            With Kalend, you never have to worry about missing another event!<br><br>
+            
+            Kalend also offers a calendar that displays all your upcoming events in a single screen. So what are you waiting for? Sign up 
+            now and never worry about planning an event anymore!
+          </p>
+          <a id='about-start-btn' href='#' class='dtl-btn invert-btn-col'>Start Now!</a>
+          <img id='about-svg' src="{{ url_for('static',filename='img/svg/about.svg') }}" class='col'>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Features-->
+  <div id='features' class='dark-bg-section'>
+    <img class='top-border' src="{{ url_for('static', filename='img/svg/wave-light.svg') }}">
+    <div class='d-flex flex-column justify-content-center'>
+      <!--Feature Card-->
+      <div class='feature-card row'>
+        <div class='col d-flex align-content-center justify-content-center'>
+          <div class='text-content' style="height: min-content;">
+            <h1 class='title-text'>Explore</h1>
+            <h2 class='title-text subtitle'>Discover events you may be interested in</h2>
+          </div>
+        </div>
+        <img class='col feature-svg' src="{{ url_for('static',filename='img/svg/search.svg') }}">
+      </div>
+      <!--Feature Card (Flipped)-->
+      <div class='feature-card row'>
+        <img class='col feature-svg min-hide' src="{{ url_for('static',filename='img/svg/dashboard.svg') }}">
+        <div class='col text-content d-flex align-content-center justify-content-center'>
+          <div class='text-content' style="height: min-content;">
+            <h1 class='title-text'>Dashboard</h1>
+            <h2 class='title-text subtitle'>Create or modify events</h2>
+          </div>
+        </div>
+        <img class='col feature-svg max-hide' src="{{ url_for('static',filename='img/svg/dashboard.svg') }}">
+      </div>
+      <!--Feature Card-->
+      <div class='feature-card row'>
+        <div class='col text-content d-flex align-content-center justify-content-center'>
+          <div class='text-content' style="height: min-content;">
+            <h1 class='title-text'>Schedule</h1>
+            <h2 class='title-text subtitle'>View all your events in a single place</h2>
+          </div>
+        </div>
+        <img class='col feature-svg' src="{{ url_for('static',filename='img/svg/schedule.svg') }}">
+      </div>
+    </div>
+  </div>
+  <div id='footer' class='light-bg-section container-fluid align-content-center justify-content-center'>
+    <img class='top-border' src="{{ url_for('static', filename='img/svg/wave-dark.svg') }}">
+    <div class='d-flex flex-column' style="padding: 50px 0px;">
+      <!--Project Name-->
+      <div class='col justify-content-center' style="padding-bottom: 30px;">
+        <p class='text-center font-weight-bold' style='font-size:26px; text-align: justify;'>
+          Kalend
+        </p>
+      </div>
+      <!--Dev Info-->
+      <div class='col justify-content-center' style="padding-bottom: 30px;">
+        <h5 class='text-center'>
+          <strong>Developed By:</strong><br>
+          Sandhesh and Niyaz<br>
+          CEP 2021, Raffles Institution
+        </h5>
+      </div>
+      <div style="margin: 0px 3%;"></div>
+      <!--Contact Info-->
+      <div class='col justify-content-center' style="padding-bottom: 50px;">
+        <h5 class='text-center'>
+          <strong>Contact:</strong><br>
+          Phone: +65 8917 0747<br>
+          Email: 24YMOHA026Z@student.ri.edu.sg
+        </h5>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
