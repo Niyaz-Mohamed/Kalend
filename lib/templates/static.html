@@ -79,15 +79,16 @@
         </div>
         <img class='col feature-svg' src="{{ url_for('static',filename='img/svg/search.svg') }}">
       </div>
-      <!--Feature Card-->
+      <!--Feature Card (Flipped)-->
       <div class='feature-card row'>
+        <img class='col feature-svg min-hide' src="{{ url_for('static',filename='img/svg/dashboard.svg') }}">
         <div class='col text-content d-flex align-content-center justify-content-center'>
           <div class='text-content' style="height: min-content;">
             <h1 class='title-text'>Dashboard</h1>
             <h2 class='title-text subtitle'>Create or modify events</h2>
           </div>
         </div>
-        <img class='col feature-svg' src="{{ url_for('static',filename='img/svg/dashboard.svg') }}">
+        <img class='col feature-svg max-hide' src="{{ url_for('static',filename='img/svg/dashboard.svg') }}">
       </div>
       <!--Feature Card-->
       <div class='feature-card row'>
@@ -101,8 +102,25 @@
       </div>
     </div>
   </div>
-  <div id='footer' class='light-bg-section'>
+  <div id='footer' class='light-bg-section container-fluid align-content-center justify-content-center'>
     <img class='top-border' src="{{ url_for('static', filename='img/svg/wave-dark.svg') }}">
+    <div class='d-flex flex-column' style="padding: 50px 0px;">
+      <div class='col justify-content-center' style="padding-bottom: 30px;">
+        <h5 class='text-center'>
+          <strong>Developed By:</strong><br>
+          Sandhesh and Niyaz<br>
+          CEP 2021, Raffles Institution
+        </h5>
+      </div>
+      <div style="margin: 0px 3%;"></div>
+      <div class='col justify-content-center' style="padding-bottom: 50px;">
+        <h5 class='text-center'>
+          <strong>Contact:</strong><br>
+          Phone: +65 8917 0747<br>
+          Email: 24YMOHA026Z@student.ri.edu.sg
+        </h5>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}

@@ -59,14 +59,22 @@ body {
   }
 
   .container {
-    overflow-x: hidden;
+    overflow-x: hidden !important;
   }
 }
 
-/* For larger tablets and smaller desktop screen */ 
+/* For Laptops */ 
 @media only screen and (min-width: 769px) and (max-width: 1024px) {
   nav {
     margin-bottom: 30px !important;
+  }
+  
+  .min-hide {
+    display: none !important;
+  }
+
+  .max-hide {
+    display: block !important;
   }
 }
 
@@ -200,7 +208,8 @@ li {
 }
 
 .feature-svg {
-  height: 400px;
+  padding: 30px 0px;
+  height: 350px;
 }
 
 .text-content-b-left {
@@ -213,4 +222,12 @@ li {
 
 .text-content {
   padding: 0px 70px;
+}
+
+.max-hide {
+  display: none;
+}
+
+.min-hide {
+  display: block;
 }
