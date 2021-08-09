@@ -1,0 +1,43 @@
+* {
+    overflow: visible;
+  }
+  
+  body {
+    font-family: "Poppins", sans-serif;
+    font-size: 1vw;
+    color: white;
+  }
+  
+  /* For phones, tablets */
+  @media only screen and (max-width: 768px) {
+  }
+  
+  /* For Laptops */
+  @media only screen and (min-width: 769px) and (max-width: 1024px) {
+  }
+  
+  #page-container {
+    background-color: var(--deep-space-blue);
+    width: 100vw;
+    height: 100vh;
+    display: table-cell;
+    vertical-align: middle;
+  }
+  
+  .login-form {
+    width: fit-content;
+    padding: 50px 80px;
+    border-radius: 20px;
+  }
+  
+  #form-title {
+    margin-bottom: 60px;
+  }
+  
+  .login-fields {
+    margin-top: 30px !important;
+    text-align: center;
+    width: fit-content;
+    margin: auto;
+  }
+  
