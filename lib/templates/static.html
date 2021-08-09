@@ -6,7 +6,9 @@
   rel="stylesheet"
   href="{{ url_for('static',filename='css/static.css') }}"
 />
-{% endblock %} 
+{% endblock %}
+
+{% block navbar %}{% endblock %}
 
 {% block content %}
 <!--Header-->
@@ -42,7 +44,7 @@
     <div class='d-flex flex-column align-content-center justify-content-center'>
       <!--About Header-->
       <div class='container section-header'>
-        <h1 class='title-text'>Meet <span style='color:#6C63FF;'>Kalend</span></h1>
+        <h1 class='title-text'>Meet <span style='color:var(--blue-tint);'>Kalend</span></h1>
         <h2 class='title-text subtitle'>A cutting-edge event booking application</h2>
       </div>
       <!--About Main Content-->

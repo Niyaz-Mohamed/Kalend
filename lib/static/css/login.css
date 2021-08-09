@@ -3,8 +3,9 @@
 }
 
 body {
-  font-family: "Montserrat", sans-serif !important;
+  font-family: "Poppins", sans-serif;
   font-size: 1vw;
+  color: white;
 }
 
 /* For phones, tablets */
@@ -13,4 +14,92 @@ body {
 
 /* For Laptops */
 @media only screen and (min-width: 769px) and (max-width: 1024px) {
+}
+
+#page-container {
+  background-color: var(--deep-space-blue);
+  width: 100vw;
+  height: 100vh;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.form-img {
+  width: 100%;
+  margin: 20px 0px;
+}
+
+.form-img img {
+  width: 130px;
+  border: 5px solid var(--deep-space-blue);
+  border-radius: 45px;
+}
+
+#form-title {
+  margin-bottom: 60px;
+}
+
+.login-fields {
+  margin-top: 30px !important;
+  text-align: center;
+  width: fit-content;
+  margin: auto;
+}
+
+.form-group {
+  text-align: center;
+  width: fit-content;
+  margin: 60px 0px;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.form-label {
+  font-size: 14px;
+  text-align: left;
+  position: absolute;
+  color: var(--deep-space-blue);
+  display: block;
+  opacity: 1;
+  transition: 0.3s ease all;
+  margin: 0px;
+
+  left: 20px;
+  top: 15px;
+}
+
+.form-control {
+  color: var(--deep-space-blue);
+  font-weight: bold;
+  font-size: 14px;
+  padding: 10px 20px;
+  border-radius: 15px;
+  box-shadow: none;
+  border-color: white;
+  width: 100%;
+  min-width: 250px;
+  height: 50px;
+  transition: all 0.5s;
+}
+
+.form-control::placeholder {
+  color: transparent;
+  font-weight: bold;
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
+
+.form-control:focus ~ .form-label,
+.form-control:not(:placeholder-shown) ~.form-label
+{
+  transform: scale(1.15, 1.15);
+  top: -2em;
+  left: 15px;
+  color: white;
+}
+
+.form-group:focus-within {
+  transform: scale(1.15,1.15);
 }

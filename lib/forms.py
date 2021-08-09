@@ -8,8 +8,8 @@ import re
 import requests
 
 class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[InputRequired()])
-    password = PasswordField('Password', validators=[InputRequired()])
+    username = StringField('Username', validators=[InputRequired()], render_kw={"placeholder": "Username"})
+    password = PasswordField('Password', validators=[InputRequired()], render_kw={"placeholder": "Password"})
 
     def validate_username(form,field):
         username=field.data
@@ -30,9 +30,9 @@ class LoginForm(FlaskForm):
             raise ValidationError("Password must have >8 characters")
 
 class SignUpForm(FlaskForm):
-    username = StringField('Username', validators=[InputRequired()])
-    email= EmailField('Email', validators=[InputRequired()])
-    password = PasswordField('Password', validators=[InputRequired()])
+    username = StringField('Username', validators=[InputRequired()], render_kw={"placeholder": "Username"})
+    email= EmailField('Email', validators=[InputRequired()], render_kw={"placeholder": "Email"})
+    password = PasswordField('Password', validators=[InputRequired()], render_kw={"placeholder": "Password"})
 
     def validate_username(form,field):
         username=field.data

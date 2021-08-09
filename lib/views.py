@@ -1,5 +1,5 @@
 from os import error
-from flask import render_template, request, url_for, redirect
+from flask import render_template, request, session, url_for, redirect
 from flask.helpers import flash
 
 from lib import app
@@ -19,6 +19,7 @@ def login():
       pass
     else:
       #Handle errors
+      session.pop('_flashes', None)
       flash('Failure to submit form {}'.format(form.errors))
  
   return render_template('login.html', form=form)

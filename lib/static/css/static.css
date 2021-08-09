@@ -14,7 +14,7 @@ body {
 
 .dark-bg-section {
   width: 100%;
-  background-color: #0a0d53;
+  background-color: var(--deep-space-blue);
   color: white;
   height: auto;
   box-sizing: content-box;
@@ -130,7 +130,6 @@ li {
 }
 
 .title-text {
-  font-family: Montserrat;
   font-style: normal;
   font-weight: bold;
   font-size: 70px;

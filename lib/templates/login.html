@@ -1,7 +1,6 @@
 {% extends "template.html" %} 
 
-{% block navbar %}
-{% endblock %}
+{% block navbar %}{% endblock %}
 
 {% block styles %} 
 {{ super() }}
@@ -12,10 +11,24 @@
 {% endblock %}
 
 {% block content %}
-<form method="POST" action="{{ url_for('login') }}">
-    {{ form.csrf_token }}
-    {{ form.username.label }}<br> {{ form.username }}<br>
-    {{ form.password.label }}<br> {{ form.password }}<br>
-    <input id='submit-btn' type='submit' value='Submit' class='dtl-btn invert-btn-col'>
-</form>
+<div id='page-container'>
+  <div class='login-form container flex-column justify-content-center align-content-stretch'>
+    <div class='form-img d-flex justify-content-center'>
+      <img src="{{ url_for('static', filename='img/svg/user.svg') }}">
+    </div>
+    <h1 id='form-title' class='text-center'><strong>Login</strong></h1>
+    <form class='login-fields flex-column align-content-center' method="POST" action="{{ url_for('login') }}">
+      {{ form.csrf_token }}
+      <div class='form-group'>
+        {{ form.username(class_='form-control') }}
+        {{ form.username.label(class_='form-label') }}
+      </div>
+      <div class='form-group'>
+        {{ form.password(class_='form-control') }}
+        {{ form.password.label(class_='form-label') }}
+      </div>
+      <input id='submit-btn' type='submit' value='Submit' class='dtl-btn'>
+    </form>
+  </div>
+</div>
 {% endblock %}
