@@ -123,43 +123,6 @@ li {
   margin: 0px 25px;
 }
 
-.dtl-btn {
-  background-color: #0a0d53;
-  border: 4px solid white;
-  border-radius: 45px;
-  
-  color: white;
-  padding: 12px 36px;
-  text-align: center;
-  text-decoration: none;
-
-  display: inline-block;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: bold;
-  width: fit-content;
-
-  transition-duration: 0.3s;
-}
-
-.dtl-btn:hover {
-  color: #0a0d53;
-  background-color: white;
-  border: 4px solid inherit;
-}
-
-.invert-btn-col {
-  background-color: white;
-  border: 4px solid #0a0d53;
-  color: #0a0d53 !important;
-}
-
-.invert-btn-col:hover {
-  color: white !important;
-  background-color: #0a0d53;
-  border: 4px solid inherit;
-}
-
 #about-start-btn {
   margin: auto;
   margin-top: 30px !important;

@@ -17,7 +17,7 @@
       <ul>
         <li><a class='dtl-btn' href="{{ url_for('login') }}">Log in</a></li>
         <div class='spacer'></div>
-        <li><a class='dtl-btn' href='{{login}}'>Sign Up</a></li>
+        <li><a class='dtl-btn' href="{{ url_for('signup') }}">Sign Up</a></li>
       </ul>
     </nav>
     <!--Content-->
@@ -58,7 +58,7 @@
             Kalend also offers a calendar that displays all your upcoming events in a single screen. So what are you waiting for? Sign up 
             now and never worry about planning an event anymore!
           </p>
-          <a id='about-start-btn' href='#' class='dtl-btn invert-btn-col'>Start Now!</a>
+          <a id='about-start-btn' href="{{ url_for('login') }}" class='dtl-btn invert-btn-col'>Start Now!</a>
           <img id='about-svg' src="{{ url_for('static',filename='img/svg/about.svg') }}" class='col'>
         </div>
       </div>

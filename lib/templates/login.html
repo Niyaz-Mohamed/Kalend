@@ -1,9 +1,21 @@
 {% extends "template.html" %} 
 
+{% block navbar %}
+{% endblock %}
+
 {% block styles %} 
 {{ super() }}
 <link
   rel="stylesheet"
   href="{{ url_for('static',filename='css/login.css') }}"
 />
-{% endblock %} 
+{% endblock %}
+
+{% block content %}
+<form method="POST" action="{{ url_for('login') }}">
+    {{ form.csrf_token }}
+    {{ form.username.label }}<br> {{ form.username }}<br>
+    {{ form.password.label }}<br> {{ form.password }}<br>
+    <input id='submit-btn' type='submit' value='Submit' class='dtl-btn invert-btn-col'>
+</form>
+{% endblock %}

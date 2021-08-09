@@ -1,51 +1,92 @@
 :root {
-    --rich-black: #0D1F2D;
-    --pure-white: #ffffff;
-    --white: #f8f9fa;
-    --navy-gray: #3A4258;
-    --safety-orange: #FF6806;
-    --sunrise-orange: #FF9ADD;
-    --blue-jeans: #54AEFF;
-    --dodger-blue: #218BFF;
-    --space-blue: #1c2f67;
-    --deep-space-blue: #081026;
-    --box-shadow: 6px 6px 8px 0px rgba(127,127,127,0.84);
-    --base-transition: 0.2s all ease-in-out;
+  --rich-black: #0d1f2d;
+  --pure-white: #ffffff;
+  --white: #f8f9fa;
+  --navy-gray: #3a4258;
+  --safety-orange: #ff6806;
+  --sunrise-orange: #ff9add;
+  --blue-jeans: #54aeff;
+  --dodger-blue: #218bff;
+  --space-blue: #1c2f67;
+  --deep-space-blue: #081026;
+  --box-shadow: 6px 6px 8px 0px rgba(127, 127, 127, 0.84);
+  --base-transition: 0.2s all ease-in-out;
 }
 
 html {
-    font-size: 14px;
-    letter-spacing: 0em;
-    line-height: 1.1;
+  font-size: 14px;
+  letter-spacing: 0em;
+  line-height: 1.1;
 }
 
 body {
-    margin: 0px;
-    padding: 0px;
+  margin: 0px;
+  padding: 0px;
 }
 
 a:-webkit-any-link {
-    color: var(--white);
-    cursor: pointer;
-    text-decoration: none;
+  color: var(--white);
+  cursor: pointer;
+  text-decoration: none;
 }
 
-*, *:after, *:before {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*,
+*:after,
+*:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-input:focus, textarea:focus, select:focus{
-    outline: none;
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
 }
 
 .container-fluid {
-    width: 100%;
-    padding: 0px;
-    overflow: auto;
+  width: 100%;
+  padding: 0px;
+  overflow: auto;
 }
 
 .d-flex {
-    flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.dtl-btn {
+  background-color: #0a0d53;
+  border: 4px solid white;
+  border-radius: 45px;
+
+  color: white;
+  padding: 12px 36px;
+  text-align: center;
+  text-decoration: none;
+
+  display: inline-block;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: bold;
+  width: fit-content;
+
+  transition-duration: 0.3s;
+}
+
+.dtl-btn:hover {
+  color: #0a0d53;
+  background-color: white;
+  border: 4px solid inherit;
+}
+
+.invert-btn-col {
+  background-color: white;
+  border: 4px solid #0a0d53;
+  color: #0a0d53 !important;
+}
+
+.invert-btn-col:hover {
+  color: white !important;
+  background-color: #0a0d53;
+  border: 4px solid inherit;
 }
