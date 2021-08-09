@@ -1,24 +1,28 @@
+#page_container {
+  color: white !important;
+  background-color: var(--deep-space-blue) !important;
+}
+
 .form-img {
-    width: 100%;
-    margin: 20px 0px;
-  }
-  
-  .form-img img {
-    width: 130px;
-    border: 5px solid var(--deep-space-blue);
-    border-radius: 45px;
-  }
-  
-  .form-label {
-    color: var(--deep-space-blue) !important;
-  }
-  
-  .form-control {
-    border-color: white !important;
-  }
-  
-  .form-control:focus ~ .form-label,
-  .form-control:not(:placeholder-shown) ~.form-label
-  {
-    color: white !important;
-  }
+  width: 100%;
+  margin: 20px 0px;
+}
+
+.form-img img {
+  width: 130px;
+  border: 5px solid var(--deep-space-blue);
+  border-radius: 45px;
+}
+
+.form-label {
+  color: var(--deep-space-blue) !important;
+}
+
+.form-control {
+  border-color: white !important;
+}
+
+.form-control:focus ~ .form-label,
+.form-control:not(:placeholder-shown) ~ .form-label {
+  color: white !important;
+}

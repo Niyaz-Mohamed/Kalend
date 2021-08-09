@@ -1,7 +1,7 @@
 :root {
   --rich-black: #0d1f2d;
   --deep-space-blue: #0a0d53;
-  --blue-tint: #6C63FF;
+  --blue-tint: #6c63ff;
   --box-shadow: 6px 6px 8px 0px rgba(127, 127, 127, 0.24);
   --base-transition: 0.2s all ease-in-out;
 }
@@ -15,7 +15,7 @@ html {
 body {
   margin: 0px;
   padding: 0px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 a:-webkit-any-link {
@@ -33,7 +33,7 @@ a:-webkit-any-link {
 }
 
 *:focus {
-  outline: none;
+  outline: none !important;
 }
 
 .container-fluid {
@@ -87,6 +87,16 @@ i {
   margin-right: 0.5em;
 }
 
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+  Supported by Chrome, Edge, Opera and Firefox */
+}
+
 /* Input Fields */
 .form-group {
   text-align: center;
@@ -116,8 +126,8 @@ i {
   font-size: 14px;
   padding: 10px 20px;
   border-radius: 15px;
+  border: 5px solid var(--deep-space-blue);
   box-shadow: none;
-  border-color: var(--deep-space-blue);
   width: 100%;
   min-width: 250px;
   height: 50px;
@@ -127,6 +137,13 @@ i {
 .form-control::placeholder {
   color: transparent;
   font-weight: bold;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently 
+  Supported by Chrome, Edge, Opera and Firefox */
 }
 
 .form-control:focus {
@@ -134,8 +151,7 @@ i {
 }
 
 .form-control:focus ~ .form-label,
-.form-control:not(:placeholder-shown) ~.form-label
-{
+.form-control:not(:placeholder-shown) ~ .form-label {
   transform: scale(1.15, 1.15);
   top: -2em;
   left: 15px;
@@ -143,5 +159,5 @@ i {
 }
 
 .form-group:focus-within {
-  transform: scale(1.15,1.15);
+  transform: scale(1.15, 1.15);
 }

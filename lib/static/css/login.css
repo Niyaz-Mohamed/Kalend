@@ -1,12 +1,10 @@
-.form-img {
-  width: 100%;
-  margin: 20px 0px;
+#page-container {
+  color: var(--deep-space-blue) !important;
+  background-color: var(--deep-space-blue) !important;
 }
 
-.form-img img {
-  width: 130px;
-  border: 5px solid var(--deep-space-blue);
-  border-radius: 45px;
+.login-form {
+  background-color: white;
 }
 
 .form-label {
@@ -14,11 +12,12 @@
 }
 
 .form-control {
-  border-color: white !important;
+  border-color: var(--deep-space-blue);
 }
 
 .form-control:focus ~ .form-label,
 .form-control:not(:placeholder-shown) ~.form-label
 {
-  color: white !important;
+  color: var(--deep-space-blue) !important;
+  border-color: var(--deep-space-blue) !important;
 }

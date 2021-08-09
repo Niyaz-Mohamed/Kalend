@@ -11,9 +11,6 @@
 {% block content %}
 <div id='page-container'>
   <div class='login-form container flex-column justify-content-center align-content-stretch'>
-    <div class='form-img d-flex justify-content-center'>
-      <img src="{{ url_for('static', filename='img/svg/user.svg') }}">
-    </div>
     <h1 id='form-title' class='text-center'><strong>Login</strong></h1>
     <form class='login-fields flex-column align-content-center' method="POST" action="{{ url_for('login') }}">
       {{ form.csrf_token }}
@@ -29,7 +26,7 @@
           <i class='fas fa-key'></i>
           {{ form.password.label.text }}</label>
       </div>
-      <input id='submit-btn' type='submit' value='Submit' class='dtl-btn'>
+      <input id='submit-btn' type='submit' value='Submit' class='dtl-btn invert-btn-col'>
     </form>
   </div>
 </div>
