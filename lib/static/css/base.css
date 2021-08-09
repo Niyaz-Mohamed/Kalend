@@ -82,3 +82,7 @@ a:-webkit-any-link {
   background-color: var(--deep-space-blue);
   border: 4px solid inherit;
 }
+
+i {
+  margin-right: 0.5em;
+}
