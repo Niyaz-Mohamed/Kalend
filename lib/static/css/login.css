@@ -1,0 +1,16 @@
+* {
+  overflow: visible;
+}
+
+body {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 1vw;
+}
+
+/* For phones, tablets */
+@media only screen and (max-width: 768px) {
+}
+
+/* For Laptops */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+}
