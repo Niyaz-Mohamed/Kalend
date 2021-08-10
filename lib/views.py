@@ -1,9 +1,10 @@
+from datetime import datetime
 from os import error
 from flask import render_template, request, session, url_for, redirect
 from werkzeug.exceptions import HTTPException
 from flask.helpers import flash, get_flashed_messages
 
-from lib import app
+from lib import app,mongo,hasher
 from lib.forms import LoginForm, SignUpForm
 
 @app.errorhandler(HTTPException)
@@ -38,8 +39,13 @@ def signup():
 
   if request.method == 'POST':
     if form.validate_on_submit():
-      #Signup
-      pass
+      #Create user
+      username=form.username.data
+      email=form.email.data
+      password=form.password.data
+      user={'username':username,'password':password,'email':email,'timestamp':datetime.now().strftime("%m/%d/%Y,%H:%M:%S")}
+      #Push to MongoDB
+      mongo.db.users.insert_one(user)
     else:
       #Handle errors
       session.pop('_flashes', None)
