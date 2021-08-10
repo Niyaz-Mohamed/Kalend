@@ -37,7 +37,7 @@ class SignUpForm(FlaskForm):
     def validate_username(form,field):
         username=field.data
 
-        if not username.data.isalnum:
+        if not username.isalnum:
             modifiedUsername=username.replace('_','a')
             if not modifiedUsername.isalnum:
                 raise ValidationError("Username can only contain letters, numbers, or underscores")
@@ -54,21 +54,12 @@ class SignUpForm(FlaskForm):
 
     def validate_email(form,field):
         email=field.data
-        email_regex = re.compile(r"[^@]+@[^@]+\.[^@]+")
 
+        #Check whether email exists
         response = requests.get(
         "https://isitarealemail.com/api/email/validate",
         params = {'email': email})
         status = response.json()['status']
 
-        if email_regex.match(email):
-            pass
-        else:
-            raise ValidationError('Invalid Email')
-        
-        if status == "valid":
-            pass
-        elif status == "invalid":
-            ValidationError('Email does not exist')
-        else:
-            ValidationError('Email unknown')
+        if not status == "valid":
+            raise ValidationError('Email does not exist')

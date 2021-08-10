@@ -83,10 +83,6 @@ a:-webkit-any-link {
   border: 4px solid inherit;
 }
 
-i {
-  margin-right: 0.5em;
-}
-
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */

@@ -3,17 +3,6 @@
   background-color: var(--deep-space-blue) !important;
 }
 
-.form-img {
-  width: 100%;
-  margin: 20px 0px;
-}
-
-.form-img img {
-  width: 130px;
-  border: 5px solid var(--deep-space-blue);
-  border-radius: 45px;
-}
-
 .form-label {
   color: var(--deep-space-blue) !important;
 }

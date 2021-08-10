@@ -11,8 +11,14 @@
 {% block content %}
 <div id='page-container'>
   <div class='login-form container flex-column justify-content-center align-content-stretch'>
-    <h1 id='form-title' class='text-center'><strong>Login</strong></h1>
-    <form class='login-fields flex-column align-content-center' method="POST" action="{{ url_for('login') }}">
+    <div class='form-img d-flex justify-content-center'>
+      <img src="{{ url_for('static', filename='img/svg/user.svg') }}">
+    </div>
+    <h1 id='form-title' class='text-center'><strong>Login <i class="fas fa-arrow-alt-circle-right"></i></strong></h1>
+    <p class='font-weight-bold toggler-link text-center'>Don't have an account?
+      <u><a href="{{ url_for('signup') }}" class='font-weight-bold'> Sign Up here</a></u>
+    </p>
+    <form class='login-fields flex-column align-content-center' method="POST" action="{{ url_for('login') }}" autocomplete="off">
       {{ form.csrf_token }}
       <div class='form-group'>
         {{ form.username(class_='form-control') }}
@@ -26,7 +32,20 @@
           <i class='fas fa-key'></i>
           {{ form.password.label.text }}</label>
       </div>
-      <input id='submit-btn' type='submit' value='Submit' class='dtl-btn invert-btn-col'>
+      <input id='submit-btn' type='submit' value='Submit' class='dtl-btn'>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class=flashes>
+            <p class='error-msg-header'>
+              <i class="fas fa-exclamation"></i> 
+              <u>Failed to submit form:</u>
+            </p>
+          {% for message in messages %}
+            <p>{{ message }}</p>
+          {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
     </form>
   </div>
 </div>

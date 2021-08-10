@@ -1,6 +1,6 @@
 from os import error
 from flask import render_template, request, session, url_for, redirect
-from flask.helpers import flash
+from flask.helpers import flash, get_flashed_messages
 
 from lib import app
 from lib.forms import LoginForm, SignUpForm
@@ -15,12 +15,15 @@ def login():
 
   if request.method == 'POST':
     if form.validate_on_submit():
-      #login
+      print('validated')
+      #Login
       pass
     else:
       #Handle errors
       session.pop('_flashes', None)
-      flash('Failure to submit form {}'.format(form.errors))
+      if form.errors:
+        for error in form.errors:
+          flash(form.errors[error][0])
  
   return render_template('login.html', form=form)
 
@@ -30,10 +33,13 @@ def signup():
 
   if request.method == 'POST':
     if form.validate_on_submit():
-      #signup
+      #Signup
       pass
     else:
       #Handle errors
-      flash('Failure to submit form {}'.format(form.errors))
+      session.pop('_flashes', None)
+      if form.errors:
+        for error in form.errors:
+          flash(form.errors[error][0])
   
   return render_template('signup.html',form=form)

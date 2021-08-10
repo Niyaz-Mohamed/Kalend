@@ -1,10 +1,6 @@
 #page-container {
-  color: var(--deep-space-blue) !important;
+  color: white !important;
   background-color: var(--deep-space-blue) !important;
-}
-
-.login-form {
-  background-color: white;
 }
 
 .form-label {
@@ -12,12 +8,11 @@
 }
 
 .form-control {
-  border-color: var(--deep-space-blue);
+  border: 5px solid white !important;
 }
 
 .form-control:focus ~ .form-label,
 .form-control:not(:placeholder-shown) ~.form-label
 {
-  color: var(--deep-space-blue) !important;
-  border-color: var(--deep-space-blue) !important;
+  color:white !important;
 }

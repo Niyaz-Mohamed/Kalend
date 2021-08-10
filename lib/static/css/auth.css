@@ -27,8 +27,28 @@
     border-radius: 20px;
   }
   
+  .form-img {
+    width: 100%;
+    margin: 20px 0px;
+  }
+  
+  .form-img img {
+    width: 130px;
+    border: 5px solid var(--deep-space-blue);
+    border-radius: 45px;
+  }
+
   #form-title {
-    margin-bottom: 60px;
+    margin-bottom: 20px;
+  }
+  
+  .toggler-link {
+    margin-bottom: 80px;
+  }
+
+  #form-title i {
+    margin-right: 0px;
+    color: white;
   }
   
   .login-fields {
@@ -37,4 +57,22 @@
     width: fit-content;
     margin: auto;
   }
+
+  .form-group {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
   
+  i {
+    margin-right: 0.5em;
+  }
+
+  #submit-btn {
+    margin-bottom: 50px;
+  }
+
+  .flashes {
+    font-size: 16px;
+    font-weight: bold;
+  }
