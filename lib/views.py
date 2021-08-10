@@ -1,9 +1,14 @@
 from os import error
 from flask import render_template, request, session, url_for, redirect
+from werkzeug.exceptions import HTTPException
 from flask.helpers import flash, get_flashed_messages
 
 from lib import app
 from lib.forms import LoginForm, SignUpForm
+
+@app.errorhandler(HTTPException)
+def handle_exception(e):
+    return render_template('error.html', error=e)
 
 @app.route('/')
 def index():
