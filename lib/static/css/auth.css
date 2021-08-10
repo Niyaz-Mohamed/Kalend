@@ -41,6 +41,10 @@
   #form-title {
     margin-bottom: 20px;
   }
+
+  #form-title i {
+    margin-left: 0.2em;
+  }
   
   .toggler-link {
     margin-bottom: 80px;
