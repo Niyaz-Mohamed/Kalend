@@ -18,7 +18,7 @@
     <p class='font-weight-bold toggler-link text-center'>Already have an account?
       <u><a href="{{ url_for('login') }}" class='font-weight-bold'> Login here</a></u>
     </p>
-    <form class='login-fields flex-column align-content-center' method="POST" action="{{ url_for('signup') }}" autocomplete="off">
+    <form class='login-fields flex-column align-content-center' method="POST" autocomplete="off">
       {{ form.csrf_token }}
       <div class='form-group'>
         {{ form.username(class_='form-control') }}

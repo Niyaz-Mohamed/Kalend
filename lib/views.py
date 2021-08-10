@@ -42,10 +42,12 @@ def signup():
       #Create user
       username=form.username.data
       email=form.email.data
-      password=form.password.data
+      password=hasher.hash_value(form.password.data,salt=app.secret_key)
       user={'username':username,'password':password,'email':email,'timestamp':datetime.now().strftime("%m/%d/%Y,%H:%M:%S")}
       #Push to MongoDB
+      print('PUUUUUUUUUUUUUUUUUUUSSSSSSSSSSSSSSSSSSHHHHHHHHHHHHIIIIIIIIIIIING')
       mongo.db.users.insert_one(user)
+      return redirect('/')
     else:
       #Handle errors
       session.pop('_flashes', None)
