@@ -1,0 +1,27 @@
+#page-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--deep-space-blue);
+    color: white;
+}
+
+#error-msg {
+    padding: 0px 50px;
+}
+
+#error-msg i {
+    width: 100%;
+    text-align: center;
+    font-size: 70px;
+    margin-bottom: 30px;
+}
+
+.error-code {
+    font-weight: bold;
+    font-size: 72px;
+}
+
+.error-name {
+    margin-bottom: 20px;
+    font-weight: bold;
+}

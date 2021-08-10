@@ -1,16 +1,14 @@
 {% extends "template.html" %} 
 
-{% block scripts %} 
-{{ super() }} 
-{% endblock %} 
-
 {% block styles %} 
 {{ super() }}
 <link
   rel="stylesheet"
   href="{{ url_for('static',filename='css/static.css') }}"
 />
-{% endblock %} 
+{% endblock %}
+
+{% block navbar %}{% endblock %}
 
 {% block content %}
 <!--Header-->
@@ -21,7 +19,7 @@
       <ul>
         <li><a class='dtl-btn' href="{{ url_for('login') }}">Log in</a></li>
         <div class='spacer'></div>
-        <li><a class='dtl-btn' href='{{login}}'>Sign Up</a></li>
+        <li><a class='dtl-btn' href="{{ url_for('signup') }}">Sign Up</a></li>
       </ul>
     </nav>
     <!--Content-->
@@ -46,7 +44,7 @@
     <div class='d-flex flex-column align-content-center justify-content-center'>
       <!--About Header-->
       <div class='container section-header'>
-        <h1 class='title-text'>Meet <span style='color:#6C63FF;'>Kalend</span></h1>
+        <h1 class='title-text'>Meet <span style='color:var(--blue-tint);'>Kalend</span></h1>
         <h2 class='title-text subtitle'>A cutting-edge event booking application</h2>
       </div>
       <!--About Main Content-->
@@ -62,7 +60,7 @@
             Kalend also offers a calendar that displays all your upcoming events in a single screen. So what are you waiting for? Sign up 
             now and never worry about planning an event anymore!
           </p>
-          <a id='about-start-btn' href='#' class='dtl-btn invert-btn-col'>Start Now!</a>
+          <a id='about-start-btn' href="{{ url_for('login') }}" class='dtl-btn invert-btn-col'>Start Now!</a>
           <img id='about-svg' src="{{ url_for('static',filename='img/svg/about.svg') }}" class='col'>
         </div>
       </div>

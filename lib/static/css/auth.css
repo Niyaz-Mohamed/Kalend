@@ -1,0 +1,82 @@
+* {
+    overflow: visible;
+  }
+  
+  /* For phones, tablets */
+  @media only screen and (max-width: 768px) {
+  }
+  
+  /* For Laptops */
+  @media only screen and (min-width: 769px) and (max-width: 1024px) {
+  }
+  
+  #page-container {
+    color: white;
+    background-color: var(--deep-space-blue);
+    font-family: "Poppins", sans-serif;
+    font-size: 1vw;
+    width: 100vw;
+    height: 100vh;
+    display: table-cell;
+    vertical-align: middle;
+  }
+  
+  .login-form {
+    width: fit-content;
+    padding: 70px 80px;
+    border-radius: 20px;
+  }
+  
+  .form-img {
+    width: 100%;
+    margin: 20px 0px;
+  }
+  
+  .form-img img {
+    width: 130px;
+    border: 5px solid var(--deep-space-blue);
+    border-radius: 45px;
+  }
+
+  #form-title {
+    margin-bottom: 20px;
+  }
+
+  #form-title i {
+    margin-left: 0.2em;
+  }
+  
+  .toggler-link {
+    margin-bottom: 80px;
+  }
+
+  #form-title i {
+    margin-right: 0px;
+    color: white;
+  }
+  
+  .login-fields {
+    margin-top: 30px !important;
+    text-align: center;
+    width: fit-content;
+    margin: auto;
+  }
+
+  .form-group {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  i {
+    margin-right: 0.5em;
+  }
+
+  #submit-btn {
+    margin-bottom: 50px;
+  }
+
+  .flashes {
+    font-size: 16px;
+    font-weight: bold;
+  }
