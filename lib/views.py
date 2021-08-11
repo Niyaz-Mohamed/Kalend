@@ -23,7 +23,7 @@ def login():
     if form.validate_on_submit():
       print('validated')
       #Login
-      pass
+      return redirect(url_for('dashboard'))
     else:
       #Handle errors
       session.pop('_flashes', None)
@@ -45,9 +45,8 @@ def signup():
       password=hasher.hash_value(form.password.data,salt=app.secret_key)
       user={'username':username,'password':password,'email':email,'timestamp':datetime.now().strftime("%m/%d/%Y,%H:%M:%S")}
       #Push to MongoDB
-      print('PUUUUUUUUUUUUUUUUUUUSSSSSSSSSSSSSSSSSSHHHHHHHHHHHHIIIIIIIIIIIING')
       mongo.db.users.insert_one(user)
-      return redirect('/')
+      return redirect(url_for('dashboard'))
     else:
       #Handle errors
       session.pop('_flashes', None)
@@ -56,3 +55,7 @@ def signup():
           flash(form.errors[error][0])
   
   return render_template('signup.html',form=form)
+
+@app.route('/dashboard')
+def dashboard():
+  return 'Signed in'
