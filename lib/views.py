@@ -18,35 +18,35 @@ def index():
 @app.route('/login', methods=['GET','POST'])
 def login():
   form = LoginForm()
+  errors={'username':'', 'password':''}
 
   if request.method == 'POST':
     if form.validate_on_submit():
-      print('validated')
+      session.pop('_flashes', None)
       #Login
       return redirect(url_for('dashboard'))
     else:
       #Handle errors
-      session.pop('_flashes', None)
-      if 'username' not in form.errors:
-        form.errors['username']=['']
-      if 'password' not in form.errors:
-        form.errors['password']=['']
-      flash(form.errors)
-  
-  #Placeholder for first GET request
-  try:
-    get_flashed_messages[0]
-  except:
-    flash({'username':'','password':''})
+      try:
+        errors['username']=form.errors['username']
+      except:
+        pass
+      try:
+        errors['password']=form.errors['password']
+      except:
+        pass
  
-  return render_template('login.html', form=form, errors=get_flashed_messages()[0])
+  print(errors)
+  return render_template('login.html', form=form, errors=errors)
 
 @app.route('/signup', methods=['GET','POST'])
 def signup():
   form = SignUpForm()
+  errors={'username':'', 'email':'', 'password':''}
 
   if request.method == 'POST':
     if form.validate_on_submit():
+      session.pop('_flashes', None)
       #Create user
       username=form.username.data
       email=form.email.data
@@ -58,21 +58,20 @@ def signup():
     else:
       #Handle errors
       session.pop('_flashes', None)
-      if 'username' not in form.errors:
-        form.errors['username']=['']
-      if 'email' not in form.errors:
-        form.errors['email']=['']
-      if 'password' not in form.errors:
-        form.errors['password']=['']
-      flash(form.errors)
-  
-  #Placeholder for first GET request
-  try:
-    get_flashed_messages[0]
-  except:
-    flash({'username':'','email':'','password':''})
+      try:
+        errors['username']=form.errors['username']
+      except:
+        pass
+      try:
+        errors['email']=form.errors['email']
+      except:
+        pass
+      try:
+        errors['password']=form.errors['password']
+      except:
+        pass
 
-  return render_template('signup.html', form=form, errors=get_flashed_messages()[0])
+  return render_template('signup.html', form=form, errors=errors)
 
 @app.route('/dashboard')
 def dashboard():

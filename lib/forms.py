@@ -21,12 +21,12 @@ class LoginForm(FlaskForm):
     def validate_password(form,field):
         username=form.username.data
         password=field.data
-        hashedPassword=mongo.db.users.find_one({'username':username})['password']
+        hashedUser=mongo.db.users.find_one({'username':username})
 
         #If password is wrong
-        if hashedPassword == None:
+        if hashedUser == None:
             pass
-        elif not hasher.check_value(hashedPassword,password,salt=app.secret_key):
+        elif not hasher.check_value(hashedUser['password'],password,salt=app.secret_key):
             raise ValidationError('Incorrect Password')
 
 

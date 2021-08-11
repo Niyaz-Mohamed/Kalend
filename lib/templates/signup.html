@@ -20,6 +20,7 @@
     </p>
     <form class='login-fields flex-column align-content-center' method="POST" autocomplete="off">
       {{ form.csrf_token }}
+
       <!--Username-->
       <div class='form-group'>
         <!--Input-->
@@ -29,10 +30,14 @@
           {{ form.username.label.text }}
         </label>
         <!--Error-->
+        {% if errors['username']!='' %}
         <p class='error-msg'>
-          <i class='fa fa-exclamation'></i> {{ errors['username'][0] }}!
+          <i class='fas fa-exclamation'></i>
+          {{ errors['username'][0] }}
         </p>
+        {% endif %}
       </div>
+
       <!--Email-->
       <div class='form-group'>
         <!--Input-->
@@ -42,10 +47,14 @@
           {{ form.email.label.text }}
         </label>
         <!--Error-->
+        {% if errors['email']!='' %}
         <p class='error-msg'>
-          <i class='fa fa-exclamation'></i> {{ errors['email'][0] }}!
+          <i class='fas fa-exclamation'></i>
+          {{ errors['email'][0] }}
         </p>
+        {% endif %}
       </div>
+
       <!--Password-->
       <div class='form-group'>
         <!--Input-->
@@ -55,10 +64,14 @@
           {{ form.password.label.text }}
         </label>
         <!--Error-->
+        {% if errors['password']!='' %}
         <p class='error-msg'>
-          <i class='fa fa-exclamation'></i> {{ errors['password'][0] }}!
+          <i class='fas fa-exclamation'></i>
+          {{ errors['password'][0] }}
         </p>
+        {% endif %}
       </div>
+
       <input id='submit-btn' type='submit' value='Submit' class='dtl-btn'>
     </form>
   </div>
