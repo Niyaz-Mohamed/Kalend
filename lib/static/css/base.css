@@ -96,10 +96,15 @@ a:-webkit-any-link {
 /* Input Fields */
 .form-group {
   text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   width: fit-content;
   margin: 60px 0px;
-  transition: all 0.3s;
+  font-weight: bold;
+  font-size: 14px;
   position: relative;
+  transition: all 0.3s;
 }
 
 .form-label {
@@ -156,4 +161,11 @@ a:-webkit-any-link {
 
 .form-group:focus-within {
   transform: scale(1.15, 1.15);
+}
+
+.form-group .error-msg {
+  margin-bottom: 0px;
+  margin-top: 10px;
+  width: 100%;
+  text-align: left;
 }

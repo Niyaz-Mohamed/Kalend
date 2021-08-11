@@ -27,11 +27,19 @@ def login():
     else:
       #Handle errors
       session.pop('_flashes', None)
-      if form.errors:
-        for error in form.errors:
-          flash(form.errors[error][0])
+      if 'username' not in form.errors:
+        form.errors['username']=['']
+      if 'password' not in form.errors:
+        form.errors['password']=['']
+      flash(form.errors)
+  
+  #Placeholder for first GET request
+  try:
+    get_flashed_messages[0]
+  except:
+    flash({'username':'','password':''})
  
-  return render_template('login.html', form=form)
+  return render_template('login.html', form=form, errors=get_flashed_messages()[0])
 
 @app.route('/signup', methods=['GET','POST'])
 def signup():
@@ -50,11 +58,21 @@ def signup():
     else:
       #Handle errors
       session.pop('_flashes', None)
-      if form.errors:
-        for error in form.errors:
-          flash(form.errors[error][0])
+      if 'username' not in form.errors:
+        form.errors['username']=['']
+      if 'email' not in form.errors:
+        form.errors['email']=['']
+      if 'password' not in form.errors:
+        form.errors['password']=['']
+      flash(form.errors)
   
-  return render_template('signup.html',form=form)
+  #Placeholder for first GET request
+  try:
+    get_flashed_messages[0]
+  except:
+    flash({'username':'','email':'','password':''})
+
+  return render_template('signup.html', form=form, errors=get_flashed_messages()[0])
 
 @app.route('/dashboard')
 def dashboard():

@@ -20,38 +20,46 @@
     </p>
     <form class='login-fields flex-column align-content-center' method="POST" autocomplete="off">
       {{ form.csrf_token }}
+      <!--Username-->
       <div class='form-group'>
+        <!--Input-->
         {{ form.username(class_='form-control') }}
         <label for='username' class='form-label'>
           <i class='fas fa-user'></i>
-          {{ form.username.label.text }}</label>
+          {{ form.username.label.text }}
+        </label>
+        <!--Error-->
+        <p class='error-msg'>
+          <i class='fa fa-exclamation'></i> {{ errors['username'][0] }}!
+        </p>
       </div>
+      <!--Email-->
       <div class='form-group'>
+        <!--Input-->
         {{ form.email(class_='form-control') }}
         <label for='email' class='form-label'>
           <i class='fas fa-envelope'></i>
-          {{ form.email.label.text }}</label>
+          {{ form.email.label.text }}
+        </label>
+        <!--Error-->
+        <p class='error-msg'>
+          <i class='fa fa-exclamation'></i> {{ errors['email'][0] }}!
+        </p>
       </div>
+      <!--Password-->
       <div class='form-group'>
+        <!--Input-->
         {{ form.password(class_='form-control') }}
         <label for='password' class='form-label'>
           <i class='fas fa-key'></i>
-          {{ form.password.label.text }}</label>
+          {{ form.password.label.text }}
+        </label>
+        <!--Error-->
+        <p class='error-msg'>
+          <i class='fa fa-exclamation'></i> {{ errors['password'][0] }}!
+        </p>
       </div>
       <input id='submit-btn' type='submit' value='Submit' class='dtl-btn'>
-      {% with messages = get_flashed_messages() %}
-        {% if messages %}
-          <div class=flashes>
-            <p class='error-msg-header'>
-              <i class="fas fa-exclamation"></i> 
-              <u>Failed to submit form:</u>
-            </p>
-          {% for message in messages %}
-            <p>{{ message }}</p>
-          {% endfor %}
-          </div>
-        {% endif %}
-      {% endwith %}
     </form>
   </div>
 </div>
