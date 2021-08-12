@@ -9,9 +9,7 @@
 <div id='page-container' class='container-fluid d-flex align-content-center justify-content-center'>
   <div id='error-msg' class='flex-column justify-content-center'>
         <i class="fas fa-search"></i>
-      <h1 class='error-code text-center'>{{ error.code }}</h1>
-      <h3 class='error-name text-center'>{{ error.name }}</h3>
-      <p class='error-desc text-center'>{{ error.description }}</p>
+      <h1 class='error-code text-center'>Welcome, {{ current_user.username }}!</h1>
   </div>
 </div>
 {% endblock %}

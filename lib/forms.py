@@ -1,10 +1,10 @@
-from typing import Pattern
+from sys import excepthook
 from flask_wtf import FlaskForm
 from wtforms.fields import StringField, PasswordField
 from wtforms.fields.html5 import EmailField
 from wtforms.validators import InputRequired, ValidationError
 
-import re
+from lib import app, mongo, hasher
 import requests
 
 class LoginForm(FlaskForm):
@@ -14,20 +14,21 @@ class LoginForm(FlaskForm):
     def validate_username(form,field):
         username=field.data
 
-        if not username.isalnum:
-            modifiedUsername=username.replace('_','a')
-            if not modifiedUsername.isalnum:
-                raise ValidationError("Username can only contain letters, numbers, or underscores")
-
-        if len(username) < 8:
-            raise ValidationError("Username must have >8 characters")
-        elif len(username) > 20:
-            raise ValidationError("Username must have <20 characters")
+        #If user doesn't exist
+        if not mongo.db.users.find_one({'username':username}):
+            raise ValidationError("User doesn't exist")
 
     def validate_password(form,field):
+        username=form.username.data
         password=field.data
-        if len(password) < 8:
-            raise ValidationError("Password must have >8 characters")
+        hashedUser=mongo.db.users.find_one({'username':username})
+
+        #If password is wrong
+        if hashedUser == None:
+            pass
+        elif not hasher.check_value(hashedUser['password'],password,salt=app.secret_key):
+            raise ValidationError('Incorrect Password')
+
 
 class SignUpForm(FlaskForm):
     username = StringField('Username', validators=[InputRequired()], render_kw={"placeholder": "Username"})
@@ -36,24 +37,34 @@ class SignUpForm(FlaskForm):
 
     def validate_username(form,field):
         username=field.data
+        
+        #If user already exists
+        if mongo.db.users.find_one({'username':username}):
+            raise ValidationError("Username taken")
 
+        #If username isn't in correct format
         if not username.isalnum:
             modifiedUsername=username.replace('_','a')
             if not modifiedUsername.isalnum:
                 raise ValidationError("Username can only contain letters, numbers, or underscores")
 
         if len(username) < 8:
-            raise ValidationError("Username must have >8 characters")
+            raise ValidationError("Username must have 8 or more characters")
         elif len(username) > 20:
-            raise ValidationError("Username must have <20 characters")
+            raise ValidationError("Username must have 20 or less characters")
 
     def validate_password(form,field):
         password=field.data
+
         if len(password) < 8:
-            raise ValidationError("Password must have >8 characters")
+            raise ValidationError("Password must have 8 or more characters")
 
     def validate_email(form,field):
         email=field.data
+
+        #If email already exists in db
+        if mongo.db.users.find_one({'email':email}):
+            raise ValidationError("Email taken")
 
         #Check whether email exists
         response = requests.get(
