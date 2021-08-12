@@ -127,6 +127,7 @@ a:-webkit-any-link {
   font-size: 14px;
   padding: 10px 20px;
   border-radius: 15px;
+  border-bottom-left-radius: 0px !important;
   border: 5px solid var(--deep-space-blue);
   box-shadow: none;
   width: 100%;

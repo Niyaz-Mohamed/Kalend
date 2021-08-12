@@ -1,7 +1,5 @@
 {% extends "template.html" %} 
 
-{% block navbar %}{% endblock %}
-
 {% block styles %} 
 {{ super() }}
 <link rel="stylesheet" href="{{ url_for('static',filename='css/auth.css') }}"/>
@@ -30,7 +28,7 @@
           {{ form.username.label.text }}
         </label>
         <!--Error-->
-        {% if errors['username']!='' %}
+        {% if 'username' in errors %}
         <p class='error-msg'>
           <i class='fas fa-exclamation'></i>
           {{ errors['username'][0] }}
@@ -47,7 +45,7 @@
           {{ form.email.label.text }}
         </label>
         <!--Error-->
-        {% if errors['email']!='' %}
+        {% if 'email' in errors %}
         <p class='error-msg'>
           <i class='fas fa-exclamation'></i>
           {{ errors['email'][0] }}
@@ -64,7 +62,7 @@
           {{ form.password.label.text }}
         </label>
         <!--Error-->
-        {% if errors['password']!='' %}
+        {% if 'password' in errors %}
         <p class='error-msg'>
           <i class='fas fa-exclamation'></i>
           {{ errors['password'][0] }}
