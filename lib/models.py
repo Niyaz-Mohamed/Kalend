@@ -30,4 +30,6 @@ class User(UserMixin):
     @login.user_loader
     def load_user(user_id):
         userData = mongo.db.users.find_one({'_id': ObjectId(user_id)})
-        return User(userData['_id'])
+        loadedUser = User(userData.get('_id'))
+        return loadedUser
+
