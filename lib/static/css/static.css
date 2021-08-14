@@ -11,23 +11,6 @@ body {
   overflow-y: hidden !important;
 }
 
-.dark-bg-section {
-  width: 100%;
-  background-color: var(--deep-space-blue);
-  color: white;
-  height: auto;
-  box-sizing: content-box;
-  min-height: 30vh;
-}
-
-.light-bg-section {
-  width: 100%;
-  color: black;
-  height: auto;
-  box-sizing: content-box;
-  min-height: 30vh;
-}
-
 /* For phones, tablets */ 
 @media only screen and (max-width: 768px) {
   nav {
@@ -118,10 +101,6 @@ li {
   text-align: center;
 }
 
-.spacer {
-  margin: 0px 25px;
-}
-
 #about-start-btn {
   margin: auto;
   margin-top: 30px !important;
@@ -150,20 +129,6 @@ li {
 
 .text-logo {
   height: 42px;
-}
-
-.bottom-border {
-  width: 100%;
-  position: relative;
-  bottom: 0;
-  transform: translateY(2px);
-}
-
-.top-border {
-  width: 100%;
-  position: relative;
-  top: 0;
-  transform: rotate(180deg) translateY(2px);
 }
 
 #about {

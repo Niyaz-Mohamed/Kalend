@@ -3,7 +3,7 @@
 {% block styles %} 
 {{ super() }}
 <link rel="stylesheet" href="{{ url_for('static',filename='css/app.css') }}"/>
-<link rel="stylesheet" href="{{ url_for('static',filename='css/dashboard.css') }}"/>
+<link rel="stylesheet" href="{{ url_for('static',filename='css/explore.css') }}"/>
 {% endblock %}
 
 {% block content %}
@@ -11,9 +11,9 @@
   <!--Navbar-->
   <nav class="container-fluid">
     <ul>
-      <li><a class='dtl-btn disabled'>Dashboard</a></li>
+      <li><a class='dtl-btn invert-btn-col' href="{{ url_for('dashboard') }}">Dashboard</a></li>
       <div class='spacer'></div>
-      <li><a class='dtl-btn invert-btn-col' href="{{ url_for('explore') }}">Explore</a></li>
+      <li><a class='dtl-btn disabled'>Explore</a></li>
       <div class='spacer'></div>
       <li><a class='dtl-btn invert-btn-col' href="{{ url_for('schedule') }}">Schedule</a></li>
     </ul>

@@ -82,3 +82,13 @@ def signup():
 @app.route('/dashboard')
 def dashboard():
     return render_template('dashboard.html')
+
+@login_required
+@app.route('/explore')
+def explore():
+    return render_template('explore.html')
+
+@login_required
+@app.route('/schedule')
+def schedule():
+    return render_template('schedule.html')
