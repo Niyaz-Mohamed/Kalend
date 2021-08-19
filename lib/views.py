@@ -1,13 +1,10 @@
 from datetime import datetime
-from os import abort, error
-from flask import render_template, request, session, url_for, redirect
-from flask_login import  login_user
-from flask_login.utils import login_required, login_user
+from flask import render_template, request, url_for, redirect
+from flask_login.utils import login_required, login_user, logout_user, current_user
 from werkzeug.exceptions import HTTPException
 from werkzeug.urls import url_parse
-from flask.helpers import flash, get_flashed_messages
 
-from lib import app, mongo, hasher, login
+from lib import app, mongo, hasher
 from lib.forms import LoginForm, SignUpForm
 from lib.models import User
 
@@ -26,6 +23,14 @@ def index():
 def login():
     form = LoginForm()
     errors = {}
+    
+    if request.method == 'GET':
+        if current_user:
+            #Go to the next page
+            nextPage = request.args.get('next')
+            if not nextPage or url_parse(nextPage).netloc!='':
+                nextPage=url_for('dashboard')
+            return redirect(nextPage)
 
     if request.method == 'POST':
         if form.validate_on_submit():
@@ -49,7 +54,7 @@ def login():
 def signup():
     form = SignUpForm()
     errors = {}
-
+    
     if request.method == 'POST':
         if form.validate_on_submit():
             # Create user

@@ -7,16 +7,26 @@
 {% endblock %}
 
 {% block content %}
-<div id="navbar-div" class="container-fluid light-bg-section">
-  <!--Navbar-->
-  <nav class="container-fluid">
-    <ul>
-      <li><a class='dtl-btn disabled'>Dashboard</a></li>
-      <div class='spacer'></div>
-      <li><a class='dtl-btn invert-btn-col' href="{{ url_for('explore') }}">Explore</a></li>
-      <div class='spacer'></div>
-      <li><a class='dtl-btn invert-btn-col' href="{{ url_for('schedule') }}">Schedule</a></li>
-    </ul>
-  </nav>
+<div id='page-container'>
+  <div id="navbar-div" class="container-fluid light-bg-section">
+    <!--Navbar-->
+    <nav class="container-fluid">
+      <div class='app-logo'>
+        <img class='text-logo' src="{{ url_for('static', filename='img/svg/dark-logo.svg') }}">
+        <p>Kalend</p>
+      </div>
+      <ul>
+        <li><a class='dtl-btn disabled'>Dashboard</a></li>
+        <li><a class='dtl-btn invert-btn-col' href="{{ url_for('explore') }}">Explore</a></li>
+        <li><a class='dtl-btn invert-btn-col' href="{{ url_for('schedule') }}">Schedule</a></li>
+      </ul>
+    </nav>
+  </div>
+  <!--Content-->
+  <div id='content' class='container-fluid light-bg-section flex-column'>
+    <h1 class='title-text'>Dashboard</h1>
+  </div>
+  <!--Footer-->
+  {% include 'footer.html' %}
 </div>
 {% endblock %}

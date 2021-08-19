@@ -23,7 +23,7 @@ body {
   }
 
   #about-content-col p {
-    font-size: 16px !important;
+    font-size: 18px !important;
     font-weight: 600 !important;
     padding: 0px 55px !important;
   }
@@ -39,10 +39,6 @@ body {
     font-size: 25px !important;
     line-height: 35px !important;
     margin-bottom: 10px;
-  }
-
-  .section-header {
-    margin-bottom: 25px !important;
   }
 
   .min-hide {
@@ -108,11 +104,6 @@ li {
 }
 
 .title-text {
-  font-style: normal;
-  font-weight: bold;
-  font-size: 70px;
-  line-height: 98px;
-  text-align: center;
   margin-top: 10px;
 }
 
@@ -138,17 +129,12 @@ li {
   padding-bottom: 50px;
 }
 
-.subtitle {
-  font-size: 28px;
-  line-height: 50px;
-}
-
 .section-header {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 #about-content-col p {
-  font-weight: 600 !important;
+  font-weight: 500 !important;
 }
 
 #about-svg {
@@ -189,4 +175,10 @@ li {
 
 .min-hide {
   display: block;
+}
+
+.app-logo {
+  width: 100%;
+  margin-bottom: 10px;
+
 }
