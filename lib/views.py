@@ -23,14 +23,6 @@ def index():
 def login():
     form = LoginForm()
     errors = {}
-    
-    if request.method == 'GET':
-        if current_user:
-            #Go to the next page
-            nextPage = request.args.get('next')
-            if not nextPage or url_parse(nextPage).netloc!='':
-                nextPage=url_for('dashboard')
-            return redirect(nextPage)
 
     if request.method == 'POST':
         if form.validate_on_submit():
