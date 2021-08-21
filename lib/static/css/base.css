@@ -2,6 +2,8 @@
   --rich-black: #0d1f2d;
   --deep-space-blue: #0a0d53;
   --blue-tint: #6c63ff;
+  --alert-red: #D2222D;
+  --alert-green: #238823;
   --box-shadow: 6px 6px 8px 0px rgba(127, 127, 127, 0.24);
   --base-transition: 0.2s all ease-in-out;
   --logo-width: 40px;
@@ -19,7 +21,7 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-a:-webkit-any-link {
+a:-webkit-any-link a {
   color: var(--white);
   cursor: pointer;
   text-decoration: none;

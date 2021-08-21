@@ -27,9 +27,24 @@
     <h1 class='title-text'>Dashboard</h1>
     <div id='events' class='container-fluid'>
       {% for event in events %}
-      <div class='event-card container row'>
-
-      </div>
+      <a class='event-card container row'>
+        <div class='col card-img'>
+          <img src="{{ url_for('static', filename='img/download.jpg') }}">
+        </div>
+        <div class='col card-info'>
+          <h1 class='event-title'>{{ event.name }}</h1>
+          <h3 class='event-location'>At {{ event.location }}</h2>
+          <p class='event-desc'>{{ event.desc }}</p>
+          <p class='event-start-time'>
+            <i class="fas fa-clock"></i>
+            <b>Start Time:</b> {{ event.startTime}}
+          </p>
+          <p class='event-end-time'>
+            <i class='fas fa-stop-circle'></i>
+            <b>End Time:</b> {{ event.startTime }}
+          </p>
+        </div>
+      </a>
       {% endfor %}
     </div>
   </div>
