@@ -1,8 +1,9 @@
 from datetime import datetime
-from flask import render_template, request, url_for, redirect
+from flask import render_template, request, sessions, url_for, redirect, session
 from flask_login.utils import login_required, login_user, logout_user, current_user
 from werkzeug.exceptions import HTTPException
 from werkzeug.urls import url_parse
+from bson import ObjectId
 
 from lib import app, mongo, hasher
 from lib.forms import LoginForm, SignUpForm
@@ -78,7 +79,10 @@ def signup():
 @login_required
 @app.route('/dashboard')
 def dashboard():
-    return render_template('dashboard.html')
+    event=mongo.db.events.find_one({'creatorId':ObjectId(session['_user_id'])})
+    event['status']='ongoing'
+    events=[event]
+    return render_template('dashboard.html', events=events)
 
 @login_required
 @app.route('/explore')
