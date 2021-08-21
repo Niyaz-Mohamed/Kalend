@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
-from flask import render_template, request, sessions, url_for, redirect, session
-from flask_login.utils import login_required, login_user, logout_user, current_user
+from flask import render_template, request, url_for, redirect, session
+from flask_login.utils import login_required, login_user, logout_user
 from werkzeug.exceptions import HTTPException
 from werkzeug.urls import url_parse
 from bson import ObjectId
@@ -16,7 +16,8 @@ def handle_exception(e):
 
 # Static homepage route
 @app.route('/')
-def index():
+@app.route('/home')
+def home():
     return render_template('static.html')
 
 # Route for login
@@ -75,6 +76,12 @@ def signup():
             errors.update(form.errors)
 
     return render_template('signup.html', form=form, errors=errors)
+
+@login_required
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
 
 @login_required
 @app.route('/dashboard')

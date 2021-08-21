@@ -87,7 +87,7 @@ a:-webkit-any-link {
 /* Buttons */
 .dtl-btn {
   background-color: var(--deep-space-blue);
-  border: 4px solid white;
+  border: 4px solid var(--deep-space-blue);
   border-radius: 45px;
 
   color: white;
@@ -110,9 +110,12 @@ a:-webkit-any-link {
   border: 4px solid inherit;
 }
 
+.dtl-white-border {
+  border-color: white !important;
+}
+
 .invert-btn-col {
   background-color: white;
-  border: 4px solid var(--deep-space-blue);
   color: var(--deep-space-blue) !important;
 }
 

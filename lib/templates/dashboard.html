@@ -19,6 +19,9 @@
         <li><a class='dtl-btn disabled'>Dashboard</a></li>
         <li><a class='dtl-btn invert-btn-col' href="{{ url_for('explore') }}">Explore</a></li>
         <li><a class='dtl-btn invert-btn-col' href="{{ url_for('schedule') }}">Schedule</a></li>
+        <form id='logout-form' action="logout">
+          <input type='submit' value='Logout' class='dtl-btn invert-btn-col'>
+        </form>
       </ul>
     </nav>
   </div>
@@ -35,9 +38,9 @@
         <div class='col card-info'>
           <h1 class='event-title'>{{ event.name }}</h1>
           {% if event.status == 'Ongoing' %}
-          <h3 class='event-subtitle'>Ongoing At {{ event.location }}</h2>
+          <h3 class='event-subtitle'>Ongoing at {{ event.location }}</h2>
           {% elif event.status == 'Upcoming' %}
-          <h3 class='event-subtitle'>Upcoming At {{ event.location }}</h2>
+          <h3 class='event-subtitle'>Upcoming at {{ event.location }}</h2>
           {% else %}
           <h3 class='event-subtitle'>Event Completed</h2>
           {% endif %}
