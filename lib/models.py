@@ -1,5 +1,6 @@
 from bson.objectid import ObjectId
 from flask_login.mixins import UserMixin
+from datetime import datetime
 from lib import mongo, login
 
 class User(UserMixin):
@@ -38,8 +39,9 @@ class Event():
     creatorId: ObjectId=None
     name = None
     desc = None
-    startTime = None
-    endTime = None
+    startTime: datetime = None
+    endTime: datetime = None
+    status = None
     location = None
     totalSlots = None
 
@@ -52,11 +54,20 @@ class Event():
         self.location = kwargs.get('location')
         self.totalSlots = kwargs.get('totalSlots')
         self.creatorId = kwargs.get('creatorId')
+        if self.startTime < datetime.now() < self.endTime:
+            self.status = 'Ongoing'
+        elif datetime.now() < self.startTime:
+            self.status = 'Upcoming'
+        else:
+            self.status = 'Completed'
+        self.formattedStartTime=self.startTime.strftime('%m/%d/%Y, %H:%M')
+        self.formattedEndTime=self.endTime.strftime('%m/%d/%Y, %H:%M')
+        self.creatorName=mongo.db.users.find_one({'_id':ObjectId(str(self.creatorId))}).get('username')
 
-# {'id':ObjectId(),'creatorId':ObjectId('61151e89b031297f4524f1a3'),'name':'School Fair', 'desc':'A fun School fair for all to visit!','startTime':'8:00AM','endTime':'10:00PM','location':'Raffles Instituition','totalSlots':100}
+# {'creatorId':ObjectId('61151e89b031297f4524f1a3'),'name':'Sleepover Bonanza', 'desc':'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.','startTime':datetime.now()+timedelta(days=45),'endTime':datetime.now()+timedelta(days=50, hours=5),'location':'Some house','totalSlots':100}
 def eventFromData(data: dict) -> Event:
     return Event(
-        id=data.get('id'),
+        id=data.get('_id'),
         name=data.get('name'),
         desc=data.get('desc'),
         startTime=data.get('startTime'),

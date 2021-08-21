@@ -27,21 +27,29 @@
     <h1 class='title-text'>Dashboard</h1>
     <div id='events' class='container-fluid'>
       {% for event in events %}
-      <a class='event-card container row'>
+      {% set link='events/'+ event.id|string %}
+      <a class='event-card container row' href="{{link}}">
         <div class='col card-img'>
           <img src="{{ url_for('static', filename='img/download.jpg') }}">
         </div>
         <div class='col card-info'>
           <h1 class='event-title'>{{ event.name }}</h1>
-          <h3 class='event-location'>At {{ event.location }}</h2>
+          {% if event.status == 'Ongoing' %}
+          <h3 class='event-subtitle'>Ongoing At {{ event.location }}</h2>
+          {% elif event.status == 'Upcoming' %}
+          <h3 class='event-subtitle'>Upcoming At {{ event.location }}</h2>
+          {% else %}
+          <h3 class='event-subtitle'>Event Completed</h2>
+          {% endif %}
+          <h3 class='event-subtitle'>Run by {{ event.creatorName }}</h2>
           <p class='event-desc'>{{ event.desc }}</p>
           <p class='event-start-time'>
             <i class="fas fa-clock"></i>
-            <b>Start Time:</b> {{ event.startTime}}
+            <b>Start Time:</b> {{ event.formattedStartTime}}
           </p>
           <p class='event-end-time'>
             <i class='fas fa-stop-circle'></i>
-            <b>End Time:</b> {{ event.startTime }}
+            <b>End Time:</b> {{ event.formattedEndTime }}
           </p>
         </div>
       </a>

@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from flask import render_template, request, sessions, url_for, redirect, session
 from flask_login.utils import login_required, login_user, logout_user, current_user
 from werkzeug.exceptions import HTTPException
@@ -7,7 +7,7 @@ from bson import ObjectId
 
 from lib import app, mongo, hasher
 from lib.forms import LoginForm, SignUpForm
-from lib.models import User
+from lib.models import User, eventFromData
 
 # Error catching route
 @app.errorhandler(HTTPException)
@@ -79,17 +79,27 @@ def signup():
 @login_required
 @app.route('/dashboard')
 def dashboard():
-    event=mongo.db.events.find_one({'creatorId':ObjectId(session['_user_id'])})
-    event['status']='ongoing'
-    events=[event]
+    eventPointer=mongo.db.events.find({'creatorId':ObjectId(session['_user_id'])})
+    events=[]
+    for event in eventPointer:
+        events.append(eventFromData(event))
     return render_template('dashboard.html', events=events)
 
 @login_required
 @app.route('/explore')
 def explore():
-    return render_template('explore.html')
+    events=[]
+    for event in mongo.db.events.find():
+        if event.get('creatorId') != ObjectId(session['_user_id']):
+            events.append(eventFromData(event))
+    return render_template('explore.html', events=events)
 
 @login_required
 @app.route('/schedule')
 def schedule():
     return render_template('schedule.html')
+
+@login_required
+@app.route('/events/<id>')
+def eventRouter(id):
+    return str(mongo.db.events.find_one({'_id':ObjectId(id)}))
