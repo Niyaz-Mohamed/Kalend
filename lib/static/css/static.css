@@ -11,23 +11,6 @@ body {
   overflow-y: hidden !important;
 }
 
-.dark-bg-section {
-  width: 100%;
-  background-color: var(--deep-space-blue);
-  color: white;
-  height: auto;
-  box-sizing: content-box;
-  min-height: 30vh;
-}
-
-.light-bg-section {
-  width: 100%;
-  color: black;
-  height: auto;
-  box-sizing: content-box;
-  min-height: 30vh;
-}
-
 /* For phones, tablets */ 
 @media only screen and (max-width: 768px) {
   nav {
@@ -40,7 +23,7 @@ body {
   }
 
   #about-content-col p {
-    font-size: 16px !important;
+    font-size: 18px !important;
     font-weight: 600 !important;
     padding: 0px 55px !important;
   }
@@ -56,10 +39,6 @@ body {
     font-size: 25px !important;
     line-height: 35px !important;
     margin-bottom: 10px;
-  }
-
-  .section-header {
-    margin-bottom: 25px !important;
   }
 
   .min-hide {
@@ -118,10 +97,6 @@ li {
   text-align: center;
 }
 
-.spacer {
-  margin: 0px 25px;
-}
-
 #about-start-btn {
   margin: auto;
   margin-top: 30px !important;
@@ -129,11 +104,6 @@ li {
 }
 
 .title-text {
-  font-style: normal;
-  font-weight: bold;
-  font-size: 70px;
-  line-height: 98px;
-  text-align: center;
   margin-top: 10px;
 }
 
@@ -152,20 +122,6 @@ li {
   height: 42px;
 }
 
-.bottom-border {
-  width: 100%;
-  position: relative;
-  bottom: 0;
-  transform: translateY(2px);
-}
-
-.top-border {
-  width: 100%;
-  position: relative;
-  top: 0;
-  transform: rotate(180deg) translateY(2px);
-}
-
 #about {
   color: black;
   display: inline-block;
@@ -173,17 +129,12 @@ li {
   padding-bottom: 50px;
 }
 
-.subtitle {
-  font-size: 28px;
-  line-height: 50px;
-}
-
 .section-header {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 #about-content-col p {
-  font-weight: 600 !important;
+  font-weight: 500 !important;
 }
 
 #about-svg {
@@ -224,4 +175,10 @@ li {
 
 .min-hide {
   display: block;
+}
+
+.app-logo {
+  width: 100%;
+  margin-bottom: 10px;
+
 }

@@ -15,19 +15,17 @@
     <!--Navbar-->
     <nav class="container-fluid">
       <ul>
-        <li><a class='dtl-btn' href="{{ url_for('login') }}">Log in</a></li>
+        <li><a class='dtl-btn dtl-white-border' href="{{ url_for('login') }}">Log in</a></li>
         <div class='spacer'></div>
-        <li><a class='dtl-btn' href="{{ url_for('signup') }}">Sign Up</a></li>
+        <li><a class='dtl-btn dtl-white-border' href="{{ url_for('signup') }}">Sign Up</a></li>
       </ul>
     </nav>
     <!--Content-->
     <div class="static-content">
       <div class='d-flex flex-column align-content-center justify-content-center'>
-        <div>
-          <p class='text-center font-weight-bold' style='font-size:26px; text-align: justify;'>
-            <img class='text-logo' src="{{ url_for('static',filename='img/title-logo.png') }}">
-            Kalend;
-          </p>
+        <div class='app-logo'>
+          <img class='text-logo' src="{{ url_for('static', filename='img/svg/light-logo.svg') }}">
+          <p>Kalend;</p>
         </div>
         <h1 class='title-text'>Your Schedule,<br>Simplified</h1>
         <div id='title-svg'>
@@ -43,7 +41,7 @@
       <!--About Header-->
       <div class='container section-header'>
         <h1 class='title-text'>Meet <span style='color:var(--blue-tint);'>Kalend</span></h1>
-        <h2 class='title-text subtitle'>A cutting-edge event booking application</h2>
+        <h2 class='title-text subtitle'>The cutting-edge event booking application</h2>
       </div>
       <!--About Main Content-->
       <div id='about-content' class='container'>
@@ -101,33 +99,9 @@
       </div>
     </div>
   </div>
-  <div id='footer' class='light-bg-section container-fluid align-content-center justify-content-center'>
+  <div class='light-bg-section container-fluid align-content-center justify-content-center'>
     <img class='top-border' src="{{ url_for('static', filename='img/svg/wave-dark.svg') }}">
-    <div class='d-flex flex-column' style="padding: 50px 0px;">
-      <!--Project Name-->
-      <div class='col justify-content-center' style="padding-bottom: 30px;">
-        <p class='text-center font-weight-bold' style='font-size:26px; text-align: justify;'>
-          Kalend
-        </p>
-      </div>
-      <!--Dev Info-->
-      <div class='col justify-content-center' style="padding-bottom: 30px;">
-        <h5 class='text-center'>
-          <strong>Developed By:</strong><br>
-          Sandhesh and Niyaz<br>
-          CEP 2021, Raffles Institution
-        </h5>
-      </div>
-      <div style="margin: 0px 3%;"></div>
-      <!--Contact Info-->
-      <div class='col justify-content-center' style="padding-bottom: 50px;">
-        <h5 class='text-center'>
-          <strong>Contact:</strong><br>
-          Phone: +65 8917 0747<br>
-          Email: 24YMOHA026Z@student.ri.edu.sg
-        </h5>
-      </div>
-    </div>
+    {% include 'footer.html' %}
   </div>
 </div>
 {% endblock %}

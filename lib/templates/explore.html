@@ -16,8 +16,8 @@
         <p>Kalend</p>
       </div>
       <ul>
-        <li><a class='dtl-btn disabled'>Dashboard</a></li>
-        <li><a class='dtl-btn invert-btn-col' href="{{ url_for('explore') }}">Explore</a></li>
+        <li><a class='dtl-btn invert-btn-col' href="{{ url_for('dashboard') }}">Dashboard</a></li>
+        <li><a class='dtl-btn disabled'>Explore</a></li>
         <li><a class='dtl-btn invert-btn-col' href="{{ url_for('schedule') }}">Schedule</a></li>
         <form id='logout-form' action="logout">
           <input type='submit' value='Logout' class='dtl-btn invert-btn-col'>
@@ -27,11 +27,11 @@
   </div>
   <!--Content-->
   <div id='content' class='container-fluid light-bg-section flex-column'>
-    <h1 class='title-text'>Dashboard</h1>
+    <h1 class='title-text'>Explore</h1>
     <div id='actions'>
       <form class='search-form row' action="" method="POST" autocomplete="off">
         {{ form.csrftoken }}
-        <input type="hidden" name="page" value="dashboard">
+        <input type="hidden" name="page" value="explore">
         <!--Search Bar-->
         <div class='form-group hspaced-group'>
           {{ form.search(class_='form-control rounded-field') }}
@@ -46,9 +46,6 @@
         </div>
         <input type='submit' value='Search' class='hspaced-group dtl-btn invert-btn-col submit-btn'>
       </form>
-      <div class='form-create'>
-        <a class='dtl-btn invert-btn-col hspaced-group' href="{{ url_for('eventCreate') }}">Create an Event</a>
-      </div>
     </div>
     <div id='events' class='container-fluid'>
       {% for event in events %}
