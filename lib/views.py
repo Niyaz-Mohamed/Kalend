@@ -31,7 +31,7 @@ def login():
             # Login user
             userId = mongo.db.users.find_one(
                 {'username': form.username.data})['_id']
-            login_user(User(userId), remember=False)
+            login_user(User(userId), remember=True)
 
             # Authenticate next parameter
             nextPage = request.args.get('next')
@@ -64,7 +64,7 @@ def signup():
             authUser = User(insertedUser.inserted_id)
             print(authUser)
             print(authUser.email)
-            login_user(authUser, remember=False)
+            login_user(authUser, remember=True)
 
             # Authenticate next parameter
             nextPage = request.args.get('next')

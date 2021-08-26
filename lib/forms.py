@@ -1,9 +1,12 @@
+from datetime import datetime
 from sys import excepthook
 from flask.app import Flask
 from flask_wtf import FlaskForm
+from werkzeug.datastructures import Range
 from wtforms.fields import StringField, PasswordField
 from wtforms.fields.core import SelectField
-from wtforms.fields.html5 import EmailField, SearchField
+from wtforms.fields.html5 import DateTimeField, EmailField, IntegerField, SearchField
+from wtforms.fields.simple import HiddenField, TextAreaField
 from wtforms.validators import InputRequired, Length, ValidationError
 
 from lib import app, mongo, hasher
@@ -79,3 +82,29 @@ class EventFilterForm(FlaskForm):
         "placeholder": "Search Events"})
     searchType = SelectField('Search Type', validators=[InputRequired()], choices=[(
         'eventName', 'Search by Name'), ('eventCode', 'Search by Code')])
+
+class EventCreateForm(FlaskForm):
+
+    name = StringField('Event Name', validators=[InputRequired()], render_kw={
+        "placeholder": "Name"})
+    desc = TextAreaField('Description', validators=[InputRequired()], render_kw={
+        "placeholder": "Description"})
+    startTime = DateTimeField('Start Time', validators=[InputRequired()], render_kw={
+        "placeholder": "Start Time"})
+    endTime = DateTimeField('End Time', validators=[InputRequired()], render_kw={
+        "placeholder": "End Time"})
+    location = StringField('Location', validators=[InputRequired()], render_kw={
+        "placeholder": "Location"})
+    totalSlots = IntegerField('Slots Avaliable', validators=[InputRequired()], render_kw={
+        "placeholder": "Slots Avaliable"})
+
+    def validate_startTime(form, field):
+        startTime = field.data
+        if not startTime > datetime.now():
+            raise ValidationError('Invalid Start Time')
+
+    def validate_endTime(form, field):
+        endTime = field.data
+        startTime = form.desc.data
+        if not endTime > startTime:
+            raise ValidationError('End Time must be after Start Time')
