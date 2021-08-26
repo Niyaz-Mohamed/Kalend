@@ -33,7 +33,7 @@
         {{ form.csrftoken }}
         <input type="hidden" name="page" value="explore">
         <!--Search Bar-->
-        <div class='form-group hspaced-group'>
+        <div class='form-group hspaced-group first-group'>
           {{ form.search(class_='form-control rounded-field') }}
           <label for='search' class='form-label'>
             <i class='fas fa-search'></i>
@@ -44,7 +44,10 @@
         <div class='form-group hspaced-group'>
           {{ form.searchType(class_='form-control selector-field') }}
         </div>
-        <input type='submit' value='Search' class='hspaced-group dtl-btn invert-btn-col submit-btn'>
+        <!--Submit Button-->
+        <div class='form-group hspaced-group'>
+          <input type='submit' value='Search' class='dtl-btn invert-btn-col submit-btn'>
+        </div>
       </form>
     </div>
     <div id='events' class='container-fluid'>
