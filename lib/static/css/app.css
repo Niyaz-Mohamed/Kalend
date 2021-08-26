@@ -101,6 +101,7 @@ nav > ul > li > .dtl-btn {
 /*Content Styles*/
 #content {
   min-height: 78vh;
+  overflow: hidden;
 }
 
 .title-text {

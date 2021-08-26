@@ -28,6 +28,25 @@
   <!--Content-->
   <div id='content' class='container-fluid light-bg-section flex-column'>
     <h1 class='title-text'>Explore</h1>
+    <div id='actions'>
+      <form class='search-form row' action="" method="POST" autocomplete="off">
+        {{ form.csrftoken }}
+        <input type="hidden" name="page" value="explore">
+        <!--Search Bar-->
+        <div class='form-group hspaced-group'>
+          {{ form.search(class_='form-control rounded-field') }}
+          <label for='search' class='form-label'>
+            <i class='fas fa-search'></i>
+            {{ form.search.label.text }}
+          </label>
+        </div>
+        <!--Search Type-->
+        <div class='form-group hspaced-group'>
+          {{ form.searchType(class_='form-control selector-field') }}
+        </div>
+        <input type='submit' value='Search' class='hspaced-group dtl-btn invert-btn-col submit-btn'>
+      </form>
+    </div>
     <div id='events' class='container-fluid'>
       {% for event in events %}
       {% set link='events/'+ event.id|string %}
@@ -38,9 +57,9 @@
         <div class='col card-info'>
           <h1 class='event-title'>{{ event.name }}</h1>
           {% if event.status == 'Ongoing' %}
-          <h3 class='event-subtitle'>Ongoing at {{ event.location }}</h2>
+          <h3 class='event-subtitle'>Ongoing at {{ event.location }},</h2>
           {% elif event.status == 'Upcoming' %}
-          <h3 class='event-subtitle'>Upcoming at {{ event.location }}</h2>
+          <h3 class='event-subtitle'>Upcoming at {{ event.location }},</h2>
           {% else %}
           <h3 class='event-subtitle'>Event Completed</h2>
           {% endif %}

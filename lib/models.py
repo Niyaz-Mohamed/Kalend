@@ -36,7 +36,7 @@ class User(UserMixin):
 class Event():
 
     id: ObjectId = None
-    creatorId: ObjectId=None
+    creatorId: ObjectId = None
     name = None
     desc = None
     startTime: datetime = None
@@ -60,11 +60,11 @@ class Event():
             self.status = 'Upcoming'
         else:
             self.status = 'Completed'
-        self.formattedStartTime=self.startTime.strftime('%m/%d/%Y, %H:%M')
-        self.formattedEndTime=self.endTime.strftime('%m/%d/%Y, %H:%M')
-        self.creatorName=mongo.db.users.find_one({'_id':ObjectId(str(self.creatorId))}).get('username')
+        self.formattedStartTime = self.startTime.strftime('%m/%d/%Y, %H:%M')
+        self.formattedEndTime = self.endTime.strftime('%m/%d/%Y, %H:%M')
+        self.creatorName = mongo.db.users.find_one(
+            {'_id': ObjectId(str(self.creatorId))}).get('username')
 
-# {'creatorId':ObjectId('61151e89b031297f4524f1a3'),'name':'Sleepover Bonanza', 'desc':'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.','startTime':datetime.now()+timedelta(days=45),'endTime':datetime.now()+timedelta(days=50, hours=5),'location':'Some house','totalSlots':100}
 def eventFromData(data: dict) -> Event:
     return Event(
         id=data.get('_id'),
