@@ -6,7 +6,7 @@ from werkzeug.urls import url_parse
 from bson import ObjectId
 
 from lib import app, mongo, hasher
-from lib.forms import EventFilterForm, LoginForm, SignUpForm
+from lib.forms import EventCreateForm, EventFilterForm, LoginForm, SignUpForm
 from lib.models import User, eventFromData
 
 # Error catching route
@@ -85,7 +85,7 @@ def logout():
 
 # Main app page routes
 @login_required
-@app.route('/dashboard')
+@app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
     form = EventFilterForm()
     eventPointer = mongo.db.events.find(
@@ -96,7 +96,7 @@ def dashboard():
     return render_template('dashboard.html', events=events, form=form)
 
 @login_required
-@app.route('/explore')
+@app.route('/explore', methods=['GET', 'POST'])
 def explore():
     form = EventFilterForm()
     events = []
@@ -111,9 +111,10 @@ def schedule():
     return render_template('schedule.html')
 
 @login_required
-@app.route('/eventcreate')
+@app.route('/eventcreate', methods=['GET', 'POST'])
 def eventCreate():
-    return 'Soon to be implemented :)'
+    form = EventCreateForm()
+    return render_template('eventcreate.html', form=form)
 
 @login_required
 @app.route('/events/<id>')

@@ -1,13 +1,11 @@
 from datetime import datetime
 from sys import excepthook
-from flask.app import Flask
 from flask_wtf import FlaskForm
-from werkzeug.datastructures import Range
 from wtforms.fields import StringField, PasswordField
 from wtforms.fields.core import SelectField
-from wtforms.fields.html5 import DateTimeField, EmailField, IntegerField, SearchField
-from wtforms.fields.simple import HiddenField, TextAreaField
-from wtforms.validators import InputRequired, Length, ValidationError
+from wtforms.fields.html5 import DateTimeLocalField, EmailField, IntegerField, SearchField
+from wtforms.fields.simple import TextAreaField
+from wtforms.validators import InputRequired, Length, NumberRange, ValidationError
 
 from lib import app, mongo, hasher
 import requests
@@ -89,14 +87,16 @@ class EventCreateForm(FlaskForm):
         "placeholder": "Name"})
     desc = TextAreaField('Description', validators=[InputRequired()], render_kw={
         "placeholder": "Description"})
-    startTime = DateTimeField('Start Time', validators=[InputRequired()], render_kw={
+    startTime = DateTimeLocalField('Start Time', validators=[InputRequired()], render_kw={
         "placeholder": "Start Time"})
-    endTime = DateTimeField('End Time', validators=[InputRequired()], render_kw={
+    endTime = DateTimeLocalField('End Time', validators=[InputRequired()], render_kw={
         "placeholder": "End Time"})
     location = StringField('Location', validators=[InputRequired()], render_kw={
         "placeholder": "Location"})
-    totalSlots = IntegerField('Slots Avaliable', validators=[InputRequired()], render_kw={
+    totalSlots = IntegerField('Slots Avaliable', validators=[InputRequired(), NumberRange(min=1)], render_kw={
         "placeholder": "Slots Avaliable"})
+    startTime.data = None
+    endTime.data = None
 
     def validate_startTime(form, field):
         startTime = field.data

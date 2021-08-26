@@ -1,0 +1,74 @@
+{% extends "template.html" %} 
+
+{% block styles %} 
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static',filename='css/app.css') }}"/>
+<link rel="stylesheet" href="{{ url_for('static',filename='css/eventCreateForm.css') }}"/>
+{% endblock %}
+
+{% block content %}
+<div id='page-container' class='light-bg-section container'>
+  <div class='form-heading'>
+
+  </div>
+  <form class='login-fields flex-column justify-content-center' method="POST" autocomplete="off">
+    {{ form.csrf_token }}
+
+    <!--Name-->
+    <div class='form-group'>
+      {{ form.name(class_='form-control') }}
+      <label for='name' class='form-label'>
+        <i class='fas fa-user'></i>
+        {{ form.name.label.text }}
+      </label>
+    </div>
+
+    <!--Description-->
+    <div class='form-group'>
+      {{ form.desc(class_='form-control') }}
+      <label for='desc' class='form-label'>
+        <i class='fas fa-key'></i>
+        {{ form.desc.label.text }}
+      </label>
+    </div>
+
+    <!--Start Time-->
+    <div class='form-group'>
+        {{ form.startTime(class_='form-control') }}
+        <label for='startTime' class='form-label'>
+          <i class='fas fa-key'></i>
+          {{ form.startTime.label.text }}
+        </label>
+    </div>
+
+      <!--End Time-->
+    <div class='form-group'>
+        {{ form.endTime(class_='form-control') }}
+        <label for='endTime' class='form-label'>
+          <i class='fas fa-key'></i>
+          {{ form.endTime.label.text }}
+        </label>
+    </div>
+
+      <!--Location-->
+    <div class='form-group'>
+        {{ form.location(class_='form-control') }}
+        <label for='location' class='form-label'>
+          <i class='fas fa-key'></i>
+          {{ form.location.label.text }}
+        </label>
+    </div>
+
+      <!--Total Slots-->
+    <div class='form-group'>
+        {{ form.totalSlots(class_='form-control') }}
+        <label for='totalSlots' class='form-label'>
+          <i class='fas fa-key'></i>
+          {{ form.totalSlots.label.text }}
+        </label>
+    </div>
+
+    <input id='submit-btn' type='submit' value='Submit' class='dtl-btn invert-btn-col'>
+  </form>
+</div>
+{% endblock %}

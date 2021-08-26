@@ -169,6 +169,10 @@ button:focus {
   top: 20px;
 }
 
+.form-label i{
+  margin-right: 0.8em !important;
+}
+
 .form-control {
   color: var(--deep-space-blue);
   font-weight: bold;
