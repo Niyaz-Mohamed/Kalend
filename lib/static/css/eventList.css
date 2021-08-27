@@ -9,7 +9,7 @@
 #actions {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: start;
 }
 
 /* Margin of actions section */
@@ -51,7 +51,7 @@
 }
 
 /* For Laptops */
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1140px) {
   #events {
     justify-content: center !important;
   }
@@ -59,6 +59,7 @@
   #actions {
     display: flex;
     align-content: center;
+    justify-content: center;
     flex-direction: column;
   }
 
