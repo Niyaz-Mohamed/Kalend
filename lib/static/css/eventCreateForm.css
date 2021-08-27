@@ -6,13 +6,25 @@
   margin: 10vh 0%;
 }
 
-.form-header h1 {
+.form-header {
   margin: 70px 0px;
-  line-height: 30px;
 }
 
 .form-header i {
   margin: 0px 8px;
+}
+
+.backlink {
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--deep-space-blue);
+}
+
+.backlink a {
+  color: inherit;
+  text-decoration: underline;
 }
 
 .submit-btn {

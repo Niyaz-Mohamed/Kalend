@@ -11,6 +11,7 @@
   <div id='page-content'>
     <div class='form-header'>
       <h1 id='form-title' class='text-center'><strong>Create an Event <i class="fas fa-book"></i></strong></h1>
+      <p class='backlink'>Or go <a href="{{ url_for('dashboard') }}">back to the dashboard</a></p>
     </div>
     <form class='login-fields flex-column justify-content-center' method="POST" autocomplete="off">
       {{ form.csrf_token }}
