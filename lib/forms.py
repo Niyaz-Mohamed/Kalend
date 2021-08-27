@@ -1,6 +1,7 @@
 from datetime import datetime
 from sys import excepthook
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField
 from wtforms.fields import StringField, PasswordField
 from wtforms.fields.core import SelectField
 from wtforms.fields.html5 import DateTimeLocalField, EmailField, IntegerField, SearchField
@@ -87,24 +88,28 @@ class EventCreateForm(FlaskForm):
         "placeholder": "Name"})
     desc = TextAreaField('Description', validators=[InputRequired()], render_kw={
         "placeholder": "Description"})
+    img = FileField('Display Image', validators=[InputRequired()], render_kw={
+        "placeholder": "Display Image"})
     startTime = DateTimeLocalField('Start Time', validators=[InputRequired()], render_kw={
         "placeholder": "Start Time"})
     endTime = DateTimeLocalField('End Time', validators=[InputRequired()], render_kw={
         "placeholder": "End Time"})
     location = StringField('Location', validators=[InputRequired()], render_kw={
         "placeholder": "Location"})
-    totalSlots = IntegerField('Slots Avaliable', validators=[InputRequired(), NumberRange(min=1)], render_kw={
+    totalSlots = IntegerField('Slots Avaliable', validators=[InputRequired()], render_kw={
         "placeholder": "Slots Avaliable"})
-    startTime.data = None
-    endTime.data = None
 
     def validate_startTime(form, field):
         startTime = field.data
-        if not startTime > datetime.now():
+        if not startTime:
+            raise ValidationError('Invalid Input')
+        elif not startTime > datetime.now():
             raise ValidationError('Invalid Start Time')
 
     def validate_endTime(form, field):
         endTime = field.data
         startTime = form.desc.data
-        if not endTime > startTime:
+        if not startTime or not endTime:
+            raise ValidationError('Invalid Input')
+        elif not endTime > startTime:
             raise ValidationError('End Time must be after Start Time')

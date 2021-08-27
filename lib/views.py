@@ -114,7 +114,16 @@ def schedule():
 @app.route('/eventcreate', methods=['GET', 'POST'])
 def eventCreate():
     form = EventCreateForm()
-    return render_template('eventcreate.html', form=form)
+    errors = {}
+    print(request.method)
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            print('yay')
+        else:
+            # Handle errors
+            errors.update(form.errors)
+
+    return render_template('eventcreate.html', form=form, errors=errors)
 
 @login_required
 @app.route('/events/<id>')
