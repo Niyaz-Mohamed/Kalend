@@ -13,7 +13,7 @@
       <h1 id='form-title' class='text-center'><strong>Create an Event <i class="fas fa-book"></i></strong></h1>
       <p class='backlink'>Or go <a href="{{ url_for('dashboard') }}">back to the dashboard</a></p>
     </div>
-    <form class='login-fields flex-column justify-content-center' method="POST" autocomplete="off">
+    <form class='login-fields flex-column justify-content-center' method="POST" autocomplete="off" enctype="multipart/form-data">
       {{ form.csrf_token }}
       <!--Name-->
       <div class='form-group'>
@@ -22,6 +22,13 @@
           <i class='fas fa-font'></i>
           {{ form.name.label.text }}
         </label>
+        <!--Error-->
+        {% if 'startTime' in errors %}
+        <p class='error-msg'>
+          <i class='fas fa-exclamation'></i>
+          {{ errors['startTime'][0] }}
+        </p>
+        {% endif %}
       </div>
       <!--Description-->
       <div class='form-group'>
@@ -30,6 +37,13 @@
           <i class='fas fa-comment'></i>
           {{ form.desc.label.text }}
         </label>
+        <!--Error-->
+        {% if 'startTime' in errors %}
+        <p class='error-msg'>
+          <i class='fas fa-exclamation'></i>
+          {{ errors['startTime'][0] }}
+        </p>
+        {% endif %}
       </div>
       <!--Location-->
       <div class='form-group'>
@@ -38,6 +52,13 @@
           <i class='fas fa-building'></i>
           {{ form.location.label.text }}
         </label>
+        <!--Error-->
+        {% if 'startTime' in errors %}
+        <p class='error-msg'>
+          <i class='fas fa-exclamation'></i>
+          {{ errors['startTime'][0] }}
+        </p>
+        {% endif %}
       </div>
       <!--Event Image Upload-->
       <div class='form-group file-input'>
@@ -46,6 +67,13 @@
           <i class='fas fa-folder'></i>
           {{ form.img.label.text }}
         </label>
+        <!--Error-->
+        {% if 'startTime' in errors %}
+        <p class='error-msg'>
+          <i class='fas fa-exclamation'></i>
+          {{ errors['startTime'][0] }}
+        </p>
+        {% endif %}
       </div>
       <!--Start Time-->
       <div class='form-group'>

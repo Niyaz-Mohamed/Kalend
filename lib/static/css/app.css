@@ -23,6 +23,11 @@ body {
     margin-bottom: 40px;
   }
 
+  #content {
+    text-align: center;
+    margin-top: 50px !important;
+  }
+
   .title-text {
     text-align: center !important;
     margin-top: 20px;

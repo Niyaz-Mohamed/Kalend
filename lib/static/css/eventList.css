@@ -42,16 +42,24 @@
 }
 
 /* For phones, tablets */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 986px) {
   .event-card {
     max-height: max-content !important;
     min-height: 75vh;
     width: 100% !important;
   }
+
+  .search-form {
+    flex-direction: column !important;
+  }
+
+  #actions .search-form .form-group {
+    margin: 10px 0px !important;
+  }
 }
 
 /* For Laptops */
-@media only screen and (max-width: 1140px) {
+@media only screen and (max-width: 1220px) {
   #events {
     justify-content: center !important;
   }
@@ -63,14 +71,14 @@
     flex-direction: column;
   }
 
-  .search-form .form-group, .submit-btn {
+  .search-form {
+    justify-content: center !important;
+    flex-direction: row;
     margin: 15px 0px !important;
   }
 
-  .search-form {
-    justify-content: center !important;
-    flex-direction: column !important;
-    margin: 15px 0px !important;
+  .search-form .form-group {
+    margin: 0px 20px !important;
   }
 
   .search-form > * {

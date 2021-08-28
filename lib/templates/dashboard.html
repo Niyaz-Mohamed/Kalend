@@ -59,7 +59,7 @@
       {% set link='events/'+ event.id|string %}
       <a class='event-card container row' href="{{link}}">
         <div class='col card-img'>
-          <img src="{{ url_for('static', filename='img/download.jpg') }}">
+          <img src="{{ url_for('file', filename=event.displayImgName) }}">
         </div>
         <div class='col card-info modified-scrollbar'>
           <h1 class='event-title'>{{ event.name }}</h1>

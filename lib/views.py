@@ -1,11 +1,12 @@
 from datetime import datetime, timedelta
 from flask import render_template, request, url_for, redirect, session
-from flask_login.utils import login_required, login_user, logout_user
+from flask_login.utils import login_required, login_user, logout_user, current_user
 from werkzeug.exceptions import HTTPException
 from werkzeug.urls import url_parse
 from bson import ObjectId
+from werkzeug.utils import secure_filename
 
-from lib import app, mongo, hasher
+from lib import app, mongo, hasher, gridfs
 from lib.forms import EventCreateForm, EventFilterForm, LoginForm, SignUpForm
 from lib.models import User, eventFromData
 
@@ -17,6 +18,12 @@ pprint = PrettyPrinter(indent=4).pprint
 @app.errorhandler(HTTPException)
 def handle_exception(e):
     return render_template('error.html', error=e)
+
+#Retreiving files from mongo
+@login_required
+@app.route('/file/<filename>')
+def file(filename):
+    return mongo.send_file(filename)
 
 # Static homepage route
 @app.route('/')
@@ -66,8 +73,6 @@ def signup():
             insertedUser = mongo.db.users.insert_one(user)
             # Login new user
             authUser = User(insertedUser.inserted_id)
-            print(authUser)
-            print(authUser.email)
             login_user(authUser, remember=True)
 
             # Authenticate next parameter
@@ -87,13 +92,13 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
-# Main app page routes
+#! Main app page routes
 @login_required
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
     form = EventFilterForm()
     eventPointer = mongo.db.events.find(
-        {'creatorId': ObjectId(session['_user_id'])})
+        {'creatorId': ObjectId(current_user.id)})
     events = []
     for event in eventPointer:
         events.append(eventFromData(event))
@@ -105,8 +110,8 @@ def explore():
     form = EventFilterForm()
     events = []
     for event in mongo.db.events.find():
-        if event.get('creatorId') != ObjectId(session['_user_id']):
-            events.append(eventFromData(event))
+        if event.get('creatorId') != ObjectId(current_user.id):
+            events.eventFromData(event)
     return render_template('explore.html', events=events, form=form)
 
 @login_required
@@ -119,12 +124,31 @@ def schedule():
 def eventCreate():
     form = EventCreateForm()
     errors = {}
-    pprint(request.form)
-    pprint(request.files)
 
     if request.method == 'POST':
         if form.validate_on_submit():
-            print('yay')
+            data = {}
+            data['creatorId'] = ObjectId(current_user.id)
+            for field in request.form:
+                data.update({field: request.form.get(field)})
+
+            # Process data
+            data.pop('csrf_token')
+            data['startTime'] = datetime.strptime(
+                data.get('startTime'), '%Y-%m-%dT%H:%M')
+            data['endTime'] = datetime.strptime(
+                data.get('endTime'), '%Y-%m-%dT%H:%M')
+            data['totalSlots'] = int(data.get('totalSlots'))
+            createdEventId = mongo.db.events.insert_one(data).inserted_id
+            # Upload Image
+            file = request.files.get('img')
+            file.filename = 'event{}.'.format(
+                createdEventId) + file.filename.split('.')[-1]
+            if secure_filename(file.filename):
+                mongo.save_file(file.filename, file)
+                mongo.db.events.update({'_id': ObjectId(createdEventId)},
+                                       {'$set': {'displayImgName': file.filename}})
+            return redirect(url_for('dashboard'))
         else:
             # Handle errors
             errors.update(form.errors)
