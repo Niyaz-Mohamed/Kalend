@@ -1,3 +1,4 @@
+from pprint import pprint
 from bson.objectid import ObjectId
 from flask_login.mixins import UserMixin
 from datetime import datetime
@@ -35,16 +36,6 @@ class User(UserMixin):
 
 class Event():
 
-    id: ObjectId = None
-    creatorId: ObjectId = None
-    name = None
-    desc = None
-    startTime: datetime = None
-    endTime: datetime = None
-    status = None
-    location = None
-    totalSlots = None
-
     def __init__(self, **kwargs):
         self.id = kwargs.get('id')
         self.name = kwargs.get('name')
@@ -54,6 +45,8 @@ class Event():
         self.location = kwargs.get('location')
         self.totalSlots = kwargs.get('totalSlots')
         self.creatorId = kwargs.get('creatorId')
+        self.displayImgName = kwargs.get('displayImgName')
+        pprint(self.displayImgName)
         if self.startTime < datetime.now() < self.endTime:
             self.status = 'Ongoing'
         elif datetime.now() < self.startTime:
@@ -74,5 +67,6 @@ def eventFromData(data: dict) -> Event:
         endTime=data.get('endTime'),
         location=data.get('location'),
         totalSlots=data.get('totalSlots'),
-        creatorId=data.get('creatorId')
+        creatorId=data.get('creatorId'),
+        displayImgName=data.get('displayImgName')
     )

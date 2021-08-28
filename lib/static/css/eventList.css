@@ -8,6 +8,8 @@
 
 #actions {
   width: 100%;
+  display: flex;
+  justify-content: start;
 }
 
 /* Margin of actions section */
@@ -40,16 +42,24 @@
 }
 
 /* For phones, tablets */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 986px) {
   .event-card {
     max-height: max-content !important;
     min-height: 75vh;
     width: 100% !important;
   }
+
+  .search-form {
+    flex-direction: column !important;
+  }
+
+  #actions .search-form .form-group {
+    margin: 10px 0px !important;
+  }
 }
 
 /* For Laptops */
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1220px) {
   #events {
     justify-content: center !important;
   }
@@ -57,17 +67,18 @@
   #actions {
     display: flex;
     align-content: center;
+    justify-content: center;
     flex-direction: column;
-  }
-
-  .search-form .form-group, .submit-btn {
-    margin: 15px 0px !important;
   }
 
   .search-form {
     justify-content: center !important;
-    flex-direction: column !important;
+    flex-direction: row;
     margin: 15px 0px !important;
+  }
+
+  .search-form .form-group {
+    margin: 0px 20px !important;
   }
 
   .search-form > * {
@@ -201,23 +212,4 @@
 
 .event-end-time {
   color: var(--alert-red);
-}
-
-/* Scrollbar Stylings */
-
-/* width */
-.card-info::-webkit-scrollbar {
-  width: auto;
-  min-width: 22px;
-}
-
-/* Track */
-.card-info::-webkit-scrollbar-track {
-  background: white; 
-}
- 
-/* Handle */
-.card-info::-webkit-scrollbar-thumb {
-  background: var(--deep-space-blue); 
-  border: 6px solid white;
 }
