@@ -111,7 +111,7 @@ def explore():
     events = []
     for event in mongo.db.events.find():
         if event.get('creatorId') != ObjectId(current_user.id):
-            events.eventFromData(event)
+            events.append(eventFromData(event))
     return render_template('explore.html', events=events, form=form)
 
 @login_required
