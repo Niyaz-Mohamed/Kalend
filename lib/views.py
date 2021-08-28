@@ -9,6 +9,10 @@ from lib import app, mongo, hasher
 from lib.forms import EventCreateForm, EventFilterForm, LoginForm, SignUpForm
 from lib.models import User, eventFromData
 
+# Pretty Printing for debugging
+from pprint import PrettyPrinter
+pprint = PrettyPrinter(indent=4).pprint
+
 # Error catching route
 @app.errorhandler(HTTPException)
 def handle_exception(e):
@@ -115,7 +119,9 @@ def schedule():
 def eventCreate():
     form = EventCreateForm()
     errors = {}
-    print(request.method)
+    pprint(request.form)
+    pprint(request.files)
+
     if request.method == 'POST':
         if form.validate_on_submit():
             print('yay')

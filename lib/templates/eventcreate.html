@@ -3,7 +3,7 @@
 {% block styles %} 
 {{ super() }}
 <link rel="stylesheet" href="{{ url_for('static',filename='css/app.css') }}"/>
-<link rel="stylesheet" href="{{ url_for('static',filename='css/eventCreateForm.css') }}"/>
+<link rel="stylesheet" href="{{ url_for('static',filename='css/eventcreate.css') }}"/>
 {% endblock %}
 
 {% block content %}
@@ -29,6 +29,14 @@
         <label for='desc' class='form-label'>
           <i class='fas fa-comment'></i>
           {{ form.desc.label.text }}
+        </label>
+      </div>
+      <!--Location-->
+      <div class='form-group'>
+        {{ form.location(class_='form-control rounded-field') }}
+        <label for='location' class='form-label'>
+          <i class='fas fa-building'></i>
+          {{ form.location.label.text }}
         </label>
       </div>
       <!--Event Image Upload-->
@@ -68,14 +76,6 @@
             {{ errors['endTime'][0] }}
           </p>
           {% endif %}
-      </div>
-      <!--Location-->
-      <div class='form-group'>
-          {{ form.location(class_='form-control rounded-field') }}
-          <label for='location' class='form-label'>
-            <i class='fas fa-building'></i>
-            {{ form.location.label.text }}
-          </label>
       </div>
       <!--Total Slots-->
       <div class='form-group'>
