@@ -112,8 +112,8 @@ class EventFilterForm(FlaskForm):
 
     search = SearchField('Search Events', validators=[InputRequired()], render_kw={
         "placeholder": "Search Events"})
-    searchType = SelectField('Search Type', validators=[InputRequired()], choices=[(
-        'eventName', 'Search by Event Name'), ('eventCode', 'Search by Event Code'), ('userName', 'Search by Creator Name')])
+    searchType = SelectField('Search By: ', validators=[InputRequired()], choices=[(
+        'eName', 'Event Name'), ('eCode', 'Event Code'), ('uName', 'Creator Name')])
 
 class EventCreateForm(FlaskForm):
 

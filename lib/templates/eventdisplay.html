@@ -1,0 +1,52 @@
+{% extends "template.html" %} 
+
+{% block styles %} 
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static',filename='css/eventdisplay.css') }}"/>
+{% endblock %}
+
+{% block content %}
+<div id='content' class='container-fluid light-bg-section'>
+  <div id="event-img">
+    <img src="{{ url_for('file', filename=event.displayImgName) }}">
+  </div>
+  <!--Content-->
+  <div id='event-content' class='row'>
+    <div id='event-data'>
+        <h1 id='event-title' class='title'>{{ event.name }}</h1>
+        <h3 id='event-subtitle' class='subtitle'>Run by {{ event.creatorName }}, at {{ event.location }}</h2>
+        <div id='event-detailed-info'>
+          {% if event.status == 'Ongoing' %}
+          <p id='event-status'>Status: <span class='alert-green'>Ongoing</span></p>
+          {% elif event.status == 'Upcoming' %}
+          <p id='event-status'>Status: <span class='alert-yellow'>Upcoming</span></p>
+          {% else %}
+          <p id='event-status'>Status: <span class='alert-red'>Completed</span></p>
+          {% endif %}
+          <p id='event-start-time' class='alert-green'>
+            <i class="fas fa-clock"></i>
+            <b>Start Time:</b> {{ event.formattedStartTime}}
+          </p>
+          <p id='event-end-time' class='alert-red'>
+            <i class='fas fa-stop-circle'></i>
+            <b>End Time:</b> {{ event.formattedEndTime }}
+          </p>
+        </div>
+        <p id='event-desc'>{{ event.desc }}</p>
+    </div>
+    <div class='event-actions d-flex flex-column'>
+    {% if isAdmin == True %}
+    <h3 id='action-header' class='subtitle'>Actions (Admin)</h3>
+    <a class='dtl-btn invert-btn-col'>Check Bookings</a>
+    <a class='dtl-btn invert-btn-col'>Edit Event</a>
+    {% else %}
+    <h3 id='action-header' class='subtitle'>Actions</h3>
+    <a class='dtl-btn invert-btn-col'>Book Event</a>
+    {% endif %}
+    <a class='dtl-btn invert-btn-col' href="{{ url_for('dashboard') }}">Return to Dashboard</a>
+    </div>
+  </div>
+  <!--Footer-->
+  {% include 'footer.html' %}
+</div>
+{% endblock %}

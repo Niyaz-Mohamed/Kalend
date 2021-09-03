@@ -53,8 +53,8 @@ class Event():
             self.status = 'Upcoming'
         else:
             self.status = 'Completed'
-        self.formattedStartTime = self.startTime.strftime('%m/%d/%Y, %H:%M')
-        self.formattedEndTime = self.endTime.strftime('%m/%d/%Y, %H:%M')
+        self.formattedStartTime = self.startTime.strftime('%d %b %Y, %H:%M')
+        self.formattedEndTime = self.endTime.strftime('%d %b %Y, %H:%M')
         self.creatorName = mongo.db.users.find_one(
             {'_id': ObjectId(str(self.creatorId))}).get('username')
 

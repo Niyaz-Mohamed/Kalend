@@ -26,11 +26,16 @@
   margin-left: 0% !important;
 }
 
+.form-group {
+  margin: 0px 20px !important;
+}
+
 .form-create {
   float: left;
 }
 
-.form-label, .form-control {
+.form-label,
+.form-control {
   font-size: 16px !important;
 }
 
@@ -85,7 +90,8 @@
     justify-content: center;
   }
 
-  .search-form .form-group, .submit-btn {
+  .search-form .form-group,
+  .submit-btn {
     flex-direction: row;
     justify-content: center !important;
   }
@@ -131,20 +137,12 @@
   }
 
   .event-desc,
-  .event-start-time,
-  .event-end-time {
+  .time {
     font-size: 16px !important;
   }
 
   .event-desc {
     padding: 8px 0px !important;
-  }
-
-  .event-start-time {
-    color: var(--alert-green);
-  }
-  .event-end-time {
-    color: var(--alert-red);
   }
 }
 
@@ -195,21 +193,11 @@
   font-size: 24px;
   font-weight: bold;
 }
+
 .event-desc,
-.event-start-time,
-.event-end-time {
+.time {
   font-size: 18px;
   margin: 10px 0px;
+  font-weight: 500;
 }
 
-.event-desc {
-  margin: 20px 0px;
-}
-
-.event-start-time {
-  color: var(--alert-green);
-}
-
-.event-end-time {
-  color: var(--alert-red);
-}

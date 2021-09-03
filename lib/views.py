@@ -158,4 +158,11 @@ def eventCreate():
 @login_required
 @app.route('/events/<id>')
 def eventRouter(id):
-    return str(mongo.db.events.find_one({'_id': ObjectId(id)}))
+    # Get event
+    event = eventFromData(mongo.db.events.find_one({'_id': ObjectId(id)}))
+    
+    # Check credentials
+    isAdmin = False
+    if current_user.id == str(event.creatorId):
+        isAdmin = True
+    return render_template('eventdisplay.html', event=event, isAdmin=isAdmin)
