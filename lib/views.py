@@ -92,7 +92,7 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
-#! Main app page routes
+#* Main app page routes
 @login_required
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
@@ -165,9 +165,17 @@ def eventRouter(id):
     isAdmin = False
     if current_user.id == str(event.creatorId):
         isAdmin = True
-    return render_template('eventdisplay.html', event=event, isAdmin=isAdmin)
 
-#! Admin Only Routes
+    isBooked = False
+    if not isAdmin:
+        existingBooking = mongo.db.bookings.find_one({'eventId': ObjectId(id), 'attendeeId': ObjectId(current_user.id)})
+        if existingBooking:
+            isBooked = True
+
+    return render_template('eventdisplay.html', event=event, isAdmin=isAdmin, isBooked=isBooked)
+
+#* Event Action Routes
+#* Admin Only Routes
 # Event Bookings
 @login_required
 @app.route('/events/<id>/bookings')
@@ -190,12 +198,20 @@ def eventEdit(id):
         return redirect('events/'+str(event.id))
     return render_template('eventedit.html', event=event)
 
-#! General User Routes
+#* General User Routes
 # Event Booking for Clients
 @login_required
 @app.route('/events/<id>/bookevent')
 def eventBook(id):
     event = eventFromData(mongo.db.events.find_one({'_id': ObjectId(id)}))
-    # Book Event
     
+    # Check Credentials
+    if current_user.id == str(event.creatorId):
+        return redirect('events/'+str(event.id))
+    # Book Event
+    bookingData = {'eventId': ObjectId(event.id), 'attendeeId': ObjectId(current_user.id), 'timestamp': datetime.now()}
+    existingBooking = mongo.db.bookings.find_one({'eventId': bookingData['eventId'], 'attendeeId': bookingData['attendeeId']})
+    if not existingBooking:
+        mongo.db.bookings.insert_one(bookingData)
+
     return redirect('/events/'+str(event.id))

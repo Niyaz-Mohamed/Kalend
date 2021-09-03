@@ -49,6 +49,10 @@
   color: var(--deep-space-blue);
 }
 
+#event-subtitle {
+  margin-bottom: 0px;
+}
+
 #event-detailed-info {
   font-size: 20px;
   margin-top: 10px;
@@ -77,6 +81,27 @@
   padding-right: 10vw;
 }
 
+.book-message {
+  color: var(--alert-red);
+  font-weight: bold;
+  text-decoration: double;
+  margin-top: 0px;
+  margin-bottom: 30px;
+}
+
+.book-message i {
+  font-size: 24px;
+}
+
+.time {
+  font-weight: 600;
+}
+
+.time b {
+  font-weight: 800;
+}
+
+/* Stylings for event actions */
 #event-actions {
   min-width: 100px;
   justify-content: center;
@@ -94,7 +119,7 @@ a.dtl-btn {
   margin-bottom: 20px;
 }
 
-/* Scaling */
+/* Scaling, Smaller Screens */
 @media only screen and (max-width: 1080px) {
   #event-content {
     flex-direction: column !important;

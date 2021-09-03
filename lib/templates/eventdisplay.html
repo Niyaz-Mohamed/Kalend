@@ -15,6 +15,12 @@
     <div id='event-data'>
         <h1 id='event-title' class='title'>{{ event.name }}</h1>
         <h3 id='event-subtitle' class='subtitle'>Run by {{ event.creatorName }}, at {{ event.location }}</h2>
+        {% if isBooked == True %}
+        <p class='book-message subtitle'>
+          <span><i class='fas fa-exclamation'></i></span>
+          You've booked this event!
+        </p>
+        {% endif %}
         <div id='event-detailed-info'>
           {% if event.status == 'Ongoing' %}
           <p id='event-status'>Status: <span class='alert-green'>Ongoing</span></p>
@@ -23,11 +29,11 @@
           {% else %}
           <p id='event-status'>Status: <span class='alert-red'>Completed</span></p>
           {% endif %}
-          <p id='event-start-time' class='alert-green'>
+          <p id='event-start-time' class='alert-green time'>
             <i class="fas fa-clock"></i>
             <b>Start Time:</b> {{ event.formattedStartTime}}
           </p>
-          <p id='event-end-time' class='alert-red'>
+          <p id='event-end-time' class='alert-red time'>
             <i class='fas fa-stop-circle'></i>
             <b>End Time:</b> {{ event.formattedEndTime }}
           </p>
@@ -41,7 +47,9 @@
       <a class='dtl-btn invert-btn-col' href="{{ event.id|string+'/edit' }}">Edit Event</a>
       {% else %}
       <h3 id='action-header' class='subtitle'>Actions</h3>
+      {% if not isBooked == True %}
       <a class='dtl-btn invert-btn-col' href="{{ event.id|string+'/bookevent' }}">Book Event</a>
+      {% endif %}
       {% endif %}
       <a class='dtl-btn invert-btn-col' href="{{ url_for('dashboard') }}">Return to Dashboard</a>
     </div>

@@ -36,15 +36,14 @@ class User(UserMixin):
 class Event():
 
     def __init__(self, **kwargs):
-        self.id = kwargs.get('id')
+        self.id = str(kwargs.get('id'))
+        self.creatorId = str(kwargs.get('creatorId'))
         self.name = kwargs.get('name')
         self.desc = kwargs.get('desc')
-        print(self.desc)
         self.startTime = kwargs.get('startTime')
         self.endTime = kwargs.get('endTime')
         self.location = kwargs.get('location')
         self.totalSlots = kwargs.get('totalSlots')
-        self.creatorId = kwargs.get('creatorId')
         self.displayImgName = kwargs.get('displayImgName')
         if self.startTime < datetime.now() < self.endTime:
             self.status = 'Ongoing'
@@ -68,4 +67,18 @@ def eventFromData(data: dict) -> Event:
         totalSlots=data.get('totalSlots'),
         creatorId=data.get('creatorId'),
         displayImgName=data.get('displayImgName')
+    )
+
+class Booking:
+
+    def __init__(self, eventId, attendeeId, timestamp):
+        self.eventId = str(eventId)
+        self.attendeeId = str(attendeeId)
+        self.timestamp = timestamp
+
+def bookingFromData(data: dict) -> Booking:
+    return Booking(
+        data.get('eventId'),
+        data.get('attendeeId'),
+        data.get('timestamp')
     )
