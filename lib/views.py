@@ -155,10 +155,10 @@ def eventCreate():
 
     return render_template('eventcreate.html', form=form, errors=errors)
 
+# Event Display Page
 @login_required
 @app.route('/events/<id>')
 def eventRouter(id):
-    # Get event
     event = eventFromData(mongo.db.events.find_one({'_id': ObjectId(id)}))
     
     # Check credentials
@@ -166,3 +166,36 @@ def eventRouter(id):
     if current_user.id == str(event.creatorId):
         isAdmin = True
     return render_template('eventdisplay.html', event=event, isAdmin=isAdmin)
+
+#! Admin Only Routes
+# Event Bookings
+@login_required
+@app.route('/events/<id>/bookings')
+def eventBookings(id):
+    event = eventFromData(mongo.db.events.find_one({'_id': ObjectId(id)}))
+
+    # Check credentials
+    if not current_user.id == str(event.creatorId):
+        return redirect('events/'+str(event.id))
+    return render_template('eventbookings.html', event=event)
+
+# Event Editing
+@login_required
+@app.route('/events/<id>/edit', methods=['GET', 'POST'])
+def eventEdit(id):
+    event = eventFromData(mongo.db.events.find_one({'_id': ObjectId(id)}))
+
+    # Check credentials
+    if not current_user.id == str(event.creatorId):
+        return redirect('events/'+str(event.id))
+    return render_template('eventedit.html', event=event)
+
+#! General User Routes
+# Event Booking for Clients
+@login_required
+@app.route('/events/<id>/bookevent')
+def eventBook(id):
+    event = eventFromData(mongo.db.events.find_one({'_id': ObjectId(id)}))
+    # Book Event
+    
+    return redirect('/events/'+str(event.id))

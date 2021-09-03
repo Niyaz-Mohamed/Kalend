@@ -1,4 +1,3 @@
-from pprint import pprint
 from bson.objectid import ObjectId
 from flask_login.mixins import UserMixin
 from datetime import datetime
@@ -40,13 +39,13 @@ class Event():
         self.id = kwargs.get('id')
         self.name = kwargs.get('name')
         self.desc = kwargs.get('desc')
+        print(self.desc)
         self.startTime = kwargs.get('startTime')
         self.endTime = kwargs.get('endTime')
         self.location = kwargs.get('location')
         self.totalSlots = kwargs.get('totalSlots')
         self.creatorId = kwargs.get('creatorId')
         self.displayImgName = kwargs.get('displayImgName')
-        pprint(self.displayImgName)
         if self.startTime < datetime.now() < self.endTime:
             self.status = 'Ongoing'
         elif datetime.now() < self.startTime:

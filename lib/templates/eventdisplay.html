@@ -35,15 +35,15 @@
         <p id='event-desc'>{{ event.desc }}</p>
     </div>
     <div class='event-actions d-flex flex-column'>
-    {% if isAdmin == True %}
-    <h3 id='action-header' class='subtitle'>Actions (Admin)</h3>
-    <a class='dtl-btn invert-btn-col'>Check Bookings</a>
-    <a class='dtl-btn invert-btn-col'>Edit Event</a>
-    {% else %}
-    <h3 id='action-header' class='subtitle'>Actions</h3>
-    <a class='dtl-btn invert-btn-col'>Book Event</a>
-    {% endif %}
-    <a class='dtl-btn invert-btn-col' href="{{ url_for('dashboard') }}">Return to Dashboard</a>
+      {% if isAdmin == True %}
+      <h3 id='action-header' class='subtitle'>Actions (Admin)</h3>
+      <a class='dtl-btn invert-btn-col' href="{{ event.id|string+'/bookings' }}">Check Bookings</a>
+      <a class='dtl-btn invert-btn-col' href="{{ event.id|string+'/edit' }}">Edit Event</a>
+      {% else %}
+      <h3 id='action-header' class='subtitle'>Actions</h3>
+      <a class='dtl-btn invert-btn-col' href="{{ event.id|string+'/bookevent' }}">Book Event</a>
+      {% endif %}
+      <a class='dtl-btn invert-btn-col' href="{{ url_for('dashboard') }}">Return to Dashboard</a>
     </div>
   </div>
   <!--Footer-->
