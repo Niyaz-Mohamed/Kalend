@@ -68,7 +68,7 @@ button:focus {
 
 .light-bg-section {
   width: 100%;
-  color: black;
+  color: var(--deep-space-blue);
   height: auto;
   box-sizing: content-box;
 }
@@ -338,7 +338,6 @@ textarea {
 .app-logo {
   height: fit-content;
   width: fit-content;
-  margin: 0px 50px;
 
   font-weight: bold;
   text-align: center;

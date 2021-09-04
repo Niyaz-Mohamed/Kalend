@@ -6,12 +6,17 @@ body {
   font-size: 1vw;
 }
 
-.container, .container-fluid {
+.container,
+.container-fluid {
   overflow-x: hidden !important;
   overflow-y: hidden !important;
 }
 
-/* For phones, tablets */ 
+.section-header {
+  margin-bottom: 30px;
+}
+
+/* For phones, tablets */
 @media only screen and (max-width: 768px) {
   nav {
     justify-content: center !important;
@@ -40,31 +45,20 @@ body {
     line-height: 35px !important;
     margin-bottom: 10px;
   }
-
-  .min-hide {
-    display: none !important;
-  }
-
-  .max-hide {
-    display: block !important;
-  }
 }
 
-/* For Laptops */ 
+/* For Laptops */
 @media only screen and (min-width: 769px) and (max-width: 1024px) {
   nav {
     margin-bottom: 30px !important;
   }
 
-  .min-hide {
-    display: none !important;
-  }
-
-  .max-hide {
-    display: block !important;
+  #title-svg {
+    margin: 60px 0px !important;
   }
 }
 
+/* Navigation Bar */
 #header {
   display: block;
 }
@@ -97,10 +91,10 @@ li {
   text-align: center;
 }
 
-#about-start-btn {
-  margin: auto;
-  margin-top: 30px !important;
-  margin-bottom: 30px !important;
+/* Header */
+.app-logo {
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 .title-text {
@@ -111,62 +105,86 @@ li {
   width: 100%;
   margin: 85px 0px;
   text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 #title-svg img {
   width: 40%;
-  min-width: 400px;
+  min-width: 500px;
 }
 
 .text-logo {
   height: 42px;
 }
 
+/* About */
 #about {
-  color: black;
   display: inline-block;
   bottom: 0;
   padding-bottom: 50px;
-}
-
-.section-header {
-  margin-bottom: 30px;
-}
-
-#about-content-col p {
-  font-weight: 500 !important;
+  display: flex;
+  justify-content: center;
 }
 
 #about-svg {
-  width: 80%;
-  height: auto;
-  margin: 50px 50px;
+  width: 100%;
+  margin: 60px 0px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
 
-#about-content-col p {
-  font-size: 16px;
+#about-svg img {
+  width: 65%;
+  min-width: 500px;
+  height: auto;
+  display: inline;
+}
+
+#about-text {
+  font-size: 20px;
   font-weight: 700;
 }
 
+#about-start-btn {
+  margin: auto;
+  margin-top: 30px !important;
+  margin-bottom: 30px !important;
+}
+
+/* Features */
 .feature-card {
-  margin: 75px 0px;
+  margin: 50px 0px;
+  height: fit-content;
+  min-height: 70vh;
+}
+
+.last-card {
+  position: relative;
+  top: 100px;
 }
 
 .feature-svg {
   padding: 30px 0px;
-  height: 350px;
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-.text-content-b-left {
-  border-left: 5px solid white 
-}
-
-.text-content-b-right {
-  border-right: 5px solid white 
+.feature-svg img {
+  width: 35%;
+  max-width: 500px;
 }
 
 .text-content {
+  margin-top: 30px;
   padding: 0px 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: min-content;
 }
 
 .max-hide {
@@ -175,10 +193,4 @@ li {
 
 .min-hide {
   display: block;
-}
-
-.app-logo {
-  width: 100%;
-  margin-bottom: 10px;
-
 }
