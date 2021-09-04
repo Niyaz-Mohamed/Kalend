@@ -1,4 +1,5 @@
 from datetime import datetime
+from lib.models import Event
 from sys import excepthook
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField
@@ -13,16 +14,8 @@ import requests
 
 # Custom Validators
 class MoreThan(object):
-    """
-    Compares the values of two fields.
 
-    :param fieldname:
-        The name of the other field to compare to.
-    :param message:
-        Error message to raise in case of a validation error. Can be
-        interpolated with `%(other_label)s` and `%(other_name)s` to provide a
-        more helpful error.
-    """
+    # fieldname -> field to compare to, message -> error message
     def __init__(self, fieldname, message=None):
         self.fieldname = fieldname
         self.message = message
@@ -31,7 +24,8 @@ class MoreThan(object):
         try:
             other = form[self.fieldname]
         except KeyError:
-            raise ValidationError(field.gettext("Invalid field name '%s'.") % self.fieldname)
+            raise ValidationError(field.gettext(
+                "Invalid field name '%s'.") % self.fieldname)
         if field.data <= other.data:
             d = {
                 'other_label': hasattr(other, 'label') and other.label.text or self.fieldname,
@@ -39,7 +33,8 @@ class MoreThan(object):
             }
             message = self.message
             if message is None:
-                message = field.gettext('Field must be equal to %(other_name)s.')
+                message = field.gettext(
+                    'Field must be equal to %(other_name)s.')
 
             raise ValidationError(message % d)
 
@@ -71,7 +66,7 @@ class LoginForm(FlaskForm):
 
 class SignUpForm(FlaskForm):
 
-    username = StringField('Username', validators=[InputRequired(), Length(min=8,max=20)], render_kw={
+    username = StringField('Username', validators=[InputRequired(), Length(min=8, max=20)], render_kw={
                            "placeholder": "Username"})
     email = EmailField('Email', validators=[InputRequired()], render_kw={
                        "placeholder": "Email"})
@@ -115,7 +110,7 @@ class EventFilterForm(FlaskForm):
     searchType = SelectField('Search By: ', validators=[InputRequired()], choices=[(
         'eName', 'Event Name'), ('eCode', 'Event Code'), ('uName', 'Creator Name')])
 
-class EventCreateForm(FlaskForm):
+class EventForm(FlaskForm):
 
     name = StringField('Event Name', validators=[InputRequired()], render_kw={
         "placeholder": "Name"})
@@ -123,9 +118,9 @@ class EventCreateForm(FlaskForm):
         "placeholder": "Description"})
     img = FileField('Display Image', validators=[InputRequired()], render_kw={
         "placeholder": "Display Image"})
-    startTime = DateTimeLocalField('Start Time', format= '%Y-%m-%dT%H:%M', validators=[InputRequired()], render_kw={
+    startTime = DateTimeLocalField('Start Time', format='%Y-%m-%dT%H:%M', validators=[InputRequired()], render_kw={
         "placeholder": "Start Time"})
-    endTime = DateTimeLocalField('End Time', format= '%Y-%m-%dT%H:%M', validators=[InputRequired(), MoreThan('startTime', 'End Time must be after Start Time')], render_kw={
+    endTime = DateTimeLocalField('End Time', format='%Y-%m-%dT%H:%M', validators=[InputRequired(), MoreThan('startTime', 'End Time must be after Start Time')], render_kw={
         "placeholder": "End Time"})
     location = StringField('Location', validators=[InputRequired()], render_kw={
         "placeholder": "Location"})
@@ -136,3 +131,15 @@ class EventCreateForm(FlaskForm):
         startTime = field.data
         if not startTime > datetime.now():
             raise ValidationError('Start Time must be after current time')
+
+def eventFormFromEvent(event: Event):
+    form = EventForm()
+
+    form.name.data = event.name
+    form.desc.data = event.desc
+    form.startTime.data = event.startTime
+    form.endTime.data = event.endTime
+    form.location.data = event.location
+    form.totalSlots.data = event.totalSlots
+    form.img.validators = []
+    return form

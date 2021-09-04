@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from os import error
 from flask import render_template, request, url_for, redirect, session
 from flask_login.utils import login_required, login_user, logout_user, current_user
 from werkzeug.exceptions import HTTPException
@@ -7,7 +8,7 @@ from bson import ObjectId
 from werkzeug.utils import secure_filename
 
 from lib import app, mongo, hasher, gridfs
-from lib.forms import EventCreateForm, EventFilterForm, LoginForm, SignUpForm
+from lib.forms import EventForm, EventFilterForm, LoginForm, SignUpForm, eventFormFromEvent
 from lib.models import User, bookingFromData, eventFromData
 
 # Pretty Printing for debugging
@@ -122,7 +123,7 @@ def schedule():
 @login_required
 @app.route('/eventcreate', methods=['GET', 'POST'])
 def eventCreate():
-    form = EventCreateForm()
+    form = EventForm()
     errors = {}
 
     if request.method == 'POST':
@@ -186,7 +187,7 @@ def eventBookings(id):
     # Check credentials
     if not current_user.id == str(event.creatorId):
         return redirect('/events/'+str(event.id))
-    #Get Bookings\
+    #Get Bookings
     bookings = []
     for booking in mongo.db.bookings.find():
         if booking.get('eventId') == ObjectId(id):
@@ -199,11 +200,48 @@ def eventBookings(id):
 @app.route('/events/<id>/edit', methods=['GET', 'POST'])
 def eventEdit(id):
     event = eventFromData(mongo.db.events.find_one({'_id': ObjectId(id)}))
+    form = eventFormFromEvent(event)
 
     # Check credentials
     if not current_user.id == str(event.creatorId):
         return redirect('/events/'+str(event.id))
-    return render_template('eventedit.html')
+    errors = {}
+
+    #Validate form and perform actions
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            data={}
+            for field in request.form:
+                data.update({field: request.form.get(field)})
+
+            # Process data
+            data.pop('csrf_token')
+            data['startTime'] = datetime.strptime(
+                data.get('startTime'), '%Y-%m-%dT%H:%M')
+            data['endTime'] = datetime.strptime(
+                data.get('endTime'), '%Y-%m-%dT%H:%M')
+            data['totalSlots'] = int(data.get('totalSlots'))
+            # Push to mongo database
+            mongo.db.events.update_one({'_id': ObjectId(id)}, {"$set": data})
+            return redirect('/events/'+str(event.id))
+        else:
+            # Handle errors
+            errors.update(form.errors)
+
+    return render_template('eventedit.html', form=form, event=event, errors=errors)
+
+# Event Deletion
+@login_required
+@app.route('/events/<id>/delete')
+def eventDelete(id):
+    event = eventFromData(mongo.db.events.find_one({'_id': ObjectId(id)}))
+
+    # Check credentials
+    if not current_user.id == str(event.creatorId):
+        return redirect('/events/'+str(event.id))
+    else:
+        mongo.db.events.delete_one({'_id': ObjectId(id)})
+    return redirect(url_for('dashboard'))
 
 #* General User Routes
 # Event Booking for Clients
