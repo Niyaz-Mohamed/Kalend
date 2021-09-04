@@ -5,7 +5,7 @@ from flask_wtf import FlaskForm
 from flask_wtf.file import FileField
 from wtforms.fields import StringField, PasswordField
 from wtforms.fields.core import SelectField
-from wtforms.fields.html5 import DateTimeLocalField, EmailField, IntegerField, SearchField
+from wtforms.fields.html5 import DateTimeLocalField, EmailField, IntegerField
 from wtforms.fields.simple import TextAreaField
 from wtforms.validators import InputRequired, Length, ValidationError
 
@@ -105,9 +105,9 @@ class SignUpForm(FlaskForm):
 
 class EventFilterForm(FlaskForm):
 
-    search = SearchField('Search Events', validators=[InputRequired()], render_kw={
+    search = StringField('Search Events', validators=[InputRequired()], render_kw={
         "placeholder": "Search Events"})
-    searchType = SelectField('Search By: ', validators=[InputRequired()], choices=[(
+    searchType = SelectField('Search By: ', choices=[(
         'eName', 'Event Name'), ('eCode', 'Event Code'), ('uName', 'Creator Name')])
 
 class EventForm(FlaskForm):

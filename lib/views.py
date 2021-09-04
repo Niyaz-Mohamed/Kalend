@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 from os import error
+from re import search
 from flask import render_template, request, url_for, redirect, session
 from flask_login.utils import login_required, login_user, logout_user, current_user
 from werkzeug.exceptions import HTTPException
@@ -101,8 +102,28 @@ def dashboard():
     eventPointer = mongo.db.events.find(
         {'creatorId': ObjectId(current_user.id)})
     events = []
+
     for event in eventPointer:
         events.append(eventFromData(event))
+    # Filter Events
+    if request.method == 'POST':
+        query = form.search.data
+        searchType = form.searchType.data
+        for event in events:
+            # Search by event name
+            if searchType == 'eName':
+                if not query in event.name:
+                    events.remove(event)
+            # Search by event code
+            elif searchType == 'eCode':
+                if not str(event.id) == query:
+                    events.remove(event)
+            # Search by creator name
+            elif searchType == 'uName':
+                creatorName = mongo.db.users.find_one({'_id': ObjectId(event.creatorId)}).get('username')
+                if not creatorName == query:
+                    events.remove(event)
+
     return render_template('dashboard.html', events=events, form=form)
 
 @login_required
@@ -110,9 +131,29 @@ def dashboard():
 def explore():
     form = EventFilterForm()
     events = []
+
     for event in mongo.db.events.find():
         if event.get('creatorId') != ObjectId(current_user.id):
             events.append(eventFromData(event))
+    # Filter Events
+    if request.method == 'POST':
+        query = form.search.data
+        searchType = form.searchType.data
+        for event in events:
+            # Search by event name
+            if searchType == 'eName':
+                if not query in event.name:
+                    events.remove(event)
+            # Search by event code
+            elif searchType == 'eCode':
+                if not str(event.id) == query:
+                    events.remove(event)
+            # Search by creator name
+            elif searchType == 'uName':
+                creatorName = mongo.db.users.find_one({'_id': ObjectId(event.creatorId)}).get('username')
+                if not query in creatorName:
+                    events.remove(event)
+
     return render_template('explore.html', events=events, form=form)
 
 @login_required
@@ -120,6 +161,7 @@ def explore():
 def schedule():
     return render_template('schedule.html')
 
+# Event Creation Route
 @login_required
 @app.route('/eventcreate', methods=['GET', 'POST'])
 def eventCreate():

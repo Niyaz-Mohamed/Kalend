@@ -6,11 +6,6 @@
 <link rel="stylesheet" href="{{ url_for('static',filename='css/eventlist.css') }}"/>
 {% endblock %}
 
-{% block scripts %} 
-{{ super() }}
-<script src="{{ url_for('static',filename='js/searchbar.js') }}"></script>
-{% endblock %}
-
 {% block content %}
 <div id='page-container'>
   <div id="navbar-div" class="container-fluid light-bg-section">
@@ -35,7 +30,7 @@
     <h3 class='font-weight-bold' style="margin: 0%;">Welcome, {{ current_user.username }}!</h3>
     <h1 class='title-text'>Dashboard</h1>
     <div id='actions'>
-      <form class='search-form row' action="" method="POST" autocomplete="off">
+      <form class='search-form row' action="{{ url_for('dashboard') }}" method="POST" autocomplete="off">
         {{ form.csrftoken }}
         <input type="hidden" name="page" value="dashboard">
         <!--Search Type-->
