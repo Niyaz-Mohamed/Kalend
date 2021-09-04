@@ -131,7 +131,7 @@ def dashboard():
 def explore():
     form = EventFilterForm()
     events = []
-    
+
     for event in mongo.db.events.find():
         if event.get('creatorId') != ObjectId(current_user.id):
             events.append(eventFromData(event))
@@ -151,7 +151,7 @@ def explore():
             # Search by creator name
             elif searchType == 'uName':
                 creatorName = mongo.db.users.find_one({'_id': ObjectId(event.creatorId)}).get('username')
-                if not creatorName == query:
+                if not query in creatorName:
                     events.remove(event)
 
     return render_template('explore.html', events=events, form=form)
