@@ -141,4 +141,5 @@ def eventFormFromEvent(event: Event):
     form.endTime.data = event.endTime
     form.location.data = event.location
     form.totalSlots.data = event.totalSlots
+    form.img.validators = []
     return form
