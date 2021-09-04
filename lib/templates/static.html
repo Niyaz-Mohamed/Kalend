@@ -22,7 +22,7 @@
     </nav>
     <!--Content-->
     <div class="static-content">
-      <div class='d-flex flex-column align-content-center justify-content-center'>
+      <div class='d-flex flex-column justify-content-center'>
         <div class='app-logo'>
           <img class='text-logo' src="{{ url_for('static', filename='img/svg/light-logo.svg') }}">
           <p>Kalend;</p>
@@ -57,7 +57,9 @@
             now and never worry about planning an event anymore!
           </p>
           <a id='about-start-btn' href="{{ url_for('login') }}" class='dtl-btn invert-btn-col'>Start Now!</a>
-          <img id='about-svg' src="{{ url_for('static',filename='img/svg/about.svg') }}" class='col'>
+          <div id='about-svg'>
+            <img src="{{ url_for('static',filename='img/svg/about.svg') }}">
+          </div>
         </div>
       </div>
     </div>
@@ -65,22 +67,24 @@
   <!--Features-->
   <div id='features' class='dark-bg-section'>
     <img class='top-border' src="{{ url_for('static', filename='img/svg/wave-light.svg') }}">
-    <div class='d-flex flex-column justify-content-center'>
+    <div id='feature-card-div' class='d-flex flex-column justify-content-center'>
       <!--Feature Card-->
-      <div class='feature-card row'>
-        <div class='col d-flex align-content-center justify-content-center'>
-          <div class='text-content' style="height: min-content;">
-            <h1 class='title-text'>Explore</h1>
-            <h2 class='title-text subtitle'>Discover events you may be interested in</h2>
-          </div>
+      <div class='feature-card'>
+        <div class='feature-svg'>
+          <img src="{{ url_for('static',filename='img/svg/search.svg') }}">
         </div>
-        <img class='col feature-svg' src="{{ url_for('static',filename='img/svg/search.svg') }}">
+        <div class='text-content'>
+          <h1 class='title-text'>Explore</h1>
+          <h2 class='title-text subtitle'>Discover events you may be interested in</h2>
+        </div>
       </div>
-      <!--Feature Card (Flipped)-->
-      <div class='feature-card row'>
-        <img class='col feature-svg min-hide' src="{{ url_for('static',filename='img/svg/dashboard.svg') }}">
-        <div class='col text-content d-flex align-content-center justify-content-center'>
-          <div class='text-content' style="height: min-content;">
+      <!--Feature Card-->
+      <div class='feature-card'>
+        <div class='feature-svg'>
+          <img src="{{ url_for('static',filename='img/svg/dashboard.svg') }}">
+        </div>
+        <div class='text-content d-flex flex-column align-content-center justify-content-center'>
+          <div class='text-content col'>
             <h1 class='title-text'>Dashboard</h1>
             <h2 class='title-text subtitle'>Create or modify events</h2>
           </div>
@@ -88,14 +92,14 @@
         <img class='col feature-svg max-hide' src="{{ url_for('static',filename='img/svg/dashboard.svg') }}">
       </div>
       <!--Feature Card-->
-      <div class='feature-card row'>
-        <div class='col text-content d-flex align-content-center justify-content-center'>
-          <div class='text-content' style="height: min-content;">
-            <h1 class='title-text'>Schedule</h1>
-            <h2 class='title-text subtitle'>View all your events in a single place</h2>
-          </div>
+      <div class='feature-card last-card'>
+        <div class='feature-svg'>
+          <img src="{{ url_for('static',filename='img/svg/schedule.svg') }}">
         </div>
-        <img class='col feature-svg' src="{{ url_for('static',filename='img/svg/schedule.svg') }}">
+        <div class='text-content'>
+          <h1 class='title-text'>Schedule</h1>
+          <h2 class='title-text subtitle'>View all your events in a single place</h2>
+        </div>
       </div>
     </div>
   </div>
