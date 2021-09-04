@@ -14,7 +14,7 @@
 
 /* Margin of actions section */
 #actions > * {
-  margin: 30px 0px;
+  margin: 20px 0px;
   transition: 0.3s all ease-in-out;
 }
 
@@ -79,7 +79,8 @@
   .search-form {
     justify-content: center !important;
     flex-direction: row;
-    margin: 15px 0px !important;
+    margin: 60px 0px !important;
+    margin-bottom: 40px !important;
   }
 
   .search-form .form-group {
