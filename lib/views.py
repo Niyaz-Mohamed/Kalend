@@ -8,7 +8,7 @@ from werkzeug.utils import secure_filename
 
 from lib import app, mongo, hasher, gridfs
 from lib.forms import EventCreateForm, EventFilterForm, LoginForm, SignUpForm
-from lib.models import User, eventFromData
+from lib.models import User, bookingFromData, eventFromData
 
 # Pretty Printing for debugging
 from pprint import PrettyPrinter
@@ -92,7 +92,7 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
-#! Main app page routes
+#* Main app page routes
 @login_required
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
@@ -155,7 +155,72 @@ def eventCreate():
 
     return render_template('eventcreate.html', form=form, errors=errors)
 
+# Event Display Page
 @login_required
 @app.route('/events/<id>')
 def eventRouter(id):
-    return str(mongo.db.events.find_one({'_id': ObjectId(id)}))
+    event = eventFromData(mongo.db.events.find_one({'_id': ObjectId(id)}))
+    
+    # Check credentials
+    isAdmin = False
+    if current_user.id == str(event.creatorId):
+        isAdmin = True
+
+    isBooked = False
+    if not isAdmin:
+        existingBooking = mongo.db.bookings.find_one(
+            {'eventId': ObjectId(id), 'attendeeId': ObjectId(current_user.id)})
+        if existingBooking:
+            isBooked = True
+
+    return render_template('eventdisplay.html', event=event, isAdmin=isAdmin, isBooked=isBooked)
+
+#* Event Action Routes
+#* Admin Only Routes
+# Event Bookings
+@login_required
+@app.route('/events/<id>/bookings')
+def eventBookings(id):
+    event = eventFromData(mongo.db.events.find_one({'_id': ObjectId(id)}))
+
+    # Check credentials
+    if not current_user.id == str(event.creatorId):
+        return redirect('/events/'+str(event.id))
+    #Get Bookings\
+    bookings = []
+    for booking in mongo.db.bookings.find():
+        if booking.get('eventId') == ObjectId(id):
+            bookings.append(bookingFromData(booking))
+
+    return render_template('eventbookings.html', bookings=bookings)
+
+# Event Editing
+@login_required
+@app.route('/events/<id>/edit', methods=['GET', 'POST'])
+def eventEdit(id):
+    event = eventFromData(mongo.db.events.find_one({'_id': ObjectId(id)}))
+
+    # Check credentials
+    if not current_user.id == str(event.creatorId):
+        return redirect('/events/'+str(event.id))
+    return render_template('eventedit.html')
+
+#* General User Routes
+# Event Booking for Clients
+@login_required
+@app.route('/events/<id>/bookevent')
+def eventBook(id):
+    event = eventFromData(mongo.db.events.find_one({'_id': ObjectId(id)}))
+
+    # Check Credentials
+    if current_user.id == str(event.creatorId):
+        return redirect('events/'+str(event.id))
+    # Book Event
+    bookingData = {'eventId': ObjectId(event.id), 'attendeeId': ObjectId(
+        current_user.id), 'timestamp': datetime.now()}
+    existingBooking = mongo.db.bookings.find_one(
+        {'eventId': bookingData['eventId'], 'attendeeId': bookingData['attendeeId']})
+    if not existingBooking:
+        mongo.db.bookings.insert_one(bookingData)
+
+    return redirect('/events/'+str(event.id))

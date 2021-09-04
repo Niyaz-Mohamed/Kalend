@@ -1,9 +1,8 @@
 :root {
-  --rich-black: #0d1f2d;
   --deep-space-blue: #0a0d53;
-  --blue-tint: #6c63ff;
-  --alert-red: #d2222d;
-  --alert-green: #238823;
+  --alert-red: #FF0D0D;
+  --alert-yellow: #FAB733;
+  --alert-green: #69B34C;
   --box-shadow: 6px 6px 8px 0px rgba(127, 127, 127, 0.24);
   --base-transition: 0.2s all ease-in-out;
   --logo-width: 40px;
@@ -18,6 +17,7 @@ html {
 body {
   margin: 0px;
   padding: 0px;
+  min-width: 565px;
   font-family: "Poppins", sans-serif;
 }
 
@@ -94,6 +94,7 @@ button:focus {
   border-radius: 45px;
 
   color: white;
+  cursor: pointer;
   padding: 12px 36px;
   text-align: center;
   text-decoration: none;
@@ -110,7 +111,6 @@ button:focus {
 .dtl-btn:hover {
   color: var(--deep-space-blue);
   background-color: white;
-  border: 5px solid inherit;
 }
 
 .dtl-white-border {
@@ -125,7 +125,6 @@ button:focus {
 .invert-btn-col:hover {
   color: white !important;
   background-color: var(--deep-space-blue);
-  border: 5px solid inherit;
 }
 
 .noselect {
@@ -275,6 +274,16 @@ textarea {
   display: none;
 }
 
+.search-form-label {
+  margin: auto;
+  margin-left: 0px;
+  margin-right: 20px;
+  height: min-content;
+
+  font-size: 18px;
+  color: var(--deep-space-blue);
+}
+
 /* Some Text Classes */
 .title-text {
   font-style: normal;
@@ -287,6 +296,19 @@ textarea {
 .subtitle {
   font-size: 32px;
   line-height: 50px;
+}
+
+/* Text Colorations */
+.alert-green {
+  color: var(--alert-green);
+}
+
+.alert-yellow {
+  color: var(--alert-yellow);
+}
+
+.alert-red {
+  color: var(--alert-red);
 }
 
 /* App Logo */

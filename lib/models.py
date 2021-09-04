@@ -1,4 +1,3 @@
-from pprint import pprint
 from bson.objectid import ObjectId
 from flask_login.mixins import UserMixin
 from datetime import datetime
@@ -37,24 +36,24 @@ class User(UserMixin):
 class Event():
 
     def __init__(self, **kwargs):
-        self.id = kwargs.get('id')
+        self.id = str(kwargs.get('id'))
+        self.creatorId = str(kwargs.get('creatorId'))
         self.name = kwargs.get('name')
         self.desc = kwargs.get('desc')
         self.startTime = kwargs.get('startTime')
         self.endTime = kwargs.get('endTime')
         self.location = kwargs.get('location')
         self.totalSlots = kwargs.get('totalSlots')
-        self.creatorId = kwargs.get('creatorId')
         self.displayImgName = kwargs.get('displayImgName')
-        pprint(self.displayImgName)
+
         if self.startTime < datetime.now() < self.endTime:
             self.status = 'Ongoing'
         elif datetime.now() < self.startTime:
             self.status = 'Upcoming'
         else:
             self.status = 'Completed'
-        self.formattedStartTime = self.startTime.strftime('%m/%d/%Y, %H:%M')
-        self.formattedEndTime = self.endTime.strftime('%m/%d/%Y, %H:%M')
+        self.formattedStartTime = self.startTime.strftime('%d %b %Y, %H:%M')
+        self.formattedEndTime = self.endTime.strftime('%d %b %Y, %H:%M')
         self.creatorName = mongo.db.users.find_one(
             {'_id': ObjectId(str(self.creatorId))}).get('username')
 
@@ -69,4 +68,23 @@ def eventFromData(data: dict) -> Event:
         totalSlots=data.get('totalSlots'),
         creatorId=data.get('creatorId'),
         displayImgName=data.get('displayImgName')
+    )
+
+class Booking:
+
+    def __init__(self, eventId, attendeeId, timestamp):
+        self.eventId = str(eventId)
+        self.attendeeId = str(attendeeId)
+        self.timestamp: datetime = timestamp
+
+        self.attendeeUser = mongo.db.users.find_one(
+            {'_id': ObjectId(self.attendeeId)})
+        self.attendeeName = self.attendeeUser.get('username')
+        self.bookingTime = self.timestamp.strftime('%d %b %Y, %I:%M %p')
+
+def bookingFromData(data: dict) -> Booking:
+    return Booking(
+        data.get('eventId'),
+        data.get('attendeeId'),
+        data.get('timestamp')
     )

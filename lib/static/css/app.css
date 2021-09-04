@@ -30,7 +30,6 @@ body {
 
   .title-text {
     text-align: center !important;
-    margin-top: 20px;
   }
 
   .app-logo {
@@ -103,7 +102,7 @@ nav > ul > li > .dtl-btn {
   margin-bottom: 20px;
 }
 
-#logout-form input{
+#logout-form input {
   margin: 0px 13px;
 }
 
@@ -119,4 +118,8 @@ nav > ul > li > .dtl-btn {
   font-size: 60px;
   margin-bottom: 10px;
   overflow: hidden;
+}
+
+.seach-bar {
+  width: min-content;
 }
