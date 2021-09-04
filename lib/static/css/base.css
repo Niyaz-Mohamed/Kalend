@@ -105,7 +105,7 @@ button:focus {
   font-weight: bold;
   width: fit-content;
 
-  transition-duration: 0.3s;
+  transition: all 0.2s ease-in-out;
 }
 
 .dtl-btn:hover {
@@ -135,6 +135,29 @@ button:focus {
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently
   Supported by Chrome, Edge, Opera and Firefox */
+}
+
+/* Alert Btn */
+.alert-btn {
+  background-color: var(--alert-red) !important;
+  color: white !important;
+  border: 5px solid var(--alert-red) !important;
+  transition: all 0.3s ease-in-out !important;
+}
+
+.alert-btn:hover {
+  color: var(--alert-red) !important;
+  background-color: white !important;
+}
+
+.invert-alert-btn-col {
+  color: var(--alert-red) !important;
+  background-color: white !important;
+}
+
+.invert-alert-btn-col:hover {
+  color: white !important;
+  background-color: var(--alert-red) !important;
 }
 
 /* Input Fields */

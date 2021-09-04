@@ -45,6 +45,7 @@
       <h3 id='action-header' class='subtitle'>Actions (Admin)</h3>
       <a class='dtl-btn invert-btn-col' href="{{ event.id|string+'/bookings' }}">Check Bookings</a>
       <a class='dtl-btn invert-btn-col' href="{{ event.id|string+'/edit' }}">Edit Event</a>
+      <a class='dtl-btn alert-btn invert-alert-btn-col' href="{{ event.id|string+'/delete' }}">Delete Event</a>
       {% else %}
       <h3 id='action-header' class='subtitle'>Actions</h3>
       {% if not isBooked == True %}
