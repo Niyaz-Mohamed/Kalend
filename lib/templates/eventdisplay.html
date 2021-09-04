@@ -46,13 +46,15 @@
       <a class='dtl-btn invert-btn-col' href="{{ event.id|string+'/bookings' }}">Check Bookings</a>
       <a class='dtl-btn invert-btn-col' href="{{ event.id|string+'/edit' }}">Edit Event</a>
       <a class='dtl-btn alert-btn invert-alert-btn-col' href="{{ event.id|string+'/delete' }}">Delete Event</a>
+      <a class='dtl-btn invert-btn-col' href="{{ url_for('dashboard') }}">Return to Dashboard</a>
       {% else %}
       <h3 id='action-header' class='subtitle'>Actions</h3>
       {% if not isBooked == True %}
       <a class='dtl-btn invert-btn-col' href="{{ event.id|string+'/bookevent' }}">Book Event</a>
       {% endif %}
+      <a class='dtl-btn invert-btn-col' href="{{ url_for('explore') }}">Return to Explore</a>
       {% endif %}
-      <a class='dtl-btn invert-btn-col' href="{{ url_for('dashboard') }}">Return to Dashboard</a>
+      
     </div>
   </div>
   <!--Footer-->

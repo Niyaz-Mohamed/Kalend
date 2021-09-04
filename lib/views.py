@@ -230,6 +230,19 @@ def eventEdit(id):
 
     return render_template('eventedit.html', form=form, event=event, errors=errors)
 
+# Event Deletion
+@login_required
+@app.route('/events/<id>/delete')
+def eventDelete(id):
+    event = eventFromData(mongo.db.events.find_one({'_id': ObjectId(id)}))
+
+    # Check credentials
+    if not current_user.id == str(event.creatorId):
+        return redirect('/events/'+str(event.id))
+    else:
+        mongo.db.events.delete_one({'_id': ObjectId(id)})
+    return redirect(url_for('dashboard'))
+
 #* General User Routes
 # Event Booking for Clients
 @login_required
