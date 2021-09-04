@@ -8,7 +8,7 @@ from werkzeug.utils import secure_filename
 
 from lib import app, mongo, hasher, gridfs
 from lib.forms import EventCreateForm, EventFilterForm, LoginForm, SignUpForm
-from lib.models import User, eventFromData
+from lib.models import User, bookingFromData, eventFromData
 
 # Pretty Printing for debugging
 from pprint import PrettyPrinter
@@ -168,7 +168,8 @@ def eventRouter(id):
 
     isBooked = False
     if not isAdmin:
-        existingBooking = mongo.db.bookings.find_one({'eventId': ObjectId(id), 'attendeeId': ObjectId(current_user.id)})
+        existingBooking = mongo.db.bookings.find_one(
+            {'eventId': ObjectId(id), 'attendeeId': ObjectId(current_user.id)})
         if existingBooking:
             isBooked = True
 
@@ -184,8 +185,14 @@ def eventBookings(id):
 
     # Check credentials
     if not current_user.id == str(event.creatorId):
-        return redirect('events/'+str(event.id))
-    return render_template('eventbookings.html', event=event)
+        return redirect('/events/'+str(event.id))
+    #Get Bookings\
+    bookings = []
+    for booking in mongo.db.bookings.find():
+        if booking.get('eventId') == ObjectId(id):
+            bookings.append(bookingFromData(booking))
+
+    return render_template('eventbookings.html', bookings=bookings)
 
 # Event Editing
 @login_required
@@ -195,8 +202,8 @@ def eventEdit(id):
 
     # Check credentials
     if not current_user.id == str(event.creatorId):
-        return redirect('events/'+str(event.id))
-    return render_template('eventedit.html', event=event)
+        return redirect('/events/'+str(event.id))
+    return render_template('eventedit.html')
 
 #* General User Routes
 # Event Booking for Clients
@@ -204,13 +211,15 @@ def eventEdit(id):
 @app.route('/events/<id>/bookevent')
 def eventBook(id):
     event = eventFromData(mongo.db.events.find_one({'_id': ObjectId(id)}))
-    
+
     # Check Credentials
     if current_user.id == str(event.creatorId):
         return redirect('events/'+str(event.id))
     # Book Event
-    bookingData = {'eventId': ObjectId(event.id), 'attendeeId': ObjectId(current_user.id), 'timestamp': datetime.now()}
-    existingBooking = mongo.db.bookings.find_one({'eventId': bookingData['eventId'], 'attendeeId': bookingData['attendeeId']})
+    bookingData = {'eventId': ObjectId(event.id), 'attendeeId': ObjectId(
+        current_user.id), 'timestamp': datetime.now()}
+    existingBooking = mongo.db.bookings.find_one(
+        {'eventId': bookingData['eventId'], 'attendeeId': bookingData['attendeeId']})
     if not existingBooking:
         mongo.db.bookings.insert_one(bookingData)
 

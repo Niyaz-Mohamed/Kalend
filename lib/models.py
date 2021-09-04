@@ -45,6 +45,7 @@ class Event():
         self.location = kwargs.get('location')
         self.totalSlots = kwargs.get('totalSlots')
         self.displayImgName = kwargs.get('displayImgName')
+
         if self.startTime < datetime.now() < self.endTime:
             self.status = 'Ongoing'
         elif datetime.now() < self.startTime:
@@ -74,7 +75,12 @@ class Booking:
     def __init__(self, eventId, attendeeId, timestamp):
         self.eventId = str(eventId)
         self.attendeeId = str(attendeeId)
-        self.timestamp = timestamp
+        self.timestamp: datetime = timestamp
+
+        self.attendeeUser = mongo.db.users.find_one(
+            {'_id': ObjectId(self.attendeeId)})
+        self.attendeeName = self.attendeeUser.get('username')
+        self.bookingTime = self.timestamp.strftime('%d %b %Y, %I:%M %p')
 
 def bookingFromData(data: dict) -> Booking:
     return Booking(
