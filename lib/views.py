@@ -7,7 +7,7 @@ from bson import ObjectId
 from werkzeug.utils import secure_filename
 
 from lib import app, mongo, hasher, gridfs
-from lib.forms import EventCreateForm, EventFilterForm, LoginForm, SignUpForm
+from lib.forms import EventForm, EventFilterForm, LoginForm, SignUpForm, eventFormFromEvent
 from lib.models import User, bookingFromData, eventFromData
 
 # Pretty Printing for debugging
@@ -122,7 +122,7 @@ def schedule():
 @login_required
 @app.route('/eventcreate', methods=['GET', 'POST'])
 def eventCreate():
-    form = EventCreateForm()
+    form = EventForm()
     errors = {}
 
     if request.method == 'POST':
@@ -199,11 +199,12 @@ def eventBookings(id):
 @app.route('/events/<id>/edit', methods=['GET', 'POST'])
 def eventEdit(id):
     event = eventFromData(mongo.db.events.find_one({'_id': ObjectId(id)}))
+    form = eventFormFromEvent(eventFromData(event))
 
     # Check credentials
     if not current_user.id == str(event.creatorId):
         return redirect('/events/'+str(event.id))
-    return render_template('eventedit.html')
+    return render_template('eventedit.html', form=form)
 
 #* General User Routes
 # Event Booking for Clients
