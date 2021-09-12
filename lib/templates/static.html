@@ -12,28 +12,30 @@
 <!--Header-->
 <div class="container-fluid">
   <div id="header" class="container-fluid dark-bg-section">
-    <!--Navbar-->
-    <nav class="container-fluid">
-      <ul>
-        <li><a class='dtl-btn dtl-white-border' href="{{ url_for('login') }}">Log in</a></li>
-        <div class='spacer'></div>
-        <li><a class='dtl-btn dtl-white-border' href="{{ url_for('signup') }}">Sign Up</a></li>
-      </ul>
-    </nav>
-    <!--Content-->
-    <div class="static-content">
-      <div class='d-flex flex-column justify-content-center'>
-        <div class='app-logo'>
-          <img class='text-logo' src="{{ url_for('static', filename='img/svg/light-logo.svg') }}">
-          <p>Kalend;</p>
-        </div>
-        <h1 class='title-text'>Your Schedule,<br>Simplified</h1>
-        <div id='title-svg'>
-          <img src="{{ url_for('static',filename='img/svg/title.svg') }}">
+    <div class='header-content'>
+      <!--Navbar-->
+      <nav class="container-fluid">
+        <ul>
+          <li><a class='dtl-btn dtl-white-border' href="{{ url_for('login') }}">Log in</a></li>
+          <div class='spacer'></div>
+          <li><a class='dtl-btn dtl-white-border' href="{{ url_for('signup') }}">Sign Up</a></li>
+        </ul>
+      </nav>
+      <!--Content-->
+      <div class="static-content">
+        <div class='d-flex flex-column justify-content-center'>
+          <div class='app-logo'>
+            <img class='text-logo' src="{{ url_for('static', filename='img/svg/light-logo.svg') }}">
+            <p>Kalend;</p>
+          </div>
+          <h1 class='title-text'>Your Schedule,<br>Simplified</h1>
+          <div id='title-svg'>
+            <img src="{{ url_for('static',filename='img/svg/title.svg') }}">
+          </div>
         </div>
       </div>
-      <img class='bottom-border' src="{{ url_for('static', filename='img/svg/wave-light.svg') }}">
     </div>
+    <img class='bottom-border' src="{{ url_for('static', filename='img/svg/wave-light.svg') }}">
   </div>
   <!--About-->
   <div id='about' class='container-fluid light-bg-section'>
@@ -69,7 +71,7 @@
     <img class='top-border' src="{{ url_for('static', filename='img/svg/wave-light.svg') }}">
     <div id='feature-card-div' class='d-flex flex-column justify-content-center'>
       <!--Feature Card-->
-      <div class='feature-card'>
+      <div class='feature-card row'>
         <div class='feature-svg'>
           <img src="{{ url_for('static',filename='img/svg/search.svg') }}">
         </div>
@@ -79,20 +81,18 @@
         </div>
       </div>
       <!--Feature Card-->
-      <div class='feature-card'>
+      <div class='feature-card row'>
         <div class='feature-svg'>
           <img src="{{ url_for('static',filename='img/svg/dashboard.svg') }}">
         </div>
-        <div class='text-content d-flex flex-column align-content-center justify-content-center'>
-          <div class='text-content col'>
-            <h1 class='title-text'>Dashboard</h1>
-            <h2 class='title-text subtitle'>Create or modify events</h2>
-          </div>
+        <div class='text-content'>
+          <h1 class='title-text'>Dashboard</h1>
+          <h2 class='title-text subtitle'>Create or modify events</h2>
         </div>
         <img class='col feature-svg max-hide' src="{{ url_for('static',filename='img/svg/dashboard.svg') }}">
       </div>
       <!--Feature Card-->
-      <div class='feature-card last-card'>
+      <div class='feature-card last-card row'>
         <div class='feature-svg'>
           <img src="{{ url_for('static',filename='img/svg/schedule.svg') }}">
         </div>
