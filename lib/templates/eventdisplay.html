@@ -5,6 +5,12 @@
 <link rel="stylesheet" href="{{ url_for('static',filename='css/eventdisplay.css') }}"/>
 {% endblock %}
 
+<!--Scripts-->
+{% block scripts %}
+{{ super() }}
+<script src="{{ url_for('static', filename='js/copy.js') }}"></script>
+{% endblock %}
+
 {% block content %}
 <div id='content' class='container-fluid light-bg-section'>
   <div id="event-img">
@@ -22,6 +28,12 @@
         </p>
         {% endif %}
         <div id='event-detailed-info'>
+          <p id='event-code'>
+            Event Code: {{ event.id }}
+            <button class='fas fa-share-alt share-button'>
+              <span id='share-link'>{{ event.id }}</span>
+            </button>
+          </p>
           {% if event.status == 'Ongoing' %}
           <p id='event-status'>Status: <span class='alert-green'>Ongoing</span></p>
           {% elif event.status == 'Upcoming' %}
@@ -49,8 +61,10 @@
       <a class='dtl-btn invert-btn-col' href="{{ url_for('dashboard') }}">Return to Dashboard</a>
       {% else %}
       <h3 id='action-header' class='subtitle'>Actions</h3>
-      {% if not isBooked == True %}
+      {% if isBooked != True and event.status != 'Completed' %}
       <a class='dtl-btn invert-btn-col' href="{{ event.id|string+'/bookevent' }}">Book Event</a>
+      {% elif isBooked == True and event.status != 'Completed' %}
+      <a class='dtl-btn alert-btn invert-alert-btn-col' href="{{ event.id|string+'/unbookevent' }}">Unbook Event</a>
       {% endif %}
       <a class='dtl-btn invert-btn-col' href="{{ url_for('explore') }}">Return to Explore</a>
       {% endif %}

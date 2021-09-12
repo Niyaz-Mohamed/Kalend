@@ -55,15 +55,12 @@
 
 #event-detailed-info {
   font-size: 20px;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 30px;
 }
 
 #event-detailed-info p {
   margin: 8px 0px;
-}
-
-#event-status {
   font-weight: bold;
 }
 
@@ -84,7 +81,7 @@
 .book-message {
   color: var(--alert-red);
   font-weight: bold;
-  text-decoration: double;
+  text-decoration: underline;
   margin-top: 0px;
   margin-bottom: 30px;
 }

@@ -1,14 +1,12 @@
-from datetime import datetime, timedelta
-from os import error
-from re import search
-from flask import render_template, request, url_for, redirect, session
+from datetime import datetime
+from flask import render_template, request, url_for, redirect
 from flask_login.utils import login_required, login_user, logout_user, current_user
 from werkzeug.exceptions import HTTPException
 from werkzeug.urls import url_parse
 from bson import ObjectId
 from werkzeug.utils import secure_filename
 
-from lib import app, mongo, hasher, gridfs
+from lib import app, mongo, hasher
 from lib.forms import EventForm, EventFilterForm, LoginForm, SignUpForm, eventFormFromEvent
 from lib.models import User, bookingFromData, eventFromData
 
@@ -22,8 +20,8 @@ def handle_exception(e):
     return render_template('error.html', error=e)
 
 #Retreiving files from mongo
-@login_required
 @app.route('/file/<filename>')
+@login_required
 def file(filename):
     return mongo.send_file(filename)
 
@@ -38,6 +36,9 @@ def home():
 def login():
     form = LoginForm()
     errors = {}
+
+    if current_user.is_authenticated:
+        return redirect(url_for('dashboard'))
 
     if request.method == 'POST':
         if form.validate_on_submit():
@@ -88,82 +89,87 @@ def signup():
 
     return render_template('signup.html', form=form, errors=errors)
 
-@login_required
 @app.route('/logout')
+@login_required
 def logout():
     logout_user()
     return redirect(url_for('login'))
 
+# Event Searcher
+def search(searchType, query, events):
+    filteredEvents = list(events)
+    removalIdentifier = 'marker'
+    query = query.lower()
+
+    for eventIndex in range(len(events)):
+        event = events[eventIndex]
+
+        # Search by event name
+        if searchType == 'eName':
+            if query not in event.name.lower():
+                filteredEvents[eventIndex]=removalIdentifier
+        # Search by event code
+        elif searchType == 'eCode':
+            if query == '':
+                continue
+            elif str(event.id).lower() != query:
+                filteredEvents[eventIndex]=removalIdentifier
+        # Search by creator name
+        elif searchType == 'uName':
+            creatorName = mongo.db.users.find_one(
+                {'_id': ObjectId(event.creatorId)}).get('username').lower()
+            if query == '':
+                continue
+            elif query not in creatorName:
+                filteredEvents[eventIndex] = removalIdentifier
+
+    filteredEvents = filter(lambda a: a != removalIdentifier, filteredEvents)
+    return filteredEvents
+
 #* Main app page routes
-@login_required
 @app.route('/dashboard', methods=['GET', 'POST'])
+@login_required
 def dashboard():
     form = EventFilterForm()
     eventPointer = mongo.db.events.find(
         {'creatorId': ObjectId(current_user.id)})
     events = []
-
     for event in eventPointer:
         events.append(eventFromData(event))
+
     # Filter Events
     if request.method == 'POST':
         query = form.search.data
         searchType = form.searchType.data
-        for event in events:
-            # Search by event name
-            if searchType == 'eName':
-                if not query in event.name:
-                    events.remove(event)
-            # Search by event code
-            elif searchType == 'eCode':
-                if not str(event.id) == query:
-                    events.remove(event)
-            # Search by creator name
-            elif searchType == 'uName':
-                creatorName = mongo.db.users.find_one({'_id': ObjectId(event.creatorId)}).get('username')
-                if not creatorName == query:
-                    events.remove(event)
+        events = search(searchType, query, events)
 
     return render_template('dashboard.html', events=events, form=form)
 
-@login_required
 @app.route('/explore', methods=['GET', 'POST'])
+@login_required
 def explore():
     form = EventFilterForm()
     events = []
-
     for event in mongo.db.events.find():
         if event.get('creatorId') != ObjectId(current_user.id):
             events.append(eventFromData(event))
+
     # Filter Events
     if request.method == 'POST':
         query = form.search.data
         searchType = form.searchType.data
-        for event in events:
-            # Search by event name
-            if searchType == 'eName':
-                if not query in event.name:
-                    events.remove(event)
-            # Search by event code
-            elif searchType == 'eCode':
-                if not str(event.id) == query:
-                    events.remove(event)
-            # Search by creator name
-            elif searchType == 'uName':
-                creatorName = mongo.db.users.find_one({'_id': ObjectId(event.creatorId)}).get('username')
-                if not query in creatorName:
-                    events.remove(event)
+        events = search(searchType, query, events)
 
     return render_template('explore.html', events=events, form=form)
 
-@login_required
 @app.route('/schedule')
+@login_required
 def schedule():
     return render_template('schedule.html')
 
 # Event Creation Route
-@login_required
 @app.route('/eventcreate', methods=['GET', 'POST'])
+@login_required
 def eventCreate():
     form = EventForm()
     errors = {}
@@ -199,8 +205,8 @@ def eventCreate():
     return render_template('eventcreate.html', form=form, errors=errors)
 
 # Event Display Page
-@login_required
 @app.route('/events/<id>')
+@login_required
 def eventRouter(id):
     event = eventFromData(mongo.db.events.find_one({'_id': ObjectId(id)}))
     
@@ -218,11 +224,10 @@ def eventRouter(id):
 
     return render_template('eventdisplay.html', event=event, isAdmin=isAdmin, isBooked=isBooked)
 
-#* Event Action Routes
-#* Admin Only Routes
+#* Admin Only Action Routes
 # Event Bookings
-@login_required
 @app.route('/events/<id>/bookings')
+@login_required
 def eventBookings(id):
     event = eventFromData(mongo.db.events.find_one({'_id': ObjectId(id)}))
 
@@ -238,8 +243,8 @@ def eventBookings(id):
     return render_template('eventbookings.html', bookings=bookings)
 
 # Event Editing
-@login_required
 @app.route('/events/<id>/edit', methods=['GET', 'POST'])
+@login_required
 def eventEdit(id):
     event = eventFromData(mongo.db.events.find_one({'_id': ObjectId(id)}))
     form = eventFormFromEvent(event)
@@ -273,8 +278,8 @@ def eventEdit(id):
     return render_template('eventedit.html', form=form, event=event, errors=errors)
 
 # Event Deletion
-@login_required
 @app.route('/events/<id>/delete')
+@login_required
 def eventDelete(id):
     event = eventFromData(mongo.db.events.find_one({'_id': ObjectId(id)}))
 
@@ -287,8 +292,8 @@ def eventDelete(id):
 
 #* General User Routes
 # Event Booking for Clients
-@login_required
 @app.route('/events/<id>/bookevent')
+@login_required
 def eventBook(id):
     event = eventFromData(mongo.db.events.find_one({'_id': ObjectId(id)}))
 
@@ -302,5 +307,22 @@ def eventBook(id):
         {'eventId': bookingData['eventId'], 'attendeeId': bookingData['attendeeId']})
     if not existingBooking:
         mongo.db.bookings.insert_one(bookingData)
+
+    return redirect('/events/'+str(event.id))
+
+# Event Unbooking for Clients
+@app.route('/events/<id>/unbookevent')
+@login_required
+def eventUnbook(id):
+    event = eventFromData(mongo.db.events.find_one({'_id': ObjectId(id)}))
+
+    # Check Credentials
+    if current_user.id == str(event.creatorId):
+        return redirect('events/'+str(event.id))
+    # Find Booking
+    existingBooking = mongo.db.bookings.find_one(
+        {'eventId': ObjectId(event.id), 'attendeeId': ObjectId(current_user.id)})
+    if existingBooking:
+        mongo.db.bookings.delete_one(existingBooking)
 
     return redirect('/events/'+str(event.id))

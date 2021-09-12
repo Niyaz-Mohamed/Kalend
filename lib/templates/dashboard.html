@@ -67,11 +67,11 @@
         <div class='col card-info modified-scrollbar'>
           <h1 class='event-title'>{{ event.name }}</h1>
           {% if event.status == 'Ongoing' %}
-          <h3 class='event-subtitle'>Ongoing at {{ event.location }},</h2>
+          <h3 class='event-subtitle'><span class='alert-green underlined'>Ongoing</span> at {{ event.location }},</h2>
           {% elif event.status == 'Upcoming' %}
-          <h3 class='event-subtitle'>Upcoming at {{ event.location }},</h2>
+          <h3 class='event-subtitle'><span class='alert-yellow underlined'>Upcoming</span> at {{ event.location }},</h2>
           {% else %}
-          <h3 class='event-subtitle'>Event Completed</h2>
+          <h3 class='event-subtitle'>Event <span class='alert-red underlined'>Completed</span></h2>
           {% endif %}
           <h3 class='event-subtitle'>Run by {{ event.creatorName }}</h2>
           <p class='event-desc'>{{ event.desc }}</p>

@@ -1,4 +1,6 @@
 from datetime import datetime
+
+from pymongo.message import query
 from lib.models import Event
 from sys import excepthook
 from flask_wtf import FlaskForm
@@ -105,10 +107,15 @@ class SignUpForm(FlaskForm):
 
 class EventFilterForm(FlaskForm):
 
-    search = StringField('Search Events', validators=[InputRequired()], render_kw={
+    search = StringField('Search Events', render_kw={
         "placeholder": "Search Events"})
     searchType = SelectField('Search By: ', choices=[(
         'eName', 'Event Name'), ('eCode', 'Event Code'), ('uName', 'Creator Name')])
+    
+    def validate_search(form, field):
+        query = field.data
+        if not query:
+            field.data = ''
 
 class EventForm(FlaskForm):
 
@@ -124,7 +131,7 @@ class EventForm(FlaskForm):
         "placeholder": "End Time"})
     location = StringField('Location', validators=[InputRequired()], render_kw={
         "placeholder": "Location"})
-    totalSlots = IntegerField('Slots Avaliable', validators=[InputRequired()], render_kw={
+    totalSlots = IntegerField('Slots Available', validators=[InputRequired()], render_kw={
         "placeholder": "Slots Avaliable"})
 
     def validate_startTime(form, field):

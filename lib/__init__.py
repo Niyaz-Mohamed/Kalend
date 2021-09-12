@@ -3,7 +3,6 @@ from flask_bootstrap import Bootstrap
 from flask_pymongo import PyMongo
 from flask_hashing import Hashing
 from flask_login import LoginManager
-from gridfs import GridFS
 import json
 
 # Create a WSGI Application
@@ -16,7 +15,6 @@ app.config.from_file('config.json', load=json.load)
 # Initialize extensions
 Bootstrap(app)
 mongo = PyMongo(app)
-gridfs = GridFS(mongo.db)
 hasher = Hashing(app)
 login = LoginManager(app)
 login.login_view = 'login'
