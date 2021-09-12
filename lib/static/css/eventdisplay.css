@@ -5,15 +5,14 @@
 /* Display image for the event */
 #event-img {
   width: 100%;
-  min-height: 50vh;
+  max-height: 50vh;
   position: relative;
 }
 
 #event-img img {
-  width: 100%;
-  max-height: 50vh;
+  width: 100vw;
+  height: 50vh;
   object-fit: cover;
-  -ms-interpolation-mode: bicubic;
 }
 
 #event-img:before {
