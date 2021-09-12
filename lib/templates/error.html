@@ -1,5 +1,8 @@
 {% extends "template.html" %} 
 
+<!--Title-->
+{% block title %} Error {{ error.code }} {% endblock %}
+
 {% block styles %} 
 {{ super() }}
 <link rel="stylesheet" href="{{ url_for('static',filename='css/error.css') }}"/>

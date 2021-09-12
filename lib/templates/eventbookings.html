@@ -1,5 +1,8 @@
 {% extends "template.html" %} 
 
+<!--Title-->
+{% block title %} Kalend - Events {% endblock %}
+
 {% block styles %}
 {{ super() }}
 <link rel="stylesheet" href="{{ url_for('static',filename='css/eventbookings.css') }}"/>
@@ -8,16 +11,21 @@
 {% block content %}
 <div id='page-container' class='container'>
   <div class='content'>
-    <h1 id='booking-header'>Event Bookings - Attendee List</h1>
+    <div id='booking-header'>
+      <h1>Event Bookings - Attendee List</h1>
+      <p class='backlink'>Or go <a href="{{ '/events/'+ event.id|string }}">back</a></p>
+    </div>
     <table>
       <tr>
+        <th>Index</th>
         <th>Name</th>
         <th>Book Timing</th>
       </tr>
-      {% for booking in bookings %}
+      {% for bookingIndex in range(bookings|length) %}
       <tr>
-        <td>{{ booking.attendeeName }}</td>
-        <td>{{ booking.bookingTime }}</td>
+        <td>{{ bookingIndex+1 }}</td>
+        <td>{{ bookings[bookingIndex].attendeeName }}</td>
+        <td>{{ bookings[bookingIndex].bookingTime }}</td>
       </tr>
       {% endfor %}
     </table>

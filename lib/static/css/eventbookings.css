@@ -9,9 +9,23 @@
 }
 
 #booking-header {
-  font-size: 48px;
   font-weight: bold;
   margin-bottom: 75px;
+}
+
+#booking-header h1 {
+  font-size: 48px;
+  font-weight: inherit;
+}
+
+#booking-header p {
+  font-weight: inherit;
+  font-size: 24px;
+}
+
+.backlink a {
+  color: var(--deep-space-blue) !important;
+  text-decoration: underline;
 }
 
 /* Table Stylings */
@@ -19,6 +33,7 @@ table {
   width: 100%;
   border-radius: 15px;
   border: 5px solid var(--deep-space-blue);
+  font-weight: bold;
 }
 
 table,
@@ -32,11 +47,9 @@ th,
 td {
   padding: 15px 10px;
   font-size: 16px;
-  font-weight: 500;
 }
 
 th {
-  font-weight: 800 !important;
   text-decoration: underline;
 }
 

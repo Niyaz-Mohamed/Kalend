@@ -240,7 +240,7 @@ def eventBookings(id):
         if booking.get('eventId') == ObjectId(id):
             bookings.append(bookingFromData(booking))
 
-    return render_template('eventbookings.html', bookings=bookings)
+    return render_template('eventbookings.html', bookings=bookings, event=event)
 
 # Event Editing
 @app.route('/events/<id>/edit', methods=['GET', 'POST'])
