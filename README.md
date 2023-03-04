@@ -7,16 +7,16 @@ Features
 --------
 
 - [ ] Accounts
-  - [ ] Multi-user Account
+  - [ ] Multi-User Accounts
   - [ ] Account Customization and Management
 - [ ] Event Creation
   - [ ] Event Creation Page
   - [ ] Event Privacy Settings
 - [ ] Event Search
   - [ ] Event Search by Name
-  - [ ] Event Search by Code (Privacy!)
+  - [ ] Event Search by ID
 - [ ] Event Management
-  - [ ] Event Dashboard
-  - [ ] External Resource Linking
+  - [ ] Dashboard
+  - [ ] Linking External Resources
 - [ ] Other features
-  - [ ] Event Schedule Calendar
+  - [ ] Event Calendar
